@@ -15,7 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0"
+            prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
    <children>
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -95,12 +97,12 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="contactSeacrhTextField" prefHeight="30.0" prefWidth="149.0" />
-                  <Button fx:id="contactSearchButon" mnemonicParsing="false" onAction="#contactSearchButonHandler" prefHeight="29.0" prefWidth="32.0">
+                  <TextField fx:id="contactSearchTextField" prefHeight="30.0" prefWidth="149.0" />
+                  <Button fx:id="contactSearchButton" mnemonicParsing="false" onAction="#contactSearchButtonHandler" prefHeight="29.0" prefWidth="32.0">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@search_icon_og.png" />
+                              <Image url="@Resources/search_icon.png" />
                            </image>
                         </ImageView>
                      </graphic>

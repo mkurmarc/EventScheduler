@@ -11,7 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="569.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0"
+            prefWidth="569.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.monthViewController">
    <children>
       <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="542.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -51,33 +53,47 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Sun" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;"
+                               text="Sun" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                               GridPane.vgrow="NEVER">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Mon" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;"
+                               text="Mon" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS"
+                               GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Tues" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Tues"
+                               GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                               GridPane.vgrow="NEVER">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Wed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Wed"
+                               GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                               GridPane.vgrow="NEVER">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Thurs" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Thurs"
+                               GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                               GridPane.vgrow="NEVER">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Fri" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-                        <Label minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Sat" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                        <Label style="-fx-font-family: SansSerif; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Fri"
+                               GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS"
+                               GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                        <Label minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-family: SansSerif;
+                        -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Sat" GridPane.columnIndex="6"
+                               GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                      </children>
                   </GridPane>
                </children>
@@ -100,456 +116,526 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="dateVariableLabel00" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel00" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel01" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel01" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel02" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel02" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel03" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel03" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel04" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel04" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel05" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel05" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel06" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel06" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel10" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel10" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel11" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel11" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel12" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel12" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel13" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel13" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel14" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="1" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel14" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="1" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel15" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel15" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel16" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel16" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel20" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel20" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel21" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel21" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel22" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel22" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel23" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel23" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel24" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel24" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel25" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel25" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel26" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel26" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel30" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel30" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel31" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel31" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel32" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel32" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel33" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel33" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel34" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel34" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel35" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel35" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel41" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel41" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel40" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel40" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel36" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel36" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel42" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel42" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel43" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel43" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel44" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel44" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel45" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel45" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateVariableLabel46" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;" text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label fx:id="dateVariableLabel46" style="-fx-font-family: SansSerif; -fx-font-size: 15; -fx-text-fill: black;"
+                         text="2" GridPane.columnIndex="6" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="6.0" top="4.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fx:id="squareReminder00" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder00" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="squareReminder01" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder01" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="6.0" left="2.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fx:id="squareReminder02" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@grey_box.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="6.0" left="2.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fx:id="squareReminder03" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@grey_box.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="6.0" left="2.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fx:id="squareReminder04" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@grey_box.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="6.0" left="2.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fx:id="squareReminder05" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@grey_box.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="6.0" left="2.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fx:id="squareReminder06" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder10" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder02" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder11" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder03" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder12" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder04" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder13" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder05" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder14" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder06" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder15" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder10" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder16" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder11" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder20" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder12" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder21" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder13" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder22" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder14" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder23" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder15" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder24" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder16" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder25" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder20" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder26" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder21" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder30" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder22" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder31" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder23" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder32" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder24" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder33" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder25" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder34" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder26" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder35" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder30" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder36" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder31" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder40" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder32" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder41" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder33" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder42" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder34" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder43" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder35" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder44" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder36" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder45" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder40" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fx:id="squareReminder46" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                  <ImageView fx:id="squareReminder41" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                      <image>
-                        <Image url="@grey_box.png" />
+                        <Image url="@Resources/grey_box.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="6.0" left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="squareReminder42" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@Resources/grey_box.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="6.0" left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="squareReminder43" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@Resources/grey_box.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="6.0" left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="squareReminder44" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@Resources/grey_box.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="6.0" left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="squareReminder45" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@Resources/grey_box.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="6.0" left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="squareReminder46" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true"
+                             GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@Resources/grey_box.png" />
                      </image>
                      <GridPane.margin>
                         <Insets bottom="6.0" left="2.0" />
