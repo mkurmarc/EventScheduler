@@ -1,5 +1,6 @@
 package appointmentScheduler;
 
+import appointmentScheduler.Utilities.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,13 +12,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View_Controller/dashboard.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Appointment Scheduler Dashboard");
+        primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
+
+        DBConnection.startConnection();
         launch(args);
+        DBConnection.closeConnection();
     }
 }

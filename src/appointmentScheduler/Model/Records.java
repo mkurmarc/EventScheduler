@@ -1,9 +1,11 @@
-package appointmentScheduler.Model;
 /*
+package appointmentScheduler.Model;
     @AUTHOR
     Marc Rios
     ID:
-*/
+
+import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.Model.Contact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -68,7 +70,7 @@ public class Records implements Initializable {
 
     }
 }
-/*
+
     @AUTHOR
     Marc Rios
     ID:
