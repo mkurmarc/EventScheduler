@@ -23,9 +23,9 @@ public class DBConnection {
     private static Connection conn = null;
 
     // Username
-    private static final String username = "U06381";
+    private static final String username = "";
     // Password
-    private static final String password = "53688676865";
+    private static final String password = "";
 
     public static Connection startConnection() {
         try {
