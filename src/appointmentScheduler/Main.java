@@ -30,11 +30,34 @@ public class Main extends Application {
         DBQuery.setStatement(conn); // create statement object
         Statement statement = DBQuery.getStatement();
 
+        /*
         // Raw SQL insert statement
-        String insertStatement = "INSERT INTO country(country, createDate, createdBy, lastUpdateBy) VALUES('USA','2020-02-22 00:00:00', 'admin', 'admin')";
+        //String insertStatement = "INSERT INTO country(country, createDate, createdBy, lastUpdateBy) VALUES('USA','2020-02-22 00:00:00', 'admin', 'admin')";
+
+        // variable insert
+        String countryName = "Canada";
+        String createDate = "2020-02-22 00:00:00";
+        String createBy = "admin";
+        String lastUpdateBy = "admin";
+
+        String insertStatement = "INSERT INTO country(country, createDate, createdBy, lastUpdateBy)" +
+                                 "VALUES(" +
+                                 "'" + countryName +"',"+
+                                 "'" + createDate +"',"+
+                                 "'" + createBy +"',"+
+                                 "'" + lastUpdateBy +"'"+
+                                 ")";
+
+         */
+
+        // update statement
+        // String updateStatement = "UPDATE country SET country = 'Japan' WHERE (country = 'Canada')";
+
+        // delete statement
+        String deleteStatement = "DELETE FROM country WHERE country = 'Japan'";
 
         // Execute SQL statement
-        statement.execute(insertStatement);
+        statement.execute(deleteStatement);
 
         // Confirm rows affected
         if(statement.getUpdateCount() > 0)
