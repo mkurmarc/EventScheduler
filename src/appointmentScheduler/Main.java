@@ -8,13 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class Main extends Application {
 
@@ -30,32 +28,42 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = DBConnection.startConnection(); // connect to DB
-        DBQuery.setStatement(conn); // create statement object
-        Statement statement = DBQuery.getStatement(); // get statement reference
 
-        String selectStatement = "SELECT * FROM country"; // SELECT statement
-        statement.execute(selectStatement); // execute statement
-        ResultSet rs = statement.getResultSet(); // get result set
+        String updateStatement = "UPDATE country SET country = ?, createdBy = ? WHERE country = ?"; // index #s of ?s from left to right = (1,2,3,4,...)
 
-        // below - forward scroll ResultSet
-        while (rs.next()) // while there is data in ResultSet the while loop continues
-        {
-            int countryId = rs.getInt("countryId");
-            String countryName = rs.getString("country");
-            LocalDate date = rs.getDate("createDate").toLocalDate(); // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalTime time = rs.getTime("createDate").toLocalTime();
-            String createdBy = rs.getString("createdBy");
-            LocalDateTime lastUpdate = rs.getTimestamp("lastUpdate").toLocalDateTime();
-            String lastUpdateBy = rs.getString("lastUpdateBy");
+        DBQuery.setPreparedStatement(conn, updateStatement); // create PreparedStatement
 
-            // display record
-            System.out.println(countryId + " | " + countryName + " | " + date + " | " + time + " | " + createdBy + " | " + lastUpdate + " | " + lastUpdateBy);
+        PreparedStatement ps = DBQuery.getPreparedStatement();
 
-        }
+        String countryName, newCountry, createdBy;
 
+        // Get keyboard inputs
+        Scanner keyboard = new Scanner(System.in);
+
+        System.out.print("Enter a country to update: ");
+        countryName = keyboard.nextLine();
+
+        System.out.print("Enter new country: ");
+        newCountry = keyboard.nextLine();
+
+        System.out.print("Enter user: ");
+        createdBy = keyboard.nextLine();
+
+
+        // key-value mapping
+        ps.setString(1, newCountry);
+        ps.setString(2, createdBy);
+        ps.setString(3, countryName);
+
+        ps.execute(); // execute PreparedStatement
+
+        // check rows affected
+        if (ps.getUpdateCount() > 0)
+            System.out.println(ps.getUpdateCount() + "row(s) affected!");
+        else
+            System.out.println("No change!");
 
         launch(args);
-
         DBConnection.closeConnection(); // close DB connection
     }
 }
