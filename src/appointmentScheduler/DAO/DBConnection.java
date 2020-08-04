@@ -1,4 +1,4 @@
-package appointmentScheduler.Utilities;
+package appointmentScheduler.DAO;
 /*
     @AUTHOR
     Marc Rios
