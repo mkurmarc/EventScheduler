@@ -1,9 +1,7 @@
-package appointmentScheduler.Utilities;
+package appointmentScheduler.DAO;
 
 import appointmentScheduler.Model.Customer;
 import javafx.collections.ObservableList;
-
-import java.util.List;
 
 public interface CustomerDAO {
     public ObservableList<Customer> getAllCustomers();

@@ -1,6 +1,6 @@
-package appointmentScheduler.DAO;
+package appointmentScheduler.DAO.Impl;
 
-import appointmentScheduler.Utilities.CustomerDAO;
+import appointmentScheduler.DAO.CustomerDAO;
 import appointmentScheduler.Model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

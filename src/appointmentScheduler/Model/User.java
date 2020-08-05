@@ -1,27 +1,20 @@
 package appointmentScheduler.Model;
 
-/*
-    @AUTHOR
-    Marc Rios
-    ID:
-*/
-
-public class Customer {
-
-    private int customerId;
-    private String customerName;
-    private int addressId;
+public class User {
+    private int userId;
+    private String userName;
+    private String password;
     private byte active;
     private String createDate;
     private String createdBy;
     private String lastUpdate;
     private String lastUpdatedBy;
 
-    public Customer(int customerId, String customerName, int addressId, byte active, String createDate, String createdBy,
-                    String lastUpdate, String lastUpdatedBy) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.addressId = addressId;
+    public User(int userId, String userName, String password, byte active, String createDate, String createdBy,
+                String lastUpdate, String lastUpdatedBy) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
         this.active = active;
         this.createDate = createDate;
         this.createdBy = createdBy;
@@ -29,28 +22,28 @@ public class Customer {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public int getAddressId() {
-        return addressId;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public byte getActive() {
@@ -93,8 +86,3 @@ public class Customer {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 }
-/*
-    @AUTHOR
-    Marc Rios
-    ID:
-*/
