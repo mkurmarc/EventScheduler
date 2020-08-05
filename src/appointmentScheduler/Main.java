@@ -1,7 +1,7 @@
 package appointmentScheduler;
 
-import appointmentScheduler.Utilities.DBConnection;
-import appointmentScheduler.Utilities.DBQuery;
+import appointmentScheduler.DAO.DBConnection;
+import appointmentScheduler.DAO.DBQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +12,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Scanner;
 
 public class Main extends Application {
 
@@ -28,40 +27,30 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = DBConnection.startConnection(); // connect to DB
+        String selectStatement = "SELECT * FROM country"; // index #s of ?s from left to right = (1,2,3,4,...)
 
-        String updateStatement = "UPDATE country SET country = ?, createdBy = ? WHERE country = ?"; // index #s of ?s from left to right = (1,2,3,4,...)
-
-        DBQuery.setPreparedStatement(conn, updateStatement); // create PreparedStatement
-
-        PreparedStatement ps = DBQuery.getPreparedStatement();
-
-        String countryName, newCountry, createdBy;
-
-        // Get keyboard inputs
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.print("Enter a country to update: ");
-        countryName = keyboard.nextLine();
-
-        System.out.print("Enter new country: ");
-        newCountry = keyboard.nextLine();
-
-        System.out.print("Enter user: ");
-        createdBy = keyboard.nextLine();
-
-
-        // key-value mapping
-        ps.setString(1, newCountry);
-        ps.setString(2, createdBy);
-        ps.setString(3, countryName);
+        DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
 
         ps.execute(); // execute PreparedStatement
 
-        // check rows affected
-        if (ps.getUpdateCount() > 0)
-            System.out.println(ps.getUpdateCount() + "row(s) affected!");
-        else
-            System.out.println("No change!");
+        ResultSet rs = ps.getResultSet();
+
+        while (rs.next()) // while there is data in ResultSet the while loop continues
+        {
+            int countryId = rs.getInt("countryId");
+            String countryName = rs.getString("country");
+            // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
+            LocalDate date = rs.getDate("createDate").toLocalDate();
+            LocalTime time = rs.getTime("createDate").toLocalTime();
+            String createdBy = rs.getString("createdBy");
+            LocalDateTime lastUpdate = rs.getTimestamp("lastUpdate").toLocalDateTime();
+            String lastUpdateBy = rs.getString("lastUpdateBy");
+
+            // display record
+            System.out.println(countryId + " | " + countryName + " | " + date + " | " + time + " | " + createdBy + " | " + lastUpdate + " | " + lastUpdateBy);
+
+        }
 
         launch(args);
         DBConnection.closeConnection(); // close DB connection
