@@ -43,6 +43,7 @@ public class DBConnection {
         return conn;
     }
 
+    // closes connection to DB
     public static void closeConnection() {
         try{
             conn.close();
