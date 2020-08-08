@@ -1,7 +1,7 @@
 package appointmentScheduler;
 
-import appointmentScheduler.DAO.DBConnection;
-import appointmentScheduler.DAO.DBQuery;
+import appointmentScheduler.Utilities.DBConnection;
+import appointmentScheduler.Utilities.DBQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
