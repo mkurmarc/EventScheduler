@@ -8,7 +8,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 
 public class dashboardController {
     @FXML
@@ -116,7 +117,7 @@ public class dashboardController {
     }
 
     @FXML
-    void appointmentAddButtonHandler(ActionEvent event) {
+    void appointmentAddButtonHandler(ActionEvent actionEvent) throws IOException {
 
     }
 

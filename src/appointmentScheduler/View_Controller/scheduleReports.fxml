@@ -10,17 +10,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0"
-            prefWidth="600.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.scheduleReportsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.scheduleReportsController">
    <children>
-      <VBox layoutX="97.0" layoutY="105.0" prefHeight="200.0" prefWidth="590.0" style="-fx-background-color: #205863;"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="97.0" layoutY="105.0" prefHeight="200.0" prefWidth="590.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="64.0" prefWidth="580.0" style="-fx-background-color: #2f7280;">
                <children>
-                  <Label prefHeight="65.0" prefWidth="496.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;
-                  -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="DAILY EMPLOYEE SCHEDULE REPORT" />
+                  <Label prefHeight="65.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="VIEW SELECT REPORTS" HBox.hgrow="SOMETIMES" />
                </children>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="5.0" />
@@ -28,16 +24,13 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="590.0">
                <children>
-                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18;
-                  -fx-font-weight: bold;" text="Select Report Date">
+                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18;                   -fx-font-weight: bold;" text="Select Report Date">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <DatePicker fx:id="scheduleReportDatePicker" prefHeight="25.0" prefWidth="129.0" />
-                  <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReportButtonHandler"
-                          prefHeight="26.0" prefWidth="69.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;
-                          -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Generate">
+                  <DatePicker fx:id="scheduleReportDatePicker" prefHeight="25.0" prefWidth="159.0" />
+                  <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReportButtonHandler" prefHeight="26.0" prefWidth="69.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Generate">
                      <HBox.margin>
                         <Insets left="15.0" right="10.0" />
                      </HBox.margin>
@@ -50,8 +43,7 @@
             <TextField fx:id="scheduleReportTextArea" prefHeight="431.0" prefWidth="590.0" />
             <HBox alignment="BOTTOM_RIGHT" prefHeight="67.0" prefWidth="438.0">
                <children>
-                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;"
-                         text="Go to Other Report" textAlignment="RIGHT" wrapText="true">
+                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Change Report" textAlignment="RIGHT" wrapText="true">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -64,16 +56,12 @@
                         <Insets bottom="20.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button fx:id="goToReportButton" mnemonicParsing="false" onAction="#goToReportButtonHandler"
-                          prefHeight="25.0" prefWidth="35.0" style="-fx-font-family: SansSerif;
-                          -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Go">
+                  <Button fx:id="goToReportButton" mnemonicParsing="false" onAction="#goToReportButtonHandler" prefHeight="25.0" prefWidth="35.0" style="-fx-font-family: SansSerif;                           -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Go">
                      <HBox.margin>
                         <Insets bottom="20.0" right="40.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="closeReportButton" mnemonicParsing="false" onAction="#closeReportButtonHandler"
-                          prefHeight="31.0" prefWidth="69.0" style="-fx-font-family: SansSerif;
-                          -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Close">
+                  <Button fx:id="closeReportButton" mnemonicParsing="false" onAction="#closeReportButtonHandler" prefHeight="31.0" prefWidth="69.0" style="-fx-font-family: SansSerif;                           -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Close">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>

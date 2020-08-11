@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="427.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.contactInformationController">
+   <children>
+      <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="95.0" prefWidth="200.0" style="-fx-background-color: EDEDED; -fx-border-width: 2; -fx-border-color: #004654;">
+               <children>
+                  <Label prefHeight="31.0" style="-fx-font-family: Arial; -fx-text-fill: #004654; -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="CUSTOMER INFORMATION" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="2.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Full Name">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+                  <Label fx:id="varFullNameLabel" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="variable name" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Customer ID">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+                  <Label fx:id="varIDLabel" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="variable ID" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Address 1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+                  <Label fx:id="varAddress1Label" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="var address" />
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="322.0" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Address 2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="varAddress2Label" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="var address 2" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Active" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+                  <Label fx:id="varCompanyName" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="var active" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Create Date">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+                  <Label fx:id="varPhoneNumberLabel" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="var create date" />
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="584.0" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefWidth="185.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold; -fx-underline: true;" text="Created By" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="varNotesLabel" prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="var created by" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>
