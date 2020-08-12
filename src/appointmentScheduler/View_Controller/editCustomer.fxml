@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.editContactController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.editCustomerController">
    <children>
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -62,7 +62,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="addressTextField1" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                    -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="addressTextField2" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                    -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
@@ -84,7 +84,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="zipCodeTextField1" prefHeight="32.0" prefWidth="136.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="136.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
@@ -93,17 +93,17 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <ChoiceBox prefHeight="25.0" prefWidth="167.0" />
+                  <ChoiceBox fx:id="activeChoiceBox" prefHeight="25.0" prefWidth="167.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="433.0">
                <children>
-                  <Button fx:id="saveEditContactButton" mnemonicParsing="false" onAction="#saveEditContactButtonHandler" prefHeight="44.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
+                  <Button fx:id="saveEditCustomerButton" mnemonicParsing="false" onAction="#saveEditCustomerButtonHandler" prefHeight="44.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelEditContactButton" mnemonicParsing="false" onAction="#cancelEditContactButtonHandler" prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelEditCustomerButton" mnemonicParsing="false" onAction="#cancelEditCustomerButtonHandler" prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />

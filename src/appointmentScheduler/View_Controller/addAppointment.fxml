@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +18,7 @@
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #2f7280; -fx-border-width: 2;">
+            <HBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #2f7280; -fx-border-width: 2;" VBox.vgrow="SOMETIMES">
                <children>
                   <Label prefHeight="31.0" prefWidth="254.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="ADD APPOINTMENT" textAlignment="CENTER" />
                </children>
@@ -66,7 +65,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <ChoiceBox prefHeight="30.0" prefWidth="208.0" />
+                  <ComboBox fx:id="customerSearchCombo" prefHeight="25.0" prefWidth="175.0" />
                </children>
             </HBox>
             <HBox prefHeight="96.0" VBox.vgrow="ALWAYS">
@@ -88,7 +87,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectApptTypeComboBox1" prefHeight="25.0" prefWidth="118.0" />
+                  <ComboBox fx:id="selectApptTypeCombo" prefHeight="25.0" prefWidth="118.0" />
                </children>
             </HBox>
             <HBox layoutX="30.0" layoutY="108.0" prefHeight="75.0" prefWidth="641.0" VBox.vgrow="ALWAYS">
@@ -98,7 +97,7 @@
                         <Insets left="8.0" right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectApptTypeComboBox" prefHeight="25.0" prefWidth="141.0">
+                  <ComboBox fx:id="startTimeCombo" prefHeight="25.0" prefWidth="141.0">
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin></ComboBox>
@@ -107,7 +106,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectTimeComboBox1" prefHeight="25.0" prefWidth="140.0" />
+                  <ComboBox fx:id="endTimeCombo" prefHeight="25.0" prefWidth="140.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -120,7 +119,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="188.0" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="titleTextField" prefHeight="25.0" prefWidth="188.0" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin>
@@ -145,7 +144,7 @@
                      <HBox.margin>
                         <Insets right="15.0" top="4.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></TextField>
@@ -153,7 +152,7 @@
                      <HBox.margin>
                         <Insets right="15.0" top="4.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="lastNameTextField" prefHeight="32.0" prefWidth="192.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Doe&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="lastNameTextField" prefHeight="32.0" prefWidth="192.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -165,7 +164,7 @@
                      <HBox.margin>
                         <Insets right="15.0" top="4.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="addressTextField" prefHeight="32.0" prefWidth="195.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;543 Main St&quot; " HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="addressTextField" prefHeight="32.0" prefWidth="195.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></TextField>
@@ -174,7 +173,7 @@
                         <Insets right="14.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="address2TextField" layoutX="170.0" layoutY="10.0" prefHeight="32.0" prefWidth="195.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;543 Main St&quot; " HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="address2TextField" layoutX="170.0" layoutY="10.0" prefHeight="32.0" prefWidth="195.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -183,7 +182,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="cityTextField" prefHeight="32.0" prefWidth="175.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Los Angeles&quot;" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="cityTextField" prefHeight="32.0" prefWidth="175.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin></TextField>
@@ -192,7 +191,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="139.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;56321&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="139.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" VBox.vgrow="ALWAYS">

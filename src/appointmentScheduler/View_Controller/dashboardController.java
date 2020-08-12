@@ -2,167 +2,156 @@ package appointmentScheduler.View_Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class dashboardController {
+public class dashboardController implements Initializable {
     @FXML
-    private Button previousWeekButton;
-
-    @FXML
-    private Button nextWeekButton;
-
-    @FXML
-    private Button monthViewButtonHandler;
+    private MenuBar menuBarHome;
 
     @FXML
-    private Button searchContactsButton;
+    private Menu reportsMenuBar;
 
     @FXML
-    private TextField searchContactTextField;
+    private Menu closeMenuBar;
 
     @FXML
-    private Button addContactButton;
+    private DatePicker datePickerHome;
 
     @FXML
-    private Button editContactButton;
+    private RadioButton viewAllRadioButton;
 
     @FXML
-    private Button deleteContactButton;
+    private RadioButton viewWeekRadioButton;
 
     @FXML
-    private TableView<?> contactsTableView;
+    private RadioButton viewMonthRadioButton;
 
     @FXML
-    private TableColumn<?, ?> contactCustomerIDColumn;
-
-    @FXML
-    private TableColumn<?, ?> contactFullNameColumn;
-
-    @FXML
-    private TableColumn<?, ?> contactAddressColumn;
-
-    @FXML
-    private TableColumn<?, ?> contactPhoneNumberColumn;
-
-    @FXML
-    private Button searchApptsButton;
-
-    @FXML
-    private TextField searchAppointmentsTextField;
-
-    @FXML
-    private Button appointmentAddButton;
-
-    @FXML
-    private Button appointmentEditButton;
-
-    @FXML
-    private Button appointmentDeleteButton;
+    private Label varDateLabel;
 
     @FXML
     private TableView<?> appointmentsTableView;
 
     @FXML
-    private TableColumn<?, ?> appointmentCustomerIDColumn;
+    private TableColumn<?, ?> dateColumn;
 
     @FXML
-    private TableColumn<?, ?> appointmentFullNameColumn;
+    private TableColumn<?, ?> timeColumn;
 
     @FXML
-    private TableColumn<?, ?> appointmentTypeColumn;
+    private TableColumn<?, ?> appointmentColumn;
 
     @FXML
-    private TableColumn<?, ?> appointmentPhoneNumberColumn;
+    private TableColumn<?, ?> titleColumn;
 
     @FXML
-    private Label monthVariableLabel;
+    private TableColumn<?, ?> descriptionColumn;
 
     @FXML
-    private Label weekVariableLabel;
+    private TableColumn<?, ?> typeColumn;
 
     @FXML
-    private Label yearVariableLabel;
+    private TableColumn<?, ?> userIdColumn;
 
     @FXML
-    private ListView<?> mondayListView;
+    private TableColumn<?, ?> locationColumn;
 
     @FXML
-    private ListView<?> tuesdayListView;
+    private TableColumn<?, ?> durationColumn;
 
     @FXML
-    private ListView<?> wednesdayListView;
+    private Button viewCustomerButton;
 
     @FXML
-    private ListView<?> thursdayListView;
+    private Button addCustomerButton;
 
     @FXML
-    private ListView<?> fridayListView;
+    private Button editCustomerButton;
 
     @FXML
-    private ListView<?> saturdayListView;
+    private Button deleteCustomerButton;
 
     @FXML
-    private ListView<?> sundayListView;
+    private Button addAppointmentButton;
 
     @FXML
-    void addContactButtonHandler(ActionEvent event) {
+    private Button editAppointmentButton;
+
+    @FXML
+    private Button deleteAppointmentButton;
+
+    @FXML
+    void addAppointmentButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void appointmentAddButtonHandler(ActionEvent actionEvent) throws IOException {
+    void addCustomerButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void appointmentDeleteButtonHandler(ActionEvent event) {
+    void closeMenuBarActionHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void appointmentEditButtonHandler(ActionEvent event) {
+    void datePickerHomeHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void deleteContactButtonHandler(ActionEvent event) {
+    void deleteAppointmentButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void editContactButtonHandler(ActionEvent event) {
+    void deleteCustomerButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void monthViewButtonHandler(ActionEvent event) {
+    void editAppointmentButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void nextWeekButtonHandler(ActionEvent event) {
+    void editCustomerButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void previousWeekButtonHandler(ActionEvent event) {
+    void reportsMenuBarActionHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void searchContactsButtonHandler(ActionEvent event) {
+    void viewAllRadioButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void searchApptsButtonHandler(ActionEvent event) {
+    void viewCustomerButtonHandler(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewMonthRadioButtonHandler(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewWeekRadioButtonHandler(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

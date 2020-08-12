@@ -3,49 +3,47 @@ package appointmentScheduler.View_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class editAppointmentController implements Initializable {
     @FXML
-    private DatePicker appointmentDatePicker;
-
-    @FXML
-    private ChoiceBox<?> timeApptChoiceBox;
-
-    @FXML
-    private ChoiceBox<?> apptTypeChoiceBox;
-
-    @FXML
     private RadioButton existingContactRadioButton;
+
+    @FXML
+    private ToggleGroup existingOrNewCustomer;
 
     @FXML
     private RadioButton newContactRadioButton;
 
     @FXML
-    private TextField contactSearchTextField;
+    private ComboBox<?> customerSearchCombo;
 
     @FXML
-    private Button contactSearchButton;
+    private DatePicker appointmentDatePicker;
 
     @FXML
-    private Button selectContactButton;
+    private ComboBox<?> selectApptTypeCombo;
+
+    @FXML
+    private ComboBox<?> selectStartTimeCombo;
+
+    @FXML
+    private ComboBox<?> selectEndTimeCombo;
+
+    @FXML
+    private TextField titleTextField;
+
+    @FXML
+    private TextArea descriptionTextArea;
 
     @FXML
     private TextField firstNameTextField;
 
     @FXML
     private TextField lastNameTextField;
-
-    @FXML
-    private ChoiceBox<?> contactTypeChoiceBox;
 
     @FXML
     private TextField addressTextField;
@@ -57,22 +55,7 @@ public class editAppointmentController implements Initializable {
     private TextField cityTextField;
 
     @FXML
-    private ChoiceBox<?> selectStateChoiceBox;
-
-    @FXML
     private TextField zipCodeTextField;
-
-    @FXML
-    private TextField areaCodeTextField;
-
-    @FXML
-    private TextField phoneNumberTextField;
-
-    @FXML
-    private TextField companyNameTextField;
-
-    @FXML
-    private TextArea notesTextArea;
 
     @FXML
     private Button saveEditApptButton;
@@ -81,22 +64,12 @@ public class editAppointmentController implements Initializable {
     private Button cancelEditApptButton;
 
     @FXML
-    void cancelAddApptButtonHandler(ActionEvent event) {
+    void cancelEditApptButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void contactSearchButtonHandler(ActionEvent event) {
-
-    }
-
-    @FXML
-    void saveAddApptButtonHandler(ActionEvent event) {
-
-    }
-
-    @FXML
-    void selectContactButtonHandler(ActionEvent event) {
+    void saveEditApptButtonHandler(ActionEvent event) {
 
     }
 

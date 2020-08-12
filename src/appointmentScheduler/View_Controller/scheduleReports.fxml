@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,15 +14,15 @@
    <children>
       <VBox layoutX="97.0" layoutY="105.0" prefHeight="200.0" prefWidth="590.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="580.0" style="-fx-background-color: #2f7280;">
+            <HBox alignment="CENTER" prefHeight="64.0" style="-fx-background-color: #2f7280;" VBox.vgrow="NEVER">
                <children>
-                  <Label prefHeight="65.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="VIEW SELECT REPORTS" HBox.hgrow="SOMETIMES" />
+                  <Label prefHeight="65.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="VIEW MONTHLY REPORTS" HBox.hgrow="SOMETIMES" />
                </children>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="590.0">
+            <HBox alignment="TOP_CENTER" prefHeight="60.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18;                   -fx-font-weight: bold;" text="Select Report Date">
                      <HBox.margin>
@@ -30,7 +30,7 @@
                      </HBox.margin>
                   </Label>
                   <DatePicker fx:id="scheduleReportDatePicker" prefHeight="25.0" prefWidth="159.0" />
-                  <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReportButtonHandler" prefHeight="26.0" prefWidth="69.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Generate">
+                  <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReportButtonHandler" prefHeight="26.0" prefWidth="69.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Generate" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets left="15.0" right="10.0" />
                      </HBox.margin>
@@ -40,8 +40,8 @@
                   <Insets bottom="10.0" top="15.0" />
                </padding>
             </HBox>
-            <TextField fx:id="scheduleReportTextArea" prefHeight="431.0" prefWidth="590.0" />
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="67.0" prefWidth="438.0">
+            <TextArea fx:id="reportsTextArea" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="85.0" VBox.vgrow="NEVER">
                <children>
                   <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Change Report" textAlignment="RIGHT" wrapText="true">
                      <padding>
@@ -51,7 +51,7 @@
                         <Insets bottom="20.0" right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ChoiceBox fx:id="otherReportsChoiceBox" prefWidth="200.0">
+                  <ChoiceBox fx:id="changeReportChoiceBox" prefWidth="200.0">
                      <HBox.margin>
                         <Insets bottom="20.0" />
                      </HBox.margin>
@@ -67,6 +67,9 @@
                      </HBox.margin>
                   </Button>
                </children>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

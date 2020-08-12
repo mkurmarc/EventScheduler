@@ -4,14 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class editContactController implements Initializable {
+public class addCustomerController implements Initializable {
+
     @FXML
     private TextField firstNameTextField;
 
@@ -19,45 +20,36 @@ public class editContactController implements Initializable {
     private TextField lastNameTextField;
 
     @FXML
-    private ComboBox<?> contactTypeComboBox;
+    private TextField address1TextField;
 
     @FXML
-    private TextField addressTextField;
+    private TextField address2TextField;
 
     @FXML
     private TextField cityTextField;
 
     @FXML
-    private ComboBox<?> stateComboBox;
-
-    @FXML
     private TextField zipCodeTextField;
-
-    @FXML
-    private TextField areaCodeTextField;
-
-    @FXML
-    private TextField phoneNumberTextField;
 
     @FXML
     private Label companyNameLabel;
 
     @FXML
-    private TextField companyNameTextField;
+    private ChoiceBox<?> activeChoice;
 
     @FXML
-    private Button saveEditContactButton;
+    private Button saveAddCustomerButton;
 
     @FXML
-    private Button cancelEditContactButton;
+    private Button cancelAddCustomerButton;
 
     @FXML
-    void cancelEditContactButtonHandler(ActionEvent event) {
+    void cancelAddCustomerButtonHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void saveEditContactButtonHandler(ActionEvent event) {
+    void saveAddCustomerButtonHandler(ActionEvent event) {
 
     }
 

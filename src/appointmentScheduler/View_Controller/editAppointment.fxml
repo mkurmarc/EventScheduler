@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -15,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.editAppointmentController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #2f7280; -fx-border-width: 2;" VBox.vgrow="NEVER">
                <children>
@@ -66,7 +65,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <ChoiceBox prefHeight="30.0" prefWidth="208.0" />
+                  <ComboBox fx:id="customerSearchCombo" prefHeight="25.0" prefWidth="179.0" />
                </children>
             </HBox>
             <HBox prefHeight="96.0" VBox.vgrow="ALWAYS">
@@ -88,7 +87,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectApptTypeComboBox1" prefHeight="25.0" prefWidth="118.0" />
+                  <ComboBox fx:id="selectApptTypeCombo" prefHeight="25.0" prefWidth="118.0" />
                </children>
             </HBox>
             <HBox layoutX="30.0" layoutY="108.0" prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -98,7 +97,7 @@
                         <Insets left="8.0" right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectApptTypeComboBox" prefHeight="25.0" prefWidth="141.0">
+                  <ComboBox fx:id="selectStartTimeCombo" prefHeight="25.0" prefWidth="141.0">
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin></ComboBox>
@@ -107,7 +106,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectTimeComboBox1" prefHeight="25.0" prefWidth="140.0" />
+                  <ComboBox fx:id="selectEndTimeCombo" prefHeight="25.0" prefWidth="140.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -120,7 +119,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="firstNameTextField1" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="titleTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
@@ -130,7 +129,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea fx:id="notesTextArea" prefHeight="50.0" prefWidth="238.0" style="-fx-font-family: Arial; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;varDescription&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextArea fx:id="descriptionTextArea" prefHeight="50.0" prefWidth="238.0" style="-fx-font-family: Arial; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;varDescription&quot;" HBox.hgrow="SOMETIMES" />
                </children>
                <VBox.margin>
                   <Insets bottom="30.0" />
@@ -197,12 +196,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="saveAddApptButton" mnemonicParsing="false" onAction="#saveAddApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
+                  <Button fx:id="saveEditApptButton" mnemonicParsing="false" onAction="#saveEditApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelAddApptButton" mnemonicParsing="false" onAction="#cancelAddApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelEditApptButton" mnemonicParsing="false" onAction="#cancelEditApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />

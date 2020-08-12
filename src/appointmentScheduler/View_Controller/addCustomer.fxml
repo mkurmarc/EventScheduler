@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addContactController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addCustomerController">
    <children>
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -52,7 +52,7 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="addressTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;543 Main St&quot; " HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="address1TextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;543 Main St&quot; " HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
@@ -61,7 +61,7 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="199.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;56321&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="address2TextField" prefHeight="32.0" prefWidth="199.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;56321&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
@@ -82,7 +82,7 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="phoneNumberTextField" prefHeight="32.0" prefWidth="111.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;91777&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="111.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;91777&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
@@ -91,17 +91,17 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <ChoiceBox prefHeight="25.0" prefWidth="169.0" />
+                  <ChoiceBox fx:id="activeChoice" prefHeight="25.0" prefWidth="169.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="433.0">
                <children>
-                  <Button fx:id="saveAddContactButton" mnemonicParsing="false" onAction="#saveAddContactButtonHandler" prefHeight="44.0" prefWidth="60.0" style="-fx-font-family: SansSerif;                           -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
+                  <Button fx:id="saveAddCustomerButton" mnemonicParsing="false" onAction="#saveAddCustomerButtonHandler" prefHeight="44.0" prefWidth="60.0" style="-fx-font-family: SansSerif;                           -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelAddContactButton" mnemonicParsing="false" onAction="#cancelAddContactButtonHandler" prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelAddCustomerButton" mnemonicParsing="false" onAction="#cancelAddCustomerButtonHandler" prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />

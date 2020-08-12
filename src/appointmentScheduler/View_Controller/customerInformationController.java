@@ -7,15 +7,12 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class contactInformationController implements Initializable {
+public class customerInformationController implements Initializable {
     @FXML
     private Label varFullNameLabel;
 
     @FXML
-    private Label varIDLabel;
-
-    @FXML
-    private Label varContactTypeLabel;
+    private Label varIdLabel;
 
     @FXML
     private Label varAddress1Label;
@@ -24,13 +21,13 @@ public class contactInformationController implements Initializable {
     private Label varAddress2Label;
 
     @FXML
-    private Label varPhoneNumberLabel;
+    private Label varActiveLabel;
 
     @FXML
-    private Label varNotesLabel;
+    private Label varCreateDateLabel;
 
     @FXML
-    private Label varCompanyName;
+    private Label varCreatedByLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

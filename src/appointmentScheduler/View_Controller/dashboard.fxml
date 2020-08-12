@@ -14,18 +14,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.dashboardController">
    <children>
       <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuBar fx:id="menuBarHome">
               <menus>
-                <Menu fx:id="ReportsMenuBar" mnemonicParsing="false" onAction="#ReportsMenuBarActionHandler" text="Reports">
+                <Menu fx:id="reportsMenuBar" mnemonicParsing="false" onAction="#reportsMenuBarActionHandler" text="Reports">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
-                <Menu fx:id="CloseMenuBar" mnemonicParsing="false" onAction="#closeMenuBarActionHandler" text="Close">
+                <Menu fx:id="closeMenuBar" mnemonicParsing="false" onAction="#closeMenuBarActionHandler" text="Close">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
