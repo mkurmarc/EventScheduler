@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -119,7 +110,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="titleTextField" prefHeight="25.0" prefWidth="188.0" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="titleTextField" prefHeight="25.0" prefWidth="80.0" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin>
@@ -129,7 +120,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea fx:id="notesTextArea" prefHeight="50.0" prefWidth="238.0" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="descriptionTextField" HBox.hgrow="SOMETIMES" />
                </children>
                <VBox.margin>
                   <Insets bottom="30.0" />

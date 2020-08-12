@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class dashboardController implements Initializable {
@@ -97,7 +98,12 @@ public class dashboardController implements Initializable {
 
     @FXML
     void closeMenuBarActionHandler(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit application?");
+        Optional<ButtonType> result = alert.showAndWait();
 
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
     }
 
     @FXML

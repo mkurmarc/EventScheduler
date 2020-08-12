@@ -6,7 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
@@ -119,7 +118,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="titleTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="titleTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Title&quot;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
@@ -129,7 +128,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea fx:id="descriptionTextArea" prefHeight="50.0" prefWidth="238.0" style="-fx-font-family: Arial; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;varDescription&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="descriptionTextField" prefHeight="32.0" prefWidth="191.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Description&quot;" />
                </children>
                <VBox.margin>
                   <Insets bottom="30.0" />

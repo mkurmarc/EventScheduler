@@ -37,7 +37,7 @@ public class editAppointmentController implements Initializable {
     private TextField titleTextField;
 
     @FXML
-    private TextArea descriptionTextArea;
+    private TextField descriptionTextField;
 
     @FXML
     private TextField firstNameTextField;

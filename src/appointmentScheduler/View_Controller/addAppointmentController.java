@@ -39,7 +39,7 @@ public class addAppointmentController implements Initializable {
     private TextField titleTextField;
 
     @FXML
-    private TextArea notesTextArea;
+    private TextField descriptionTextField;
 
     @FXML
     private TextField firstNameTextField;

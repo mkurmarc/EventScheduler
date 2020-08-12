@@ -19,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View_Controller/dashboard.fxml"));
         primaryStage.setTitle("Appointment Scheduler Dashboard");
-        primaryStage.setScene(new Scene(root, 700, 700));
+        primaryStage.setScene(new Scene(root, 1400, 800));
         primaryStage.show();
     }
 
