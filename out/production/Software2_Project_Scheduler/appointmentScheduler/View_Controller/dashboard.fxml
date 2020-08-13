@@ -2,228 +2,157 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0"
-            prefWidth="722.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.dashboardController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </MenuBar>
-   </top>
-   <bottom>
-      <HBox prefHeight="40.0" prefWidth="647.0" style="-fx-background-color: #205863;" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.dashboardController">
+   <children>
+      <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="previousWeekButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    mnemonicParsing="false" onAction="#previousWeekButtonHandler" style="-fx-background-color: #fefdff;">
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fx:id="previousWeekArrow" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
-                             preserveRatio="true" rotate="180.0">
-                     <image>
-                        <Image url="@Resources/arrow_left_0.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="nextWeekButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    mnemonicParsing="false" onAction="#nextWeekButtonHandler" style="-fx-background-color: #fefdff;">
-               <HBox.margin>
-                  <Insets right="30.0" />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fx:id="nextWeekArrow" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
-                             preserveRatio="true">
-                     <image>
-                        <Image url="@Resources/arrow_right_0.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="monthViewButtonHandler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                    mnemonicParsing="false" onAction="#monthViewButtonHandler" prefHeight="29.0" prefWidth="61.0"
-                    style="-fx-background-color: FF775C; -fx-text-fill: FEFDFF; -fx-font-family: SansSerif;"
-                    text="MONTH VIEW" textAlignment="CENTER" textFill="#000000cf" wrapText="true">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font name="SansSerif Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
-   <center>
-      <VBox prefHeight="524.0" prefWidth="360.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 26;
-            -fx-font-weight: bolder; -fx-underline: true;" text="MANAGE CONTACTS">
+            <MenuBar fx:id="menuBarHome">
+              <menus>
+                <Menu fx:id="reportsMenuBar" mnemonicParsing="false" onAction="#reportsMenuBarActionHandler" text="Reports">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu fx:id="closeMenuBar" mnemonicParsing="false" onAction="#closeMenuBarActionHandler" text="Close">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox alignment="BOTTOM_CENTER" maxHeight="125.0" prefHeight="115.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <DatePicker fx:id="datePickerHome" onAction="#datePickerHomeHandler" prefHeight="37.0" prefWidth="235.0">
+                     <HBox.margin>
+                        <Insets right="150.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <RadioButton fx:id="viewAllRadioButton" mnemonicParsing="false" onAction="#viewAllRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View All" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="75.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="viewWeekRadioButton" mnemonicParsing="false" onAction="#viewWeekRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View By Week">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="75.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="viewMonthRadioButton" mnemonicParsing="false" onAction="#viewMonthRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View By Month">
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
+               </children>
                <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <padding>
                   <Insets bottom="15.0" />
-               </VBox.margin></Label>
-            <HBox fillHeight="false" prefHeight="37.0" prefWidth="403.0">
-               <children>
-                  <Button fx:id="searchContactsButton" mnemonicParsing="false" onAction="#searchContactsButtonHandler"
-                          prefHeight="60.0" prefWidth="65.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="SEARCH">
-                     <HBox.margin>
-                        <Insets right="8.0" />
-                     </HBox.margin></Button>
-                  <TextField fx:id="searchContactTextField" prefWidth="140.0">
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin></TextField>
-                  <Button fx:id="addContactButton" mnemonicParsing="false" onAction="#addContactButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="editContactButton" mnemonicParsing="false" onAction="#editContactButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="deleteContactButton" mnemonicParsing="false" onAction="#deleteContactButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DEL">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" />
-               </VBox.margin>
+               </padding>
             </HBox>
-            <TableView fx:id="contactsTableView" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #004654;             -fx-border-width: 2;">
-              <columns>
-                <TableColumn fx:id="contactCustomerIDColumn" prefWidth="56.0" text="Cust. ID" />
-                <TableColumn fx:id="contactFullNameColumn" prefWidth="113.0" text="Name" />
-                  <TableColumn fx:id="contactAddressColumn" prefWidth="145.0" text="Address" />
-                  <TableColumn fx:id="contactPhoneNumberColumn" prefWidth="144.0" text="Phone No." />
-              </columns>
-            </TableView>
-            <Label style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 26;
-            -fx-font-weight: bolder; -fx-underline: true;" text="MANAGE APPOINTMENTS">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="20.0" />
-               </VBox.margin></Label>
-            <HBox fillHeight="false" prefHeight="35.0" prefWidth="403.0">
+            <HBox maxHeight="80.0" prefHeight="80.0" prefWidth="1200.0" VBox.vgrow="NEVER">
                <children>
-                  <Button fx:id="searchApptsButton" mnemonicParsing="false" onAction="#searchApptsButtonHandler"
-                          prefHeight="60.0" prefWidth="65.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="SEARCH">
-                     <HBox.margin>
-                        <Insets right="8.0" />
-                     </HBox.margin></Button>
-                  <TextField fx:id="searchAppointmentsTextField" prefWidth="140.0">
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin></TextField>
-                  <Button fx:id="appointmentAddButton" mnemonicParsing="false" onAction="#appointmentAddButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="appointmentEditButton" mnemonicParsing="false" onAction="#appointmentEditButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="appointmentDeleteButton" mnemonicParsing="false" onAction="#appointmentDeleteButtonHandler"
-                          prefHeight="60.0" prefWidth="50.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DEL">
-                     <HBox.margin>
-                        <Insets right="12.0" />
-                     </HBox.margin></Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" />
-               </VBox.margin>
-            </HBox>
-            <TableView fx:id="appointmentsTableView" prefHeight="230.0" prefWidth="404.0" style="-fx-border-color: #004654;             -fx-border-width: 2;">
-              <columns>
-                <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="59.0" text="Cust. ID" />
-                <TableColumn fx:id="appointmentFullNameColumn" prefWidth="119.0" text="Name" />
-                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="137.0" text="Appt .Type" />
-                  <TableColumn fx:id="appointmentPhoneNumberColumn" prefWidth="143.0" text="Phone No." />
-              </columns>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TableView>
-         </children>
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <left>
-      <HBox prefHeight="563.0" prefWidth="221.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox maxWidth="1.7976931348623157E308" prefHeight="568.0" prefWidth="105.0" style="-fx-border-color: #004654;             -fx-border-width: 1;" HBox.hgrow="ALWAYS">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #004654;">
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="monthVariableLabel" alignment="TOP_CENTER" contentDisplay="CENTER"
-                               style="-fx-font-family: Arial; -fx-font-size: 28; -fx-text-fill: FEFDFF;                                -fx-font-weight: bold;" text="DEC" textAlignment="CENTER" />
-                        <Label fx:id="weekVariableLabel" alignment="CENTER" contentDisplay="CENTER"
-                               style="-fx-font-family: Arial; -fx-font-size: 28; -fx-text-fill: FEFDFF;                                -fx-font-weight: bold;" text="W1" textAlignment="CENTER" />
-                        <Label fx:id="yearVariableLabel" alignment="CENTER" contentDisplay="CENTER"
-                               style="-fx-font-family: Arial; -fx-font-size: 28; -fx-text-fill: FEFDFF;                                -fx-font-weight: bold;" text="2020" textAlignment="CENTER" />
+                        <Label scaleX="1.2" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 30; -fx-font-weight: bolder; -fx-underline: true;" text="APPOINTMENTS">
+                           <HBox.margin>
+                              <Insets bottom="12.0" left="85.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
-                     <VBox.margin>
+                  </HBox>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 15; -fx-font-weight: bolder; -fx-underline: true;" text="DATE:">
+                           <HBox.margin>
+                              <Insets bottom="12.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="varDateLabel" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 15; -fx-font-weight: bolder;" text="varDate">
+                           <HBox.margin>
+                              <Insets bottom="12.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
                         <Insets />
-                     </VBox.margin>
+                     </HBox.margin>
                      <padding>
-                        <Insets bottom="10.0" top="20.0" />
+                        <Insets right="75.0" />
                      </padding>
-                  </VBox>
-                  <ListView fx:id="mondayListViiew" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
-                  <ListView fx:id="tuesdayListView" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
-                  <ListView fx:id="wednesdayListView" prefHeight="200.0" prefWidth="108.0"
-                            style="-fx-border-color: #004654;" />
+                  </HBox>
                </children>
-            </VBox>
-            <VBox maxWidth="1.7976931348623157E308" prefHeight="555.0" prefWidth="110.0"
-                  style="-fx-border-color: #004654;             -fx-border-width: 1;" HBox.hgrow="ALWAYS">
+            </HBox>
+            <TableView fx:id="appointmentsTableView" prefHeight="524.0" prefWidth="1140.0" VBox.vgrow="SOMETIMES">
+              <columns>
+                <TableColumn fx:id="dateColumn" prefWidth="98.0" text="Date" />
+                <TableColumn fx:id="timeColumn" prefWidth="100.0" text="Time" />
+                  <TableColumn fx:id="appointmentColumn" text="Appt ID" />
+                  <TableColumn fx:id="titleColumn" prefWidth="180.0" text="Title" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="226.0" text="Description" />
+                  <TableColumn fx:id="typeColumn" prefWidth="119.0" text="Type" />
+                  <TableColumn fx:id="userIdColumn" prefWidth="110.0" text="User ID" />
+                  <TableColumn fx:id="locationColumn" prefWidth="125.0" text="Location" />
+                  <TableColumn fx:id="durationColumn" prefWidth="101.0" text="Duration" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <HBox prefHeight="147.0" prefWidth="1200.0" style="-fx-background-color: #205863;">
                <children>
-                  <ListView fx:id="thursdayListView" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
-                  <ListView fx:id="fridayLsitView" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
-                  <ListView fx:id="saturdayListView" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
-                  <ListView fx:id="sundayListView" prefHeight="200.0" prefWidth="200.0"
-                            style="-fx-border-color: #004654;" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="viewCustomerButton" mnemonicParsing="false" onAction="#viewCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW CUSTOMER" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD CUSTOMER" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="editCustomerButton" mnemonicParsing="false" onAction="#editCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT CUSTOMER" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE CUSTOMER" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="75.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#addAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD APPOINTMENT" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="editAppointmentButton" mnemonicParsing="false" onAction="#editAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT APPOINTMENT" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#deleteAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE APPOINTMENT" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="75.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
-            </VBox>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </HBox>
          </children>
-      </HBox>
-   </left>
-</BorderPane>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -26,26 +26,10 @@ public class Appointment {
     private String lastUpdate;
     private String lastUpdatedBy;
 
-
-    public ObservableList<Customer> getAssociatedContacts() {
-        return associatedContacts;
-    }
-
-    public void setAssociatedContacts(ObservableList<Customer> associatedContacts) {
-        this.associatedContacts = associatedContacts;
-    }
-
-    public int getAppointmentID() {
-        return appointmentID;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
-    }
-
     public Appointment(ObservableList<Customer> associatedContacts, int appointmentID, int customerId, int userId,
                        String title, String description, String location, String contact, String type, String url,
-                       String start, String end, String createDate, String createdBy, String lastUpdate, String lastUpdatedBy) {
+                       String start, String end, String createDate, String createdBy, String lastUpdate,
+                       String lastUpdatedBy) {
         this.associatedContacts = associatedContacts;
         this.appointmentID = appointmentID;
         this.customerId = customerId;
@@ -62,6 +46,22 @@ public class Appointment {
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public ObservableList<Customer> getAssociatedContacts() {
+        return associatedContacts;
+    }
+
+    public void setAssociatedContacts(ObservableList<Customer> associatedContacts) {
+        this.associatedContacts = associatedContacts;
+    }
+
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 }
 /*

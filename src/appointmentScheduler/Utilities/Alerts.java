@@ -1,7 +1,10 @@
 package appointmentScheduler.Utilities;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+
+import java.util.Optional;
 
 public class Alerts {
 
@@ -131,6 +134,28 @@ public class Alerts {
         if (textField != null) {
             textField.setStyle("-fx-border-color: red");
         }
+    }
+
+    public static boolean confirmationWindow(int code) {
+        // code 1 means cancel confirmation message
+        if (code == 1) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cancel");
+            alert.setHeaderText("Are you sure you want to cancel?");
+            alert.setContentText("Click ok to confirm");
+            Optional<ButtonType> result = alert.showAndWait();
+            return result.get() == ButtonType.OK;
+        }
+        // code 2 means go back to main screen confirmation message
+        if (code == 2) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Go Back");
+            alert.setHeaderText("Are you sure you want to go back to the home screen?");
+            alert.setContentText("Click ok to confirm");
+            Optional<ButtonType> result = alert.showAndWait();
+            return result.get() == ButtonType.OK;
+        }
+        return false;
     }
 
 }

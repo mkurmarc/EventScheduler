@@ -1,9 +1,15 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.Model.Appointment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,14 +92,41 @@ public class dashboardController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
 
-    @FXML
-    void addAppointmentButtonHandler(ActionEvent event) {
+    private int indexEditCustomer;
+    private int indexEditAppt;
 
+    public int getIndexEditCustomer() {
+        return indexEditCustomer;
+    }
+
+    public int getIndexEditAppt() {
+        return indexEditAppt;
+    }
+
+
+
+    @FXML
+    void addAppointmentButtonHandler(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        stage = (Stage) addAppointmentButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addAppointment.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void addCustomerButtonHandler(ActionEvent event) {
-
+    void addCustomerButtonHandler(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        stage = (Stage) addCustomerButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addCustomer.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -122,8 +155,21 @@ public class dashboardController implements Initializable {
     }
 
     @FXML
-    void editAppointmentButtonHandler(ActionEvent event) {
+    void editAppointmentButtonHandler(ActionEvent actionEvent) throws IOException {
+        /*
+        Appointment editAppt = (Appointment) appointmentsTableView.getSelectionModel().getSelectedItem();
+        if (editAppt != null) {
+            indexEditAppt dfsf;
+        }
 
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("scheduleReports.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+
+         */
     }
 
     @FXML
@@ -132,7 +178,7 @@ public class dashboardController implements Initializable {
     }
 
     @FXML
-    void reportsMenuBarActionHandler(ActionEvent event) {
+    void reportsMenuBarActionHandler(ActionEvent actionEvent) throws IOException {
 
     }
 
