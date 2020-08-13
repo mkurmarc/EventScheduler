@@ -16,7 +16,6 @@ public class DBQuery {
 
     // create statement object
     public static void setPreparedStatement(Connection conn, String sqlStatement) throws SQLException {
-
         statement = conn.prepareStatement(sqlStatement);
     }
 

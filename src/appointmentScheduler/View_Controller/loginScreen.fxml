@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0"
             prefWidth="815.0" style="-fx-background-color: #004654; -fx-border-color: #205863; -fx-border-width: 5;"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="appointmentScheduler.View_Controller.loginScreenController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="258.0" layoutY="118.0" prefHeight="300.0" prefWidth="300.0"

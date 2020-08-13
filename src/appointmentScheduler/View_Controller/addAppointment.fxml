@@ -5,7 +5,7 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="686.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
