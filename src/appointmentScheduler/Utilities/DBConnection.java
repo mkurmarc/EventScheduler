@@ -24,6 +24,7 @@ public class DBConnection {
 
     // Username
     private static final String username = "";
+
     // Password
     private static final String password = "";
 

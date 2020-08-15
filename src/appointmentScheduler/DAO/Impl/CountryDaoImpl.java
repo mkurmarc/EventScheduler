@@ -24,21 +24,21 @@ public class CountryDaoImpl implements CountryDAO {
 
         String selectStatement = "SELECT * FROM country"; // index #s of ?s from left to right = (1,2,3,4,...)
         DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
-        PreparedStatement ps =  DBQuery.getPreparedStatement();
+        PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
 
-        ps.execute(); // execute PreparedStatement
-        ResultSet rs = ps.getResultSet();
+        preparedStatement.execute(); // execute PreparedStatement
+        ResultSet resultSet = preparedStatement.getResultSet();
 
-        while (rs.next()) // while there is data in ResultSet the while loop continues
+        while (resultSet.next()) // while there is data in ResultSet the while loop continues
         {
-            int countryId = rs.getInt("countryId");
-            String countryName = rs.getString("country");
+            int countryId = resultSet.getInt("countryId");
+            String countryName = resultSet.getString("country");
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalDate date = rs.getDate("createDate").toLocalDate();
-            LocalTime time = rs.getTime("createDate").toLocalTime();
-            String createdBy = rs.getString("createdBy");
-            LocalDateTime lastUpdate = rs.getTimestamp("lastUpdate").toLocalDateTime();
-            String lastUpdateBy = rs.getString("lastUpdateBy");
+            LocalDate date = resultSet.getDate("createDate").toLocalDate();
+            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            String createdBy = resultSet.getString("createdBy");
+            LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
+            String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
             // create each row into a country object, and then add it to the observable list
             Country countryObject = new Country(countryId, countryName, date, time, createdBy, lastUpdate, lastUpdateBy);
@@ -49,15 +49,39 @@ public class CountryDaoImpl implements CountryDAO {
     }
 
     @Override
-    public Country getCountry(int contactID) {
-        return null;
-/*
+    public Country getCountry(int countryID) throws SQLException {
+
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String selectStatement = "SELECT  FROM country";
-        
+        Country selectedCountry = new Country();
+
+        String selectStatement = "SELECT" + countryID + "FROM country";
+        DBQuery.setPreparedStatement(conn, selectStatement);
+        PreparedStatement prepStatement = DBQuery.getPreparedStatement();
+
+        prepStatement.execute();
+        ResultSet resultSet = prepStatement.getResultSet();
+
+        while (resultSet.next())
+        {
+            int countryId = resultSet.getInt("countryId");
+            String country = resultSet.getString("country");
+            LocalDate date = resultSet.getDate("createDate").toLocalDate();
+            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            String createdBy = resultSet.getString("createdBy");
+            LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
+            String lastUpdateBy = resultSet.getString("lastUpdateBy");
+
+            selectedCountry = new Country(countryId, country, date, time, createdBy, lastUpdate, lastUpdateBy);
+        }
         DBConnection.closeConnection(); // close DB connection
-*/
+
+        return selectedCountry;
+    }
+
+    @Override
+    public void insertCountry(Country country) {
+
     }
 
     @Override

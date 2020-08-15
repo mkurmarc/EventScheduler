@@ -31,6 +31,9 @@ public class Country {
         this.lastUpdateBy = lastUpdateBy;
     }
 
+    public Country() {
+
+    }
 
     public static ObservableList<Country> getAllCountries() {
         return allCountries;
