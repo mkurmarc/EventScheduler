@@ -1,5 +1,9 @@
 package appointmentScheduler.DAO;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.User;
 import javafx.collections.ObservableList;
@@ -10,3 +14,8 @@ public interface CityDAO {
     public void updateCity(City city);
     public void deleteCity(City city);
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

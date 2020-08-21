@@ -1,13 +1,12 @@
 package appointmentScheduler.Model;
-
 /*
     @AUTHOR
     Marc Rios
     ID:
 */
-
 public class Customer {
 
+    // For the customer table in DB
     private int customerId;
     private String customerName;
     private int addressId;
@@ -17,8 +16,17 @@ public class Customer {
     private String lastUpdate;
     private String lastUpdatedBy;
 
+    // For the address table in DB
+    private String address;
+    private String address2;
+    private int cityId;
+    private String postalCode;
+    private String phone;
+
+    // Customer object merges data from the customer table and the address table
     public Customer(int customerId, String customerName, int addressId, byte active, String createDate, String createdBy,
-                    String lastUpdate, String lastUpdatedBy) {
+                    String lastUpdate, String lastUpdatedBy, String address, String address2, int cityId,
+                    String postalCode, String phone) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.addressId = addressId;
@@ -27,6 +35,11 @@ public class Customer {
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
+        this.address = address;
+        this.address2 = address2;
+        this.cityId = cityId;
+        this.postalCode = postalCode;
+        this.phone = phone;
     }
 
     public int getCustomerId() {
@@ -91,6 +104,46 @@ public class Customer {
 
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
 /*

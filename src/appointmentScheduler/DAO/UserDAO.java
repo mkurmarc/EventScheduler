@@ -12,3 +12,8 @@ public interface UserDAO {
     public void updateUser(User user);
     public void deleteUser(User user);
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

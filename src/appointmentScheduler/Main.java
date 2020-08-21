@@ -1,5 +1,10 @@
 package appointmentScheduler;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
+import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
 import javafx.application.Application;
@@ -21,6 +26,9 @@ public class Main extends Application {
         primaryStage.setTitle("Appointment Scheduler Dashboard");
         primaryStage.setScene(new Scene(root, 1400, 800));
         primaryStage.show();
+
+        // Create test appointments
+        // Appointment defaultAppt1 = new Appointment()
     }
 
 
@@ -31,3 +39,8 @@ public class Main extends Application {
         // DBConnection.closeConnection(); // close DB connection
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

@@ -1,5 +1,9 @@
 package appointmentScheduler.Model;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 public class User {
     private int userId;
     private String userName;

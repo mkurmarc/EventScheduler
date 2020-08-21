@@ -1,5 +1,9 @@
 package appointmentScheduler.DAO.Impl;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.DAO.CustomerDAO;
 import appointmentScheduler.Model.Customer;
 import javafx.collections.FXCollections;
@@ -9,18 +13,19 @@ public class CustomerDaoImpl implements CustomerDAO {
 
     ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
-    public CustomerDaoImpl() {
-        //Customer customer1 = new Customer()
-    }
-
     @Override
     public ObservableList<Customer> getAllCustomers() {
         return null;
     }
 
     @Override
-    public Customer getStudent(int contactID) {
+    public Customer getCustomer(int customerId) {
         return null;
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+
     }
 
     @Override
@@ -32,4 +37,29 @@ public class CustomerDaoImpl implements CustomerDAO {
     public void deleteCustomer(Customer customer) {
         // delete
     }
+
+    @Override
+    public Customer getAddress(int contactID) {
+        return null;
+    }
+
+    @Override
+    public void addAddress(Customer customer) {
+
+    }
+
+    @Override
+    public void updateAddress(Customer address) {
+
+    }
+
+    @Override
+    public void deleteAddress(Customer address) {
+
+    }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

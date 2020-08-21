@@ -1,5 +1,9 @@
 package appointmentScheduler.Model;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 public class City {
     private int cityId;
     private String city;

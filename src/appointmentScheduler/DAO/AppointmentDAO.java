@@ -1,5 +1,9 @@
 package appointmentScheduler.DAO;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.Model.Appointment;
 import javafx.collections.ObservableList;
 
@@ -9,3 +13,8 @@ public interface AppointmentDAO {
     public void updateAppointment(Appointment appointment);
     public void deleteAppointment(Appointment appointment);
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

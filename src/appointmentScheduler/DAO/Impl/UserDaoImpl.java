@@ -1,5 +1,9 @@
 package appointmentScheduler.DAO.Impl;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.DAO.UserDAO;
 import appointmentScheduler.Model.User;
 import appointmentScheduler.Utilities.DBConnection;
@@ -35,3 +39,8 @@ public class UserDaoImpl implements UserDAO {
 
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
