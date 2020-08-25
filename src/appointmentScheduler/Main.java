@@ -34,9 +34,9 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
 
-        // Connection conn = DBConnection.startConnection(); // connect to DB
+        Connection conn = DBConnection.startConnection(); // connect to DB
         launch(args);
-        // DBConnection.closeConnection(); // close DB connection
+        DBConnection.closeConnection(); // close DB connection
     }
 }
 /*

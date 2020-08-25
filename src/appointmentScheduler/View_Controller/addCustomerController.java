@@ -21,6 +21,9 @@ import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 public class addCustomerController implements Initializable {
 
     @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
     private TextField firstNameTextField;
 
     @FXML
@@ -42,7 +45,7 @@ public class addCustomerController implements Initializable {
     private Label companyNameLabel;
 
     @FXML
-    private ChoiceBox<?> activeChoice;
+    private ChoiceBox<Byte> activeChoice;
 
     @FXML
     private Button saveAddCustomerButton;
@@ -67,6 +70,28 @@ public class addCustomerController implements Initializable {
     @FXML
     void saveAddCustomerButtonHandler(ActionEvent event) {
 
+        String customerFirstName = firstNameTextField.getText();
+        String customerLastName = lastNameTextField.getText();
+        String customerName = customerFirstName + customerLastName;
+        int addressId = 123; // make auto increment function and place here
+        String address = address1TextField.getText();
+        String address2 = address2TextField.getText();
+        int cityId = 45; // make auto increment function and place here
+        String postalCode = zipCodeTextField.getText();
+        String phone = phoneNumberTextField.getText();
+        byte active = activeChoice.getValue();
+        String createDate = "";
+        // below use User class when User class is integrated
+        String createdBy = "";
+        String lastUpdate = "";
+        String lastUpdatedBy = "";
+
+        /*
+        Customer(customerId, customerName, addressId, active, String createDate, String createdBy,
+                String lastUpdate, lastUpdatedBy, address, address2, cityId,
+        String postalCode, String phone)
+
+         */
     }
 
     @Override

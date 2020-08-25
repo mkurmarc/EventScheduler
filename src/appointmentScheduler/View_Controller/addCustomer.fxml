@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.addCustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addCustomerController">
    <children>
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #2f7280; -fx-border-width: 2;" VBox.vgrow="NEVER">
                <children>
-                  <Label prefHeight="31.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 26;                          -fx-font-weight: bold; -fx-underline: true;" text="ADD CUSTOMER" />
+                  <Label prefHeight="31.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 26;                   -fx-font-weight: bold; -fx-underline: true;" text="ADD CUSTOMER" />
                </children>
                <VBox.margin>
                   <Insets bottom="25.0" />
@@ -34,12 +29,12 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16;                              -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;John&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
                <children>
-                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Last Name">
+                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Last Name">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
@@ -85,6 +80,16 @@
                   <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="111.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;91777&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
+            <HBox layoutX="35.0" layoutY="449.0" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Phone No.">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="phoneNumberTextField" prefHeight="32.0" prefWidth="111.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" text="&quot;626-345-8976&quot;" HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
             <HBox prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label fx:id="companyNameLabel" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Active" wrapText="true">
@@ -101,7 +106,9 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelAddCustomerButton" mnemonicParsing="false" onAction="#cancelAddCustomerButtonHandler" prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelAddCustomerButton" mnemonicParsing="false" onAction="#cancelAddCustomerButtonHandler"
+                          prefHeight="43.0" prefWidth="60.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;
+                          -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
