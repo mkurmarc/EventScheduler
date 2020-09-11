@@ -4,7 +4,7 @@ package appointmentScheduler.Model;
     Marc Rios
     ID:
 */
-public class Customer {
+public class CustomerAndAddress {
 
     // For the customer table in DB
     private int customerId;
@@ -24,9 +24,9 @@ public class Customer {
     private String phone;
 
     // Customer object merges data from the customer table and the address table
-    public Customer(int customerId, String customerName, int addressId, byte active, String createDate, String createdBy,
-                    String lastUpdate, String lastUpdatedBy, String address, String address2, int cityId,
-                    String postalCode, String phone) {
+    public CustomerAndAddress(int customerId, String customerName, int addressId, byte active, String createDate, String createdBy,
+                              String lastUpdate, String lastUpdatedBy, String address, String address2, int cityId,
+                              String postalCode, String phone) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.addressId = addressId;
