@@ -7,9 +7,12 @@ package appointmentScheduler.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Appointment {
     // private ObservableList<Customer> associatedContacts = FXCollections.observableArrayList();
-
     private int appointmentID;
     private int customerId;
     private int userId;
@@ -21,14 +24,15 @@ public class Appointment {
     private String url;
     private String start;
     private String end;
-    private String createDate;
+    private LocalDate createDate;
+    private LocalTime createDateTime;
     private String createdBy;
-    private String lastUpdate;
-    private String lastUpdatedBy;
+    private LocalDateTime lastUpdate;
+    private String lastUpdateBy;
 
     public Appointment(int appointmentID, int customerId, int userId, String title, String description, String location,
-                       String contact, String type, String url, String start, String end, String createDate,
-                       String createdBy, String lastUpdate, String lastUpdatedBy) {
+                       String contact, String type, String url, String start, String end, LocalDate createDate,
+                       LocalTime createDateTime, String createdBy, LocalDateTime lastUpdate, String lastUpdateBy) {
         this.appointmentID = appointmentID;
         this.customerId = customerId;
         this.userId = userId;
@@ -41,9 +45,22 @@ public class Appointment {
         this.start = start;
         this.end = end;
         this.createDate = createDate;
+        this.createDateTime = createDateTime;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
-        this.lastUpdatedBy = lastUpdatedBy;
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Appointment() {
+
+    }
+
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 
     public int getCustomerId() {
@@ -126,12 +143,20 @@ public class Appointment {
         this.end = end;
     }
 
-    public String getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+    public LocalTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalTime createDateTime) {
+        this.createDateTime = createDateTime;
     }
 
     public String getCreatedBy() {
@@ -142,28 +167,20 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
     }
 
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public int getAppointmentID() {
-        return appointmentID;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
     }
 }
 /*
