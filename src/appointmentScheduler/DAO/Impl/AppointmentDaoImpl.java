@@ -75,7 +75,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
 
-        preparedStatement.setInt(1, appointmentId);
+        preparedStatement.setInt(1, appointmentId); // Sets appointmentId using the argument for this method
 
         preparedStatement.execute(); // execute PreparedStatement
 
@@ -121,6 +121,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
 
+     // Values for the update statement are set below
         preparedStatement.setString(1, appointment.getTitle());
         preparedStatement.setString(2, appointment.getDescription());
         preparedStatement.setString(3, appointment.getLocation());
@@ -141,8 +142,20 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     }
 
     @Override
-    public void deleteAppointment(Appointment appointment) {
+    public void deleteAppointment(Appointment appointment) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
 
+        String deleteStatement = "DELETE FROM country WHERE country = ?"; // index #s of ?s from left to right = (1,2,3,4,...)
+
+        DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
+
+        PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
+
+        preparedStatement.setInt(1, appointment.getAppointmentID()); // Sets value for prepared statement
+
+        preparedStatement.execute(); // execute PreparedStatement
+
+        DBConnection.closeConnection(); // close DB connection
     }
 }
 /*
