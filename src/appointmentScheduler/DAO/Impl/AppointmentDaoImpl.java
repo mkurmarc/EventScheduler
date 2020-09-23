@@ -12,15 +12,14 @@ import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class AppointmentDaoImpl implements AppointmentDAO {
+
+    // Read all the data from the mySQL database
     @Override
     public ObservableList<Appointment> getAllAppointment() throws SQLException {
 
@@ -44,18 +43,17 @@ public class AppointmentDaoImpl implements AppointmentDAO {
             String contact = resultSet.getString("contact");
             String type = resultSet.getString("type");
             String url = resultSet.getString("url");
-            String start = resultSet.getString("start");
-            String end = resultSet.getString("end");
+            LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+            LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalDate date = resultSet.getDate("createDate").toLocalDate();
-            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
             // create each row into a country object, and then add it to the observable list
             Appointment appointmentObject = new Appointment(appointmentID, customerId, userId, title,
-                description, location, contact, type, url, start, end, date, time, createdBy, lastUpdate, lastUpdateBy);
+                description, location, contact, type, url, start, end, dateTime, createdBy, lastUpdate, lastUpdateBy);
 
             selectAllAppointments.add(appointmentObject); // add object to observable list
         }
@@ -63,6 +61,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
         return selectAllAppointments;
     }
 
+    // Read or retrieve a single row of data from the mySQL database
     @Override
     public Appointment getAppointment(int appointmentId) throws SQLException {
 
@@ -70,10 +69,16 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         Appointment appointmentObject = new Appointment();
 
-        String selectStatement = "SELECT * FROM appointment WHERE appointmentId = " + appointmentId;
-        DBQuery.setPreparedStatement(conn,selectStatement);
-        PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
+        String selectStatement = "SELECT * FROM appointment WHERE appointmentId =?";
+
+        DBQuery.setPreparedStatement(conn, selectStatement);
+
+        PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
+
+        preparedStatement.setInt(1, appointmentId);
+
         preparedStatement.execute(); // execute PreparedStatement
+
         ResultSet resultSet = preparedStatement.getResultSet();
 
         while (resultSet.next()) {
@@ -86,53 +91,51 @@ public class AppointmentDaoImpl implements AppointmentDAO {
             String contact = resultSet.getString("contact");
             String type = resultSet.getString("type");
             String url = resultSet.getString("url");
-            String start = resultSet.getString("start");
-            String end = resultSet.getString("end");
+            LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+            LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalDate date = resultSet.getDate("createDate").toLocalDate();
-            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
+
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
             // create each row into a country object, and then add it to the observable list
             appointmentObject = new Appointment(appointmentID, customerId, userId, title, description, location,
-                    contact, type, url, start, end, date, time, createdBy, lastUpdate, lastUpdateBy);
+                    contact, type, url, start, end, dateTime, createdBy, lastUpdate, lastUpdateBy);
         }
         DBConnection.closeConnection(); // close DB connection
         return appointmentObject;
     }
 
+    // Update or modify a single row of data from the database
     @Override
     public void updateAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        int appointmentId = appointment.getAppointmentID();
-        int customerId = appointment.getCustomerId();
-        int userId = appointment.getUserId();
-        String title = appointment.getTitle();
-        String description = appointment.getDescription();
-        String location = appointment.getLocation();
-        String contact = appointment.getContact();
-        String type = appointment.getType();
-        String url = appointment.getUrl();
-        String start = appointment.getStart();
-        String end = appointment.getEnd();
-        LocalDate date = appointment.getCreateDate();
-        LocalTime time = appointment.getCreateDateTime();
-        String createdBy = appointment.getCreatedBy();
-        LocalDateTime lastUpdate = appointment.getLastUpdate();
-        String lastUpdateBy = appointment.getLastUpdateBy();
+        String updateStatement = "UPDATE appointment SET title =?, description =?, location =?, contact =?, type =?, " +
+                "url =?, start =?, end =?, createDate =?, createdBy =?, lastUpdate =?, lastUpdateBy =? " +
+                "WHERE appointmentId =?";
 
+        DBQuery.setPreparedStatement(conn, updateStatement);
 
-        String updateStatement = String.format("UPDATE appointment SET title = %1$s, description = %2$s, location = %3$s" +
-                "contact = %4$s, type = %5$s, url = %6$s, start = %7$s, end = %8$s, createDate = , createdBy = %s, lastUpdate = ," +
-                "lastUpdateBy = %s", title, description, location, contact, type, url, start, end,);
-
-        DBQuery.setPreparedStatement(conn,updateStatement);
         PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
-        preparedStatement.execute(); // execute PreparedStatement
 
+        preparedStatement.setString(1, appointment.getTitle());
+        preparedStatement.setString(2, appointment.getDescription());
+        preparedStatement.setString(3, appointment.getLocation());
+        preparedStatement.setString(4, appointment.getContact());
+        preparedStatement.setString(5, appointment.getType());
+        preparedStatement.setString(6, appointment.getUrl());
+        preparedStatement.setTimestamp(7, Timestamp.valueOf(appointment.getStart()));
+        preparedStatement.setTimestamp(8, Timestamp.valueOf(appointment.getEnd()));
+        preparedStatement.setTimestamp(9, Timestamp.valueOf(appointment.getCreateDate()));
+        preparedStatement.setString(10, appointment.getCreatedBy());
+        preparedStatement.setTimestamp(11, Timestamp.valueOf(appointment.getLastUpdate()));
+        preparedStatement.setString(12, appointment.getLastUpdateBy());
+        preparedStatement.setInt(13, appointment.getAppointmentID());
+
+        preparedStatement.execute(); // execute PreparedStatement
 
         DBConnection.closeConnection(); // close DB connection
     }

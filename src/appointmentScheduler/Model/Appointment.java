@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Appointment {
     // private ObservableList<Customer> associatedContacts = FXCollections.observableArrayList();
@@ -22,17 +23,16 @@ public class Appointment {
     private String contact;
     private String type;
     private String url;
-    private String start;
-    private String end;
-    private LocalDate createDate;
-    private LocalTime createDateTime;
+    private LocalDateTime start; // change data type
+    private LocalDateTime end; // change data type
+    private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
     private String lastUpdateBy;
 
     public Appointment(int appointmentID, int customerId, int userId, String title, String description, String location,
-                       String contact, String type, String url, String start, String end, LocalDate createDate,
-                       LocalTime createDateTime, String createdBy, LocalDateTime lastUpdate, String lastUpdateBy) {
+                       String contact, String type, String url, LocalDateTime start, LocalDateTime end,
+                       LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdateBy) {
         this.appointmentID = appointmentID;
         this.customerId = customerId;
         this.userId = userId;
@@ -45,7 +45,6 @@ public class Appointment {
         this.start = start;
         this.end = end;
         this.createDate = createDate;
-        this.createDateTime = createDateTime;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdateBy = lastUpdateBy;
@@ -127,36 +126,28 @@ public class Appointment {
         this.url = url;
     }
 
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
-    public LocalDate getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
-    }
-
-    public LocalTime getCreateDateTime() {
-        return createDateTime;
-    }
-
-    public void setCreateDateTime(LocalTime createDateTime) {
-        this.createDateTime = createDateTime;
     }
 
     public String getCreatedBy() {
