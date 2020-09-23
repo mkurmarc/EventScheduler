@@ -24,12 +24,17 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     public ObservableList<Appointment> getAllAppointment() throws SQLException {
 
         ObservableList<Appointment> selectAllAppointments = FXCollections.observableArrayList();
+
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String selectStatement = "SELECT * FROM appointment";
+
         DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
+
         PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
+
         preparedStatement.execute(); // execute PreparedStatement
+
         ResultSet resultSet = preparedStatement.getResultSet();
 
         while (resultSet.next()) // while there is data in ResultSet the while loop continues
@@ -58,7 +63,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
             selectAllAppointments.add(appointmentObject); // add object to observable list
         }
         DBConnection.closeConnection(); // close DB connection
-        return selectAllAppointments;
+        return selectAllAppointments; // returns the observable list
     }
 
     // Read or retrieve a single row of data from the mySQL database
@@ -108,6 +113,41 @@ public class AppointmentDaoImpl implements AppointmentDAO {
         return appointmentObject;
     }
 
+    @Override
+    public void insertAppointment(Appointment appointment) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
+
+        String insertStatement = "INSERT INTO Appointment(appointmentId, customerId, userId, title, description," +
+                "location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)" +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        DBQuery.setPreparedStatement(conn, insertStatement); // creates preparedStatement
+
+        PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
+
+        // Values for the update statement are set below
+        preparedStatement.setInt(1, appointment.getAppointmentID());
+        preparedStatement.setInt(2, appointment.getCustomerId());
+        preparedStatement.setInt(3, appointment.getUserId());
+        preparedStatement.setString(4, appointment.getTitle());
+        preparedStatement.setString(5, appointment.getDescription());
+        preparedStatement.setString(6, appointment.getLocation());
+        preparedStatement.setString(7, appointment.getContact());
+        preparedStatement.setString(8, appointment.getType());
+        preparedStatement.setString(9, appointment.getUrl());
+        preparedStatement.setTimestamp(10, Timestamp.valueOf(appointment.getStart()));
+        preparedStatement.setTimestamp(11, Timestamp.valueOf(appointment.getEnd()));
+        preparedStatement.setTimestamp(12, Timestamp.valueOf(appointment.getCreateDate()));
+        preparedStatement.setString(13, appointment.getCreatedBy());
+        preparedStatement.setTimestamp(14, Timestamp.valueOf(appointment.getLastUpdate()));
+        preparedStatement.setString(15, appointment.getLastUpdateBy());
+
+        preparedStatement.execute(); // execute PreparedStatement
+
+        DBConnection.closeConnection(); // close DB connection
+
+    }
+
     // Update or modify a single row of data from the database
     @Override
     public void updateAppointment(Appointment appointment) throws SQLException {
@@ -117,7 +157,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
                 "url =?, start =?, end =?, createDate =?, createdBy =?, lastUpdate =?, lastUpdateBy =? " +
                 "WHERE appointmentId =?";
 
-        DBQuery.setPreparedStatement(conn, updateStatement);
+        DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
 
         PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
 

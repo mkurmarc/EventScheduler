@@ -23,8 +23,8 @@ public class Appointment {
     private String contact;
     private String type;
     private String url;
-    private LocalDateTime start; // change data type
-    private LocalDateTime end; // change data type
+    private LocalDateTime start;
+    private LocalDateTime end;
     private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
@@ -51,7 +51,6 @@ public class Appointment {
     }
 
     public Appointment() {
-
     }
 
     public int getAppointmentID() {
