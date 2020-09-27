@@ -17,7 +17,7 @@
       <VBox alignment="TOP_CENTER" layoutX="258.0" layoutY="118.0" prefHeight="300.0" prefWidth="300.0"
             spacing="15.0" style="-fx-background-color: #fefdff;">
          <children>
-            <Label style="-fx-font-family: Arial; -fx-font-size: 40;" text="Login" />
+            <Label fx:id="loginLabel" style="-fx-font-family: Arial; -fx-font-size: 40;" text="Login" />
             <TextField fx:id="loginUsernameTextField" alignment="CENTER" prefHeight="38.0" prefWidth="150.0"
                        promptText="username" style="-fx-font-family: Arial; -fx-font-size: 18; -fx-background-color: D6D6D6;" />
             <PasswordField fx:id="loginPasswordField" alignment="CENTER" prefHeight="38.0" prefWidth="150.0"

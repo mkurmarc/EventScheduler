@@ -9,7 +9,6 @@ public class CustomerAndAddress {
     // For the customer table in DB
     private int customerId;
     private String customerName;
-    private int addressId;
     private byte active;
     private String createDate;
     private String createdBy;
@@ -17,6 +16,7 @@ public class CustomerAndAddress {
     private String lastUpdatedBy;
 
     // For the address table in DB
+    private int addressId;
     private String address;
     private String address2;
     private int cityId;

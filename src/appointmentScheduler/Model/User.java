@@ -1,21 +1,29 @@
 package appointmentScheduler.Model;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.time.LocalDateTime;
+
 /*
     @AUTHOR
     Marc Rios
     ID:
 */
 public class User {
+    private static ObservableList<User> userList = FXCollections.observableArrayList();
+
     private int userId;
     private String userName;
     private String password;
     private byte active;
-    private String createDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private String lastUpdate;
-    private String lastUpdatedBy;
+    private LocalDateTime lastUpdate;
+    private String lastUpdateBy;
 
-    public User(int userId, String userName, String password, byte active, String createDate, String createdBy,
-                String lastUpdate, String lastUpdatedBy) {
+    public User(int userId, String userName, String password, byte active, LocalDateTime createDate, String createdBy,
+                LocalDateTime lastUpdate, String lastUpdateBy) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -23,7 +31,24 @@ public class User {
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
-        this.lastUpdatedBy = lastUpdatedBy;
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    // adds new user to the userList if it is not null and it is not in the userList already
+    public static void addUser(User newUser) {
+        if (newUser != null && !userList.contains(newUser)) {
+            userList.add(newUser);
+        }
+    }
+
+    public static boolean checkLoginCredentials(String userName, String password) {
+        boolean found = false;
+        for (User user : userList) {
+            if (user.getUserName().equals(userName)) { // checks if userName string in the userList
+                if (user.getPassword().equals(password)) found = true;
+            }
+        }
+        return found;
     }
 
     public int getUserId() {
@@ -58,11 +83,11 @@ public class User {
         this.active = active;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -74,19 +99,19 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
     }
 
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
     }
 }

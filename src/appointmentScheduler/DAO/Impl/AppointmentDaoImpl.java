@@ -74,7 +74,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         Appointment appointmentObject = new Appointment();
 
-        String selectStatement = "SELECT * FROM appointment WHERE appointmentId =?";
+        String selectStatement = "SELECT * FROM appointment WHERE appointmentId =?;";
 
         DBQuery.setPreparedStatement(conn, selectStatement);
 
@@ -119,7 +119,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         String insertStatement = "INSERT INTO Appointment(appointmentId, customerId, userId, title, description," +
                 "location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)" +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         DBQuery.setPreparedStatement(conn, insertStatement); // creates preparedStatement
 
@@ -155,7 +155,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
         String updateStatement = "UPDATE appointment SET title =?, description =?, location =?, contact =?, type =?, " +
                 "url =?, start =?, end =?, createDate =?, createdBy =?, lastUpdate =?, lastUpdateBy =? " +
-                "WHERE appointmentId =?";
+                "WHERE appointmentId =?;";
 
         DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
 
@@ -185,7 +185,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     public void deleteAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String deleteStatement = "DELETE FROM country WHERE country = ?"; // index #s of ?s from left to right = (1,2,3,4,...)
+        String deleteStatement = "DELETE FROM country WHERE country = ?;";
 
         DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
 
