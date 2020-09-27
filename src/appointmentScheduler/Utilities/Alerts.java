@@ -6,6 +6,7 @@ package appointmentScheduler.Utilities;
 */
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.util.Optional;
@@ -133,6 +134,53 @@ public class Alerts {
         }
         alert.showAndWait();
     }
+
+    public static void loginError(int code, TextField textField, PasswordField passwordField) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Error");
+        alert.setHeaderText("Cannot login");
+        switch (code) {
+            case 1: {
+                alert.setContentText("Login name is empty!");
+                textFieldError(textField);
+                break;
+            }
+            case 2: {
+                alert.setContentText("Password is empty!");
+                passwordFieldError(passwordField);
+                break;
+            }
+            case 3: {
+                alert.setContentText("Login name is too long!");
+                textFieldError(textField);
+                break;
+            }
+            case 4: {
+                alert.setContentText("Password is too long!");
+                passwordFieldError(passwordField);
+                break;
+            }
+            case 5: {
+                alert.setContentText("Incorrect login credentials!");
+                break;
+            }
+            default: {
+                alert.setContentText("Unknown error!");
+                textFieldError(textField);
+                passwordFieldError(passwordField);
+                break;
+            }
+        }
+        alert.showAndWait();
+    }
+
+
+    public static void passwordFieldError(PasswordField passwordField) {
+        if (passwordField != null) {
+            passwordField.setStyle("-fx-border-color: red");
+        }
+    }
+
 
     private static void textFieldError(TextField textField) {
         if (textField != null) {

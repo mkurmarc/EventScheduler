@@ -1,6 +1,7 @@
 package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.Model.User;
+import appointmentScheduler.Utilities.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,8 +40,20 @@ public class loginScreenController implements Initializable {
         String userName = loginUsernameTextField.getText();
         String password = loginPasswordField.getText();
 
+        if (userName == null) {
+            Alerts.loginError(1, loginUsernameTextField, loginPasswordField);
+        }
+        if (password == null) {
+            Alerts.loginError(2, loginUsernameTextField, loginPasswordField);
+        }
+        if (userName != null && userName.length() > 20) {
+            Alerts.loginError(3, loginUsernameTextField, loginPasswordField);
+        }
+        if (password != null && password.length() > 20) {
+            Alerts.loginError(4, loginUsernameTextField, loginPasswordField);
+        }
         if (checkLoginCredentials(userName, password)) {
-            // open dashboard
+            // open dashboard fxml file
             Stage stageDashboard;
             Parent root;
             stageDashboard = (Stage) loginButton.getScene().getWindow();
@@ -50,8 +63,9 @@ public class loginScreenController implements Initializable {
             stageDashboard.setScene(scene);
             stageDashboard.show();
         }
-
-
+        if (!checkLoginCredentials(userName, password)) {
+            Alerts.loginError(5, loginUsernameTextField, loginPasswordField);
+        }
     }
 
     @Override
