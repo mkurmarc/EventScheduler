@@ -21,7 +21,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
 
     // Read all the data from the mySQL database
     @Override
-    public ObservableList<Appointment> getAllAppointment() throws SQLException {
+    public ObservableList<Appointment> getAllAppointments() throws SQLException {
 
         ObservableList<Appointment> selectAllAppointments = FXCollections.observableArrayList();
 
@@ -100,7 +100,6 @@ public class AppointmentDaoImpl implements AppointmentDAO {
             LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
             LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
-
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
