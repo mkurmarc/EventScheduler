@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -43,34 +44,34 @@ public class dashboardController implements Initializable {
     private Label varDateLabel;
 
     @FXML
-    private TableView<?> appointmentsTableView;
+    private TableView<Appointment> appointmentsTableView;
 
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<Appointment, LocalDateTime> startTimeDateColumn;
 
     @FXML
-    private TableColumn<?, ?> timeColumn;
+    private TableColumn<Appointment, LocalDateTime> endTimeDateColumn; // change fxml document o reflect these column changes
 
     @FXML
-    private TableColumn<?, ?> appointmentColumn;
+    private TableColumn<Appointment, ?> appointmentColumn;
 
     @FXML
-    private TableColumn<?, ?> titleColumn;
+    private TableColumn<Appointment, String> titleColumn;
 
     @FXML
-    private TableColumn<?, ?> descriptionColumn;
+    private TableColumn<Appointment, String> descriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> typeColumn;
+    private TableColumn<Appointment, String> typeColumn;
 
     @FXML
-    private TableColumn<?, ?> userIdColumn;
+    private TableColumn<Appointment, Integer> userIdColumn;
 
     @FXML
-    private TableColumn<?, ?> locationColumn;
+    private TableColumn<Appointment, String> locationColumn;
 
     @FXML
-    private TableColumn<?, ?> durationColumn;
+    private TableColumn<Appointment, LocalTime> durationColumn;
 
     @FXML
     private Button viewCustomerButton;
@@ -206,7 +207,7 @@ public class dashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Appointments table and columns
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        startTimeDateColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
 
     }
 }
