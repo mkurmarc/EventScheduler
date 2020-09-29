@@ -2,6 +2,7 @@ package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
 import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.Utilities.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -104,7 +105,15 @@ public class dashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Appointments table and columns
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
         // retrieve data from database and convert to list
         try {
@@ -157,7 +166,15 @@ public class dashboardController implements Initializable {
 
     @FXML
     void deleteAppointmentButtonHandler(ActionEvent event) {
+        Appointment deleteAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
+        if (deleteAppointment != null) {
+            if (Alerts.confirmationWindow(3)) {
+                // delete code here
+            }
+        }
+        else {
 
+        }
     }
 
     @FXML

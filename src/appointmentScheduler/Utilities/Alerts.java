@@ -189,9 +189,9 @@ public class Alerts {
     }
 
     public static boolean confirmationWindow(int code) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         // code 1 means cancel confirmation message
         if (code == 1) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Cancel");
             alert.setHeaderText("Are you sure you want to cancel?");
             alert.setContentText("Click ok to confirm");
@@ -200,14 +200,40 @@ public class Alerts {
         }
         // code 2 means go back to main screen confirmation message
         if (code == 2) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Go Back");
             alert.setHeaderText("Are you sure you want to go back to the home screen?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
             return result.get() == ButtonType.OK;
         }
+        if (code == 3) {
+            alert.setTitle("Delete");
+            alert.setHeaderText("Are you sure you want to delete this appointment?");
+            alert.setContentText("Click ok to confirm");
+            Optional<ButtonType> result = alert.showAndWait();
+            return result.get() == ButtonType.OK;
+        }
+        if (code == 4) {
+            alert.setTitle("Delete");
+            alert.setHeaderText("Are you sure you want to delete this customer?");
+            alert.setContentText("Click ok to confirm");
+            Optional<ButtonType> result = alert.showAndWait();
+            return result.get() == ButtonType.OK;
+        }
         return false;
+    }
+
+    public static void selectionError(int code) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        // code 1 means appointment not selected
+        if (code == 1) {
+            alert.setTitle("Delete error");
+            alert.setHeaderText("Cannot delete appointment");
+            alert.setContentText("Please select appointment before trying to delete");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+
     }
 
 }

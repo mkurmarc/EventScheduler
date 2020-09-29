@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.dashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.dashboardController">
    <children>
       <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -88,14 +88,14 @@
             <TableView fx:id="appointmentsTableView" prefHeight="524.0" prefWidth="1140.0" VBox.vgrow="SOMETIMES">
               <columns>
                 <TableColumn fx:id="dateAppointmentColumn" prefWidth="98.0" text="Date" />
-                <TableColumn fx:id="startTimeAppointmentColumn" prefWidth="100.0" text="Time" />
+                <TableColumn fx:id="startTimeAppointmentColumn" prefWidth="100.0" text="Start Time" />
                   <TableColumn fx:id="appointmentIdColumn" text="Appt ID" />
                   <TableColumn fx:id="titleColumn" prefWidth="180.0" text="Title" />
                   <TableColumn fx:id="descriptionColumn" prefWidth="226.0" text="Description" />
                   <TableColumn fx:id="typeColumn" prefWidth="119.0" text="Type" />
-                  <TableColumn fx:id="customerIdColumn" prefWidth="110.0" text="User ID" />
+                  <TableColumn fx:id="customerIdColumn" prefWidth="110.0" text="Customer ID" />
                   <TableColumn fx:id="locationColumn" prefWidth="125.0" text="Location" />
-                  <TableColumn fx:id="endTimeAppointmentColumn" prefWidth="101.0" text="Duration" />
+                  <TableColumn fx:id="endTimeAppointmentColumn" prefWidth="101.0" text="End Time" />
               </columns>
                <VBox.margin>
                   <Insets left="30.0" right="30.0" />
