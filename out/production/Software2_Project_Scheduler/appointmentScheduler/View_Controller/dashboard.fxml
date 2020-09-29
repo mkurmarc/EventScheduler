@@ -87,15 +87,15 @@
             </HBox>
             <TableView fx:id="appointmentsTableView" prefHeight="524.0" prefWidth="1140.0" VBox.vgrow="SOMETIMES">
               <columns>
-                <TableColumn fx:id="dateColumn" prefWidth="98.0" text="Date" />
-                <TableColumn fx:id="timeColumn" prefWidth="100.0" text="Time" />
-                  <TableColumn fx:id="appointmentColumn" text="Appt ID" />
+                <TableColumn fx:id="dateAppointmentColumn" prefWidth="98.0" text="Date" />
+                <TableColumn fx:id="startTimeAppointmentColumn" prefWidth="100.0" text="Time" />
+                  <TableColumn fx:id="appointmentIdColumn" text="Appt ID" />
                   <TableColumn fx:id="titleColumn" prefWidth="180.0" text="Title" />
                   <TableColumn fx:id="descriptionColumn" prefWidth="226.0" text="Description" />
                   <TableColumn fx:id="typeColumn" prefWidth="119.0" text="Type" />
-                  <TableColumn fx:id="userIdColumn" prefWidth="110.0" text="User ID" />
+                  <TableColumn fx:id="customerIdColumn" prefWidth="110.0" text="User ID" />
                   <TableColumn fx:id="locationColumn" prefWidth="125.0" text="Location" />
-                  <TableColumn fx:id="durationColumn" prefWidth="101.0" text="Duration" />
+                  <TableColumn fx:id="endTimeAppointmentColumn" prefWidth="101.0" text="Duration" />
               </columns>
                <VBox.margin>
                   <Insets left="30.0" right="30.0" />

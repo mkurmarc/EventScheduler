@@ -39,21 +39,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
-
-        try {
-            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Nat", Locale.getDefault());
-
-            if (Locale.getDefault().getLanguage().equals("de") || Locale.getDefault().getLanguage().equals("es") ||
-                    Locale.getDefault().getLanguage().equals("fr")) {
-                System.out.println(rb.getString("hello") + " " + rb.getString("world"));
-            }
-        }
-        catch(MissingResourceException e) {
-            System.out.println(e.getMessage());
-        }
-
         //Connection conn = DBConnection.startConnection(); // connect to DB
         launch(args);
         //DBConnection.closeConnection(); // close DB connection

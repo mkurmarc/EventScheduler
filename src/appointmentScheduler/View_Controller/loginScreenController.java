@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Model.User.checkLoginCredentials;
@@ -70,6 +72,19 @@ public class loginScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Nat", Locale.getDefault());
+
+            if (Locale.getDefault().getLanguage().equals("es") || Locale.getDefault().getLanguage().equals("de") ||
+                    Locale.getDefault().getLanguage().equals("fr")) {
+                loginLabel.setText(rb.getString("Login"));
+                loginUsernameTextField.setText(rb.getString("login"));
+                loginUsernameTextField.setText(rb.getString("username"));
+                loginPasswordField.setText(rb.getString("password"));
+            }
+        }
+        catch(MissingResourceException e) {
+            e.getMessage();
+        }
     }
 }

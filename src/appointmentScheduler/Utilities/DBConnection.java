@@ -23,10 +23,10 @@ public class DBConnection {
     private static Connection conn = null;
 
     // Username
-    private static final String username = "";
+    private static final String username = "U06381";
 
     // Password
-    private static final String password = "";
+    private static final String password = "53688676865";
 
     public static Connection startConnection() {
         try {

@@ -4,28 +4,23 @@ package appointmentScheduler.DAO.Impl;
     Marc Rios
     ID:
 */
-import appointmentScheduler.DAO.AppointmentDAO;
 import appointmentScheduler.Model.Appointment;
-import appointmentScheduler.Model.Country;
 import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-public class AppointmentDaoImpl implements AppointmentDAO {
+public class AppointmentDaoImpl {
+
+    ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
 
     // Read all the data from the mySQL database
-    @Override
-    public ObservableList<Appointment> getAllAppointments() throws SQLException {
-
-        ObservableList<Appointment> selectAllAppointments = FXCollections.observableArrayList();
-
+    public static ObservableList<Appointment> getAllAppointments() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
+        ObservableList<Appointment> selectAllAppointments = FXCollections.observableArrayList();
 
         String selectStatement = "SELECT * FROM appointment";
 
@@ -67,9 +62,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     }
 
     // Read or retrieve a single row of data from the mySQL database
-    @Override
     public Appointment getAppointment(int appointmentId) throws SQLException {
-
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         Appointment appointmentObject = new Appointment();
@@ -112,8 +105,7 @@ public class AppointmentDaoImpl implements AppointmentDAO {
         return appointmentObject;
     }
 
-    @Override
-    public void insertAppointment(Appointment appointment) throws SQLException {
+    public void createAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String insertStatement = "INSERT INTO Appointment(appointmentId, customerId, userId, title, description," +
@@ -148,7 +140,6 @@ public class AppointmentDaoImpl implements AppointmentDAO {
     }
 
     // Update or modify a single row of data from the database
-    @Override
     public void updateAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
@@ -180,7 +171,6 @@ public class AppointmentDaoImpl implements AppointmentDAO {
         DBConnection.closeConnection(); // close DB connection
     }
 
-    @Override
     public void deleteAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 

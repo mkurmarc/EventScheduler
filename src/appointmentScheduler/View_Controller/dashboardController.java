@@ -1,6 +1,9 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
 import appointmentScheduler.Model.Appointment;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
@@ -47,31 +52,31 @@ public class dashboardController implements Initializable {
     private TableView<Appointment> appointmentsTableView;
 
     @FXML
-    private TableColumn<Appointment, LocalDateTime> startTimeDateColumn;
+    private TableColumn<?, ?> dateAppointmentColumn;
 
     @FXML
-    private TableColumn<Appointment, LocalDateTime> endTimeDateColumn; // change fxml document o reflect these column changes
+    private TableColumn<?, ?> startTimeAppointmentColumn;
 
     @FXML
-    private TableColumn<Appointment, ?> appointmentColumn;
+    private TableColumn<?, ?> endTimeAppointmentColumn;
 
     @FXML
-    private TableColumn<Appointment, String> titleColumn;
+    private TableColumn<?, ?> appointmentIdColumn;
 
     @FXML
-    private TableColumn<Appointment, String> descriptionColumn;
+    private TableColumn<?, ?> titleColumn;
 
     @FXML
-    private TableColumn<Appointment, String> typeColumn;
+    private TableColumn<?, ?> descriptionColumn;
 
     @FXML
-    private TableColumn<Appointment, Integer> userIdColumn;
+    private TableColumn<?, ?> typeColumn;
 
     @FXML
-    private TableColumn<Appointment, String> locationColumn;
+    private TableColumn<?, ?> customerIdColumn;
 
     @FXML
-    private TableColumn<Appointment, LocalTime> durationColumn;
+    private TableColumn<?, ?> locationColumn;
 
     @FXML
     private Button viewCustomerButton;
@@ -94,18 +99,22 @@ public class dashboardController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
 
-    private int indexEditCustomer;
-    private int indexEditAppt;
+    ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
 
-    public int getIndexEditCustomer() {
-        return indexEditCustomer;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Appointments table and columns
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+
+        // retrieve data from database and convert to list
+        try {
+            allAppointments.addAll(AppointmentDaoImpl.getAllAppointments());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        appointmentsTableView.setItems(allAppointments);
     }
-
-    public int getIndexEditAppt() {
-        return indexEditAppt;
-    }
-
-
 
     @FXML
     void addAppointmentButtonHandler(ActionEvent event) throws IOException {
@@ -201,13 +210,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     void viewWeekRadioButtonHandler(ActionEvent event) {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Appointments table and columns
-        startTimeDateColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
 
     }
 }

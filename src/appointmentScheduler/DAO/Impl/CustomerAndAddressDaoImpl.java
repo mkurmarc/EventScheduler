@@ -4,8 +4,6 @@ package appointmentScheduler.DAO.Impl;
     Marc Rios
     ID:
 */
-import appointmentScheduler.DAO.CustomerAndAddressDAO;
-import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.CustomerAndAddress;
 import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
@@ -18,11 +16,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class CustomerAndAddressDaoImpl implements CustomerAndAddressDAO {
+public class CustomerAndAddressDaoImpl {
 
     ObservableList<CustomerAndAddress> allCustomers = FXCollections.observableArrayList();
 
-    @Override
     public ObservableList<CustomerAndAddress> getAllCustomers() throws SQLException {
         ObservableList<CustomerAndAddress> selectAllCustomers = FXCollections.observableArrayList();
 
@@ -63,27 +60,21 @@ public class CustomerAndAddressDaoImpl implements CustomerAndAddressDAO {
         }
 
 
-
-
         return null;
     }
 
-    @Override
     public CustomerAndAddress getCustomer(int customerId) {
         return null;
     }
 
-    @Override
     public void addCustomer(CustomerAndAddress customerAndAddress) {
 
     }
 
-    @Override
     public void updateCustomer(CustomerAndAddress customerAndAddress) {
         // update
     }
 
-    @Override
     public void deleteCustomer(CustomerAndAddress customerAndAddress) {
         // delete
     }

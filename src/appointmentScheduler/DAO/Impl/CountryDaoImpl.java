@@ -4,7 +4,6 @@ package appointmentScheduler.DAO.Impl;
     Marc Rios
     ID:
 */
-import appointmentScheduler.DAO.CountryDAO;
 import appointmentScheduler.Model.Country;
 import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
@@ -19,8 +18,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class CountryDaoImpl implements CountryDAO {
-    @Override
+public class CountryDaoImpl {
+
     public ObservableList<Country> getAllCountry() throws SQLException {
 
         ObservableList<Country> selectAllCountries = FXCollections.observableArrayList();
@@ -52,7 +51,6 @@ public class CountryDaoImpl implements CountryDAO {
         return selectAllCountries;
     }
 
-    @Override
     public Country getCountry(int countryID) throws SQLException {
 
         Connection conn = DBConnection.startConnection(); // connect to DB
@@ -83,17 +81,14 @@ public class CountryDaoImpl implements CountryDAO {
         return selectedCountry;
     }
 
-    @Override
     public void insertCountry(Country country) {
 
     }
 
-    @Override
     public void updateCountry(Country country) {
 
     }
 
-    @Override
     public void deleteCountry(Country country) {
 
     }

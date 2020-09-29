@@ -7,13 +7,9 @@ package appointmentScheduler.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Locale;
 
 public class Appointment {
-    // private ObservableList<Customer> associatedContacts = FXCollections.observableArrayList();
     private int appointmentID;
     private int customerId;
     private int userId;
@@ -52,6 +48,8 @@ public class Appointment {
 
     public Appointment() {
     }
+
+
 
     public int getAppointmentID() {
         return appointmentID;
