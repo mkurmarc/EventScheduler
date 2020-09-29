@@ -25,6 +25,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class dashboardController implements Initializable {
+    ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+
     @FXML
     private MenuBar menuBarHome;
 
@@ -33,9 +35,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private Menu closeMenuBar;
-
-    @FXML
-    private DatePicker datePickerHome;
 
     @FXML
     private RadioButton viewAllRadioButton;
@@ -100,7 +99,16 @@ public class dashboardController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
 
-    ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+    private int idToBeModified;
+
+    // getter setters for id to be modified which allows access to other layers of the program
+    public int getIdToBeModified() {
+        return idToBeModified;
+    }
+
+    public void setIdToBeModified(int idToBeModified) {
+        this.idToBeModified = idToBeModified;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -123,6 +131,25 @@ public class dashboardController implements Initializable {
         }
 
         appointmentsTableView.setItems(allAppointments);
+    }
+
+    @FXML
+    void viewCustomerButtonHandler(ActionEvent event) throws IOException {
+        Appointment viewCustomerAppt = appointmentsTableView.getSelectionModel().getSelectedItem();
+        if (viewCustomerAppt != null) {
+            idToBeModified = viewCustomerAppt.getCustomerId();
+            Stage stage;
+            Parent root;
+            stage = (Stage) viewCustomerButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editCustomer.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            Alerts.selectionError(2);
+        }
     }
 
     @FXML
@@ -160,26 +187,23 @@ public class dashboardController implements Initializable {
     }
 
     @FXML
-    void datePickerHomeHandler(ActionEvent event) {
-
-    }
-
-    @FXML
-    void deleteAppointmentButtonHandler(ActionEvent event) {
+    void deleteAppointmentButtonHandler(ActionEvent event) throws SQLException {
         Appointment deleteAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (deleteAppointment != null) {
             if (Alerts.confirmationWindow(3)) {
-                // delete code here
+                AppointmentDaoImpl.deleteAppointment(deleteAppointment);
+                allAppointments.remove(deleteAppointment);
+                appointmentsTableView.setItems(allAppointments);
             }
         }
         else {
-
+            Alerts.selectionError(1);
         }
     }
 
     @FXML
     void deleteCustomerButtonHandler(ActionEvent event) {
-
+        // check if customer has appt. if they do, send error message. if not, then delete customer.
     }
 
     @FXML
@@ -215,10 +239,7 @@ public class dashboardController implements Initializable {
 
     }
 
-    @FXML
-    void viewCustomerButtonHandler(ActionEvent event) {
 
-    }
 
     @FXML
     void viewMonthRadioButtonHandler(ActionEvent event) {

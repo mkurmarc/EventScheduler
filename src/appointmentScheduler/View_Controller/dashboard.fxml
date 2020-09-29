@@ -24,11 +24,6 @@
             </MenuBar>
             <HBox alignment="BOTTOM_CENTER" maxHeight="125.0" prefHeight="115.0" prefWidth="200.0" VBox.vgrow="NEVER">
                <children>
-                  <DatePicker fx:id="datePickerHome" onAction="#datePickerHomeHandler" prefHeight="37.0" prefWidth="235.0">
-                     <HBox.margin>
-                        <Insets right="150.0" />
-                     </HBox.margin>
-                  </DatePicker>
                   <RadioButton fx:id="viewAllRadioButton" mnemonicParsing="false" onAction="#viewAllRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View All" wrapText="true">
                      <HBox.margin>
                         <Insets bottom="5.0" right="75.0" />

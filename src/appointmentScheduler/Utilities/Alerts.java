@@ -207,7 +207,7 @@ public class Alerts {
             return result.get() == ButtonType.OK;
         }
         if (code == 3) {
-            alert.setTitle("Delete");
+            alert.setTitle("Delete Appointment");
             alert.setHeaderText("Are you sure you want to delete this appointment?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
@@ -226,12 +226,18 @@ public class Alerts {
     public static void selectionError(int code) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
 
-        // code 1 means appointment not selected
+        // code 1 means appointment not selected for deletion
         if (code == 1) {
             alert.setTitle("Delete error");
             alert.setHeaderText("Cannot delete appointment");
-            alert.setContentText("Please select appointment before trying to delete");
-            Optional<ButtonType> result = alert.showAndWait();
+            alert.setContentText("Please select appointment from table before trying to delete.");
+            alert.showAndWait();
+        }
+        if (code == 2) {
+            alert.setTitle("View error");
+            alert.setHeaderText("Cannot view customer details");
+            alert.setContentText("Please select appointment from table before trying to view.");
+            alert.showAndWait();
         }
 
     }

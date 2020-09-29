@@ -4,7 +4,7 @@ package appointmentScheduler.DAO.Impl;
     Marc Rios
     ID:
 */
-import appointmentScheduler.Model.CustomerAndAddress;
+import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
@@ -16,20 +16,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class CustomerAndAddressDaoImpl {
+public class CustomerDaoImpl {
 
-    ObservableList<CustomerAndAddress> allCustomers = FXCollections.observableArrayList();
+    ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
-    public ObservableList<CustomerAndAddress> getAllCustomers() throws SQLException {
-        ObservableList<CustomerAndAddress> selectAllCustomers = FXCollections.observableArrayList();
-
+    public ObservableList<Customer> getAllCustomersAddress() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
+        ObservableList<Customer> allCustomersAddressList = FXCollections.observableArrayList();
+
+
 
         String selectStatement = "SELECT address.address, address.address2, address.postalCode, address.phone," +
                                  "address.createDate, address.createdBy, address.lastUpdate, address.lastUpdateBy," +
                                  "customer.customerName, customer.active " +
-                                 "FROM address" +
-                                 "INNER JOIN customer ON customer.addressId = address.addressId" +
+                                 "FROM address " +
+                                 "INNER JOIN customer ON customer.addressId = address.addressId " +
                                  "ORDER BY address.createDate ASC;";
 
         DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
@@ -63,19 +64,19 @@ public class CustomerAndAddressDaoImpl {
         return null;
     }
 
-    public CustomerAndAddress getCustomer(int customerId) {
+    public Customer getCustomer(int customerId) {
         return null;
     }
 
-    public void addCustomer(CustomerAndAddress customerAndAddress) {
+    public void addCustomer(Customer customerAndAddress) {
 
     }
 
-    public void updateCustomer(CustomerAndAddress customerAndAddress) {
+    public void updateCustomer(Customer customerAndAddress) {
         // update
     }
 
-    public void deleteCustomer(CustomerAndAddress customerAndAddress) {
+    public void deleteCustomer(Customer customerAndAddress) {
         // delete
     }
 }

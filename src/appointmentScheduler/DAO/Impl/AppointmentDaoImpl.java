@@ -158,7 +158,6 @@ public class AppointmentDaoImpl {
                 "WHERE appointmentId =?;";
 
         DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
-
         PreparedStatement ps =  DBQuery.getPreparedStatement();
 
      // Values for the update statement are set below
@@ -177,14 +176,13 @@ public class AppointmentDaoImpl {
         ps.setInt(13, appointment.getAppointmentId());
 
         ps.execute(); // execute PreparedStatement
-
         DBConnection.closeConnection(); // close DB connection
     }
 
-    public void deleteAppointment(Appointment appointment) throws SQLException {
+    public static void deleteAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String deleteStatement = "DELETE FROM country WHERE country = ?;";
+        String deleteStatement = "DELETE FROM appointment WHERE appointmentId = ?;";
 
         DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
 
@@ -193,7 +191,6 @@ public class AppointmentDaoImpl {
         preparedStatement.setInt(1, appointment.getAppointmentId()); // Sets value for prepared statement
 
         preparedStatement.execute(); // execute PreparedStatement
-
         DBConnection.closeConnection(); // close DB connection
     }
 }

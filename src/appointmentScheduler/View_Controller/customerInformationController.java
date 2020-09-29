@@ -1,5 +1,7 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.Model.Customer;
+import appointmentScheduler.Model.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +43,16 @@ public class customerInformationController implements Initializable {
     @FXML
     private Button backButton;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        /*
+        Block below gets users selection from dashboard and transfers information of selected
+        appointment to the text fields in customer information screen
+        */
+        Customer viewCustomer = new Customer();
+        //int customerId =
+    }
+
     @FXML
     void backButtonHandler(ActionEvent actionEvent) throws IOException {
         if (confirmationWindow(2)) {
@@ -55,8 +67,4 @@ public class customerInformationController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
