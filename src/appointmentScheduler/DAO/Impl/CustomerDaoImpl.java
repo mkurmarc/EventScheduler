@@ -18,20 +18,13 @@ import java.time.LocalDateTime;
 
 public class CustomerDaoImpl {
 
-    ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+    ObservableList<Customer> getAllCustomers = FXCollections.observableArrayList();
 
     public ObservableList<Customer> getAllCustomersAddress() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
-        ObservableList<Customer> allCustomersAddressList = FXCollections.observableArrayList();
+        ObservableList<Customer> allCustomersList = FXCollections.observableArrayList();
 
-
-
-        String selectStatement = "SELECT address.address, address.address2, address.postalCode, address.phone," +
-                                 "address.createDate, address.createdBy, address.lastUpdate, address.lastUpdateBy," +
-                                 "customer.customerName, customer.active " +
-                                 "FROM address " +
-                                 "INNER JOIN customer ON customer.addressId = address.addressId " +
-                                 "ORDER BY address.createDate ASC;";
+        String selectStatement = "SELECT * FROM customers";
 
         DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
 
@@ -45,23 +38,20 @@ public class CustomerDaoImpl {
         {
             int customerId = resultSet.getInt("customerId");
             String customerName = resultSet.getString("customerName");
-            byte active = resultSet.getByte("active");
             int addressId = resultSet.getInt("addressId");
-            String address = resultSet.getString("address");
-            String address2 = resultSet.getString("address2");
-            int cityId = resultSet.getInt("cityId");
-            String postalCode = resultSet.getString("postalCode");
-            String phone = resultSet.getString("phone");
-            LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
+            byte active = resultSet.getByte("active");
+            LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
+            Customer customerObject = new Customer(customerId, customerName, addressId, active, createDate, createdBy,
+                    lastUpdate, lastUpdateBy);
 
+            allCustomersList.add(customerObject);
         }
-
-
-        return null;
+        DBConnection.closeConnection(); // close DB connection
+        return allCustomersList;
     }
 
     public Customer getCustomer(int customerId) {

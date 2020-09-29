@@ -17,9 +17,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class AppointmentDaoImpl {
-
-    ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
-
     // Read all the data from the mySQL database
     public static ObservableList<Appointment> getAllAppointments() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
@@ -118,7 +115,7 @@ public class AppointmentDaoImpl {
     public void createAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String insertStatement = "INSERT INTO Appointment(appointmentId, customerId, userId, title, description," +
+        String insertStatement = "INSERT INTO appointment(appointmentId, customerId, userId, title, description," +
                 "location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)" +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
@@ -126,9 +123,7 @@ public class AppointmentDaoImpl {
 
         PreparedStatement ps = DBQuery.getPreparedStatement();
 
-        // Timestamp timestamp = Timestamp.valueOf(appointment.getStartDate().atTime(appointment.getStartTime()));
-
-        // Values for the update statement are set below
+        // Values for the insert statement are set below
         ps.setInt(1, appointment.getAppointmentId());
         ps.setInt(2, appointment.getCustomerId());
         ps.setInt(3, appointment.getUserId());
@@ -186,11 +181,11 @@ public class AppointmentDaoImpl {
 
         DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
 
-        PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
+        PreparedStatement ps = DBQuery.getPreparedStatement();
 
-        preparedStatement.setInt(1, appointment.getAppointmentId()); // Sets value for prepared statement
+        ps.setInt(1, appointment.getAppointmentId()); // Sets value for prepared statement
 
-        preparedStatement.execute(); // execute PreparedStatement
+        ps.execute(); // execute PreparedStatement
         DBConnection.closeConnection(); // close DB connection
     }
 }

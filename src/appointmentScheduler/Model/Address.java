@@ -3,10 +3,10 @@ package appointmentScheduler.Model;
 import java.time.LocalDateTime;
 
 public class Address {
-    private int addressId; // primary key
+    private int addressId;
     private String address;
     private String address2;
-    private int cityId; // foreign key
+    private int cityId;
     private String postalCode;
     private String phone;
     private LocalDateTime createDate;
@@ -26,6 +26,10 @@ public class Address {
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Address() {
+
     }
 
     public int getAddressId() {
