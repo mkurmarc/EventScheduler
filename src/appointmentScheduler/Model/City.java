@@ -1,4 +1,7 @@
 package appointmentScheduler.Model;
+
+import java.time.LocalDateTime;
+
 /*
     @AUTHOR
     Marc Rios
@@ -8,19 +11,24 @@ public class City {
     private int cityId;
     private String city;
     private int countryId;
-    private String createDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private String lastUpdate;
-    private String lastUpdatedBy;
+    private LocalDateTime lastUpdate;
+    private String lastUpdateBy;
 
-    public City(int cityId, String city, int countryId, String createDate, String createdBy, String lastUpdate, String lastUpdatedBy) {
+    public City(int cityId, String city, int countryId, LocalDateTime createDate, String createdBy,
+                LocalDateTime lastUpdate, String lastUpdateBy) {
         this.cityId = cityId;
         this.city = city;
         this.countryId = countryId;
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
-        this.lastUpdatedBy = lastUpdatedBy;
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public City() {
+
     }
 
     public int getCityId() {
@@ -47,11 +55,11 @@ public class City {
         this.countryId = countryId;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -63,19 +71,19 @@ public class City {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
     }
 
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
     }
 }

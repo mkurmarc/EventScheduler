@@ -33,7 +33,7 @@ public class Main extends Application {
                 "admin", LocalDateTime.now(), "admin");
         User.addUser(adminUser);
 
-        Parent root = FXMLLoader.load(getClass().getResource("View_Controller/loginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View_Controller/dashboard.fxml"));
         primaryStage.setTitle("Appointment Scheduler Dashboard");
         primaryStage.setScene(new Scene(root, 816, 536));
         primaryStage.show();

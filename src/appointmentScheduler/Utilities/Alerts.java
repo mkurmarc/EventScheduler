@@ -204,7 +204,7 @@ public class Alerts {
             alert.setHeaderText("Are you sure you want to go back to the home screen?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
-            return result.get() == ButtonType.OK;
+            return result.isPresent() && result.get() == ButtonType.OK;
         }
         if (code == 3) {
             alert.setTitle("Delete Appointment");

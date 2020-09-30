@@ -15,7 +15,7 @@ import java.time.LocalTime;
 
 public class AddressDaoImpl {
     // Read all the data from the mySQL database
-    public ObservableList<Address> getAllAddresses() throws SQLException {
+    public static ObservableList<Address> getAllAddresses() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
         ObservableList<Address> allAddressList = FXCollections.observableArrayList();
 
@@ -23,11 +23,11 @@ public class AddressDaoImpl {
 
         DBQuery.setPreparedStatement(conn, selectStatement); // create PreparedStatement
 
-        PreparedStatement preparedStatement =  DBQuery.getPreparedStatement();
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
 
-        preparedStatement.execute(); // execute PreparedStatement
+        ps.execute(); // execute PreparedStatement
 
-        ResultSet resultSet = preparedStatement.getResultSet();
+        ResultSet resultSet = ps.getResultSet();
 
         while (resultSet.next())
         {
@@ -52,7 +52,7 @@ public class AddressDaoImpl {
     }
 
     // Read or retrieve a single row of data from the mySQL database
-    public Address getAddress(int addressID) throws SQLException {
+    public static Address getAddress(int addressID) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         Address addressObject = new Address();

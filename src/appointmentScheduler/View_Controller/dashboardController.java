@@ -1,7 +1,10 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.DAO.Impl.CityDaoImpl;
+import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
+import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,14 +21,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class dashboardController implements Initializable {
-    ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+    private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+    private static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+    private static ObservableList<Address> allAddresses = FXCollections.observableArrayList();
+    private static ObservableList<City> allCities = FXCollections.observableArrayList();
+    private static ObservableList<Country> allCountries = FXCollections.observableArrayList();
 
     @FXML
     private MenuBar menuBarHome;
@@ -99,49 +103,33 @@ public class dashboardController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
 
-    private int idToBeModified;
+    private static int indexOfObject;
+
+    // getters and setters for all lists
+    public ObservableList<Appointment> getAllAppointments() {
+        return allAppointments;
+    }
+
+    public static ObservableList<Customer> getAllCustomers() {
+        return allCustomers;
+    }
+
 
     // getter setters for id to be modified which allows access to other layers of the program
-    public int getIdToBeModified() {
-        return idToBeModified;
-    }
-
-    public void setIdToBeModified(int idToBeModified) {
-        this.idToBeModified = idToBeModified;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Appointments table and columns
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
-        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-
-        // retrieve data from database and convert to list
-        try {
-            allAppointments.addAll(AppointmentDaoImpl.getAllAppointments());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        appointmentsTableView.setItems(allAppointments);
+    public static int getIndexOfObject() {
+        return indexOfObject;
     }
 
     @FXML
-    void viewCustomerButtonHandler(ActionEvent event) throws IOException {
-        Appointment viewCustomerAppt = appointmentsTableView.getSelectionModel().getSelectedItem();
-        if (viewCustomerAppt != null) {
-            idToBeModified = viewCustomerAppt.getCustomerId();
+    void viewCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
+        Appointment viewCustomer = appointmentsTableView.getSelectionModel().getSelectedItem();
+        if (viewCustomer != null) {
+            indexOfObject = allAppointments.indexOf(viewCustomer);
+            //customerIdToBeModified = viewCustomer.getCustomerId();
             Stage stage;
             Parent root;
             stage = (Stage) viewCustomerButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("editCustomer.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -169,7 +157,7 @@ public class dashboardController implements Initializable {
         Stage stage;
         Parent root;
         stage = (Stage) addCustomerButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("addCustomer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
         root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -249,5 +237,41 @@ public class dashboardController implements Initializable {
     @FXML
     void viewWeekRadioButtonHandler(ActionEvent event) {
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // Appointments table and columns
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+
+        // retrieve data from database and convert to lists for each table
+        try {
+            if (allAppointments.size() != 0) {
+                for (int i=0; i < allAppointments.size(); i++ ) {
+                    if (!allAppointments.contains(allAppointments.get(i))) {
+                        allAppointments.add(allAppointments.get(i));
+                    }
+                }
+            } else {
+                allAppointments.addAll(AppointmentDaoImpl.getAllAppointments());
+            }
+
+            allCustomers.addAll(CustomerDaoImpl.getAllCustomers());
+//            allAddresses.addAll(AddressDaoImpl.getAllAddresses());
+//            allCities.addAll(CityDaoImpl.getAllCities());
+//            allCountries.addAll(Country.getAllCountries());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        appointmentsTableView.setItems(allAppointments);
     }
 }

@@ -17,6 +17,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class AppointmentDaoImpl {
+
+
     // Read all the data from the mySQL database
     public static ObservableList<Appointment> getAllAppointments() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
@@ -32,8 +34,8 @@ public class AppointmentDaoImpl {
 
         ResultSet resultSet = ps.getResultSet();
 
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-YYYY");
-        DateTimeFormatter tf = DateTimeFormatter.ofPattern("h:mm a");
+//        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-YYYY");
+//        DateTimeFormatter tf = DateTimeFormatter.ofPattern("h:mm a");
 
         while (resultSet.next()) // while there is data in ResultSet the while loop continues
         {
