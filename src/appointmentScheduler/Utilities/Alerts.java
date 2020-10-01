@@ -239,6 +239,12 @@ public class Alerts {
             alert.setContentText("Please select appointment from table before trying to view.");
             alert.showAndWait();
         }
+        if (code == 3) {
+            alert.setTitle("Selection error");
+            alert.setHeaderText("Cannot edit appointment details");
+            alert.setContentText("Please select appointment from table before trying to view.");
+            alert.showAndWait();
+        }
 
     }
 

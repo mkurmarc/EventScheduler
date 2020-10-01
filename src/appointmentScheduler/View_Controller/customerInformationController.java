@@ -55,23 +55,6 @@ public class customerInformationController implements Initializable {
     @FXML
     private Button backButton;
 
-    private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-
-    @FXML
-    public void backButtonHandler() throws IOException {
-        if (confirmationWindow(2)) {
-            Stage stage;
-            Parent root;
-            stage = (Stage) backButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /*
@@ -103,6 +86,19 @@ public class customerInformationController implements Initializable {
         varCityLabel.setText(cityObj.getCity());
         varPostalCodeLabel.setText(addressObj.getPostalCode());
         varPhoneLabel.setText(addressObj.getPhone());
+    }
 
+    @FXML
+    public void backButtonHandler() throws IOException {
+        if (confirmationWindow(2)) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) backButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }

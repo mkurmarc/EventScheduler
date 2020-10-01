@@ -70,6 +70,11 @@ public class editAppointmentController implements Initializable {
     @FXML
     private Button cancelEditApptButton;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
     @FXML
     void cancelEditApptButtonHandler(ActionEvent event) throws IOException {
         if (confirmationWindow(1)) {
@@ -86,11 +91,6 @@ public class editAppointmentController implements Initializable {
 
     @FXML
     void saveEditApptButtonHandler(ActionEvent event) {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

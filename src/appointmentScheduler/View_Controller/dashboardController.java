@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -125,7 +126,7 @@ public class dashboardController implements Initializable {
         Appointment viewCustomer = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (viewCustomer != null) {
             indexOfObject = allAppointments.indexOf(viewCustomer);
-            //customerIdToBeModified = viewCustomer.getCustomerId();
+
             Stage stage;
             Parent root;
             stage = (Stage) viewCustomerButton.getScene().getWindow();
@@ -142,6 +143,7 @@ public class dashboardController implements Initializable {
 
     @FXML
     void addAppointmentButtonHandler(ActionEvent event) throws IOException {
+
         Stage stage;
         Parent root;
         stage = (Stage) addAppointmentButton.getScene().getWindow();
@@ -157,7 +159,7 @@ public class dashboardController implements Initializable {
         Stage stage;
         Parent root;
         stage = (Stage) addCustomerButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addCustomer.fxml"));
         root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -196,20 +198,18 @@ public class dashboardController implements Initializable {
 
     @FXML
     void editAppointmentButtonHandler(ActionEvent actionEvent) throws IOException {
-        /*
-        Appointment editAppt = (Appointment) appointmentsTableView.getSelectionModel().getSelectedItem();
+        Appointment editAppt = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (editAppt != null) {
-            indexEditAppt dfsf;
+            indexOfObject = allAppointments.indexOf(editAppt);
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("editAppointment.fxml"));
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        } else {
+            Alerts.selectionError(3);
         }
-
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("scheduleReports.fxml"));
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-
-         */
     }
 
     @FXML

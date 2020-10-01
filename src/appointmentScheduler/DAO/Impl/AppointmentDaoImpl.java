@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 
 public class AppointmentDaoImpl {
 
-
     // Read all the data from the mySQL database
     public static ObservableList<Appointment> getAllAppointments() throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
