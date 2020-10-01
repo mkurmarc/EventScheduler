@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="400.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.editCustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="483.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.editCustomerController">
    <children>
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="553.0" prefWidth="450.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,7 +28,7 @@
                   <DropShadow color="#282828" height="20.05" offsetY="3.0" radius="11.185" width="26.69" />
                </effect>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="First Name">
                      <HBox.margin>
@@ -37,7 +37,7 @@
                   <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="200.0" style="                   -fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Last Name">
                      <HBox.margin>
@@ -46,7 +46,7 @@
                   <TextField fx:id="lastNameTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Address 1">
                      <HBox.margin>
@@ -55,7 +55,7 @@
                   <TextField fx:id="addressTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                    -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Address 2">
                      <HBox.margin>
@@ -65,9 +65,9 @@
                   <TextField fx:id="addressTextField2" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;                    -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
-                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="City">
+                  <Label prefHeight="25.0" prefWidth="86.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="City">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
@@ -75,19 +75,35 @@
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin></TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Zip Code">
+                  <Label prefHeight="51.0" prefWidth="108.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Postal Code" wrapText="true">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="zipCodeTextField" prefHeight="32.0" prefWidth="136.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="postalCodeTextField" prefHeight="32.0" prefWidth="173.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Country">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="countryTextField" prefHeight="32.0" prefWidth="173.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Phone Number">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="phoneTextField" prefHeight="32.0" prefWidth="100.0" style="-fx-font-family: Arial;                   -fx-text-fill: fefdff; -fx-font-size: 16; -fx-font-style: italic;" HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="25.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Active">
                      <HBox.margin>
