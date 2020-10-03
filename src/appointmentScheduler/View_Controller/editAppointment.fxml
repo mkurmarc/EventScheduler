@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="457.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.addAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="457.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.editAppointmentController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,6 +42,12 @@
                      </padding>
                   </Label>
                   <ComboBox fx:id="customerSearchCombo" prefWidth="230.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Option 1" />
+                           <String fx:value="Option2" />
+                        </FXCollections>
+                     </items>
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -70,7 +78,14 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="selectApptTypeCombo" prefWidth="169.0" />
+                  <ComboBox fx:id="selectApptTypeCombo" prefWidth="169.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Option 1" />
+                           <String fx:value="Option2" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -87,6 +102,32 @@
                      </padding>
                   </Label>
                   <ComboBox fx:id="startTimeCombo" prefWidth="169.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Option 1" />
+                           <String fx:value="Option 4" />
+                           <String fx:value="Option 3" />
+                           <String fx:value="Option 5" />
+                           <String fx:value="Option 6" />
+                           <String fx:value="Option 7" />
+                           <String fx:value="Option 8" />
+                           <String fx:value="Option 9" />
+                           <String fx:value="Option 10" />
+                           <String fx:value="Option 11" />
+                           <String fx:value="Option 12" />
+                           <String fx:value="Option 13" />
+                           <String fx:value="Option 14" />
+                           <String fx:value="Option 15" />
+                           <String fx:value="Option 16" />
+                           <String fx:value="Option 17" />
+                           <String fx:value="Option 18" />
+                           <String fx:value="Option 19" />
+                           <String fx:value="Option 20" />
+                        </FXCollections>
+                     </items>
+                     <value>
+                        <String fx:value="Option 7" />
+                     </value>
                      <HBox.margin>
                         <Insets right="35.0" />
                      </HBox.margin>
@@ -103,7 +144,34 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo1" prefWidth="169.0" />
+                  <ComboBox fx:id="endTimeCombo" prefWidth="169.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Option 1" />
+                           <String fx:value="Option 4" />
+                           <String fx:value="Option 3" />
+                           <String fx:value="Option 5" />
+                           <String fx:value="Option 6" />
+                           <String fx:value="Option 7" />
+                           <String fx:value="Option 8" />
+                           <String fx:value="Option 9" />
+                           <String fx:value="Option 10" />
+                           <String fx:value="Option 11" />
+                           <String fx:value="Option 12" />
+                           <String fx:value="Option 13" />
+                           <String fx:value="Option 14" />
+                           <String fx:value="Option 15" />
+                           <String fx:value="Option 16" />
+                           <String fx:value="Option 17" />
+                           <String fx:value="Option 18" />
+                           <String fx:value="Option 19" />
+                           <String fx:value="Option 20" />
+                        </FXCollections>
+                     </items>
+                     <value>
+                        <String fx:value="Option 7" />
+                     </value>
+                  </ComboBox>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -136,7 +204,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="descriptionTextField1" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="descriptionTextField" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -145,12 +213,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="saveAddApptButton" mnemonicParsing="false" onAction="#saveAddApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
+                  <Button fx:id="saveEditApptButton" mnemonicParsing="false" onAction="#saveEditApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelAddApptButton" mnemonicParsing="false" onAction="#cancelAddApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelEditApptButton" mnemonicParsing="false" onAction="#cancelEditApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />

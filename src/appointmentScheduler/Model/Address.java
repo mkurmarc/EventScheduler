@@ -1,8 +1,13 @@
 package appointmentScheduler.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDateTime;
 
 public class Address {
+    private static ObservableList<Address> allAddresses = FXCollections.observableArrayList();
+
     private int addressId;
     private String address;
     private String address2;
@@ -30,6 +35,14 @@ public class Address {
 
     public Address() {
 
+    }
+
+    public static ObservableList<Address> getAllAddresses() {
+        return allAddresses;
+    }
+
+    public static void setAllAddresses(ObservableList<Address> allAddresses) {
+        Address.allAddresses = allAddresses;
     }
 
     public int getAddressId() {

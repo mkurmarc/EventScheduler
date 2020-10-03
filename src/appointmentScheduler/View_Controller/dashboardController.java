@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 public class dashboardController implements Initializable {
     private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
     private static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
-    private static ObservableList<Address> allAddresses = FXCollections.observableArrayList();
+    //private static ObservableList<Address> allAddresses = FXCollections.observableArrayList();
     private static ObservableList<City> allCities = FXCollections.observableArrayList();
     private static ObservableList<Country> allCountries = FXCollections.observableArrayList();
 
@@ -107,7 +107,7 @@ public class dashboardController implements Initializable {
     private static int indexOfObject;
 
     // getters and setters for all lists
-    public ObservableList<Appointment> getAllAppointments() {
+    public static ObservableList<Appointment> getAllAppointments() {
         return allAppointments;
     }
 
@@ -266,7 +266,7 @@ public class dashboardController implements Initializable {
             }
 
             allCustomers.addAll(CustomerDaoImpl.getAllCustomers());
-//            allAddresses.addAll(AddressDaoImpl.getAllAddresses());
+            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
 //            allCities.addAll(CityDaoImpl.getAllCities());
 //            allCountries.addAll(Country.getAllCountries());
         } catch (SQLException e) {
