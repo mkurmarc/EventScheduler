@@ -1,11 +1,7 @@
 package appointmentScheduler.View_Controller;
 
-import appointmentScheduler.DAO.Impl.AddressDaoImpl;
-import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
-import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
-import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
@@ -23,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
@@ -44,7 +41,19 @@ public class editAppointmentController implements Initializable {
     private ComboBox<LocalTime> startTimeCombo;
 
     @FXML
+    private RadioButton startTimeAMPeriod;
+
+    @FXML
+    private RadioButton startTimePMPeriod;
+
+    @FXML
     private ComboBox<LocalTime> endTimeCombo;
+
+    @FXML
+    private RadioButton endTimeAMPeriod;
+
+    @FXML
+    private RadioButton endTimePMPeriod;
 
     @FXML
     private TextField titleTextField;
@@ -58,11 +67,21 @@ public class editAppointmentController implements Initializable {
     @FXML
     private Button cancelEditApptButton;
 
+    ToggleGroup startPeriodToggleGroup = new ToggleGroup();
+    ToggleGroup endPeriodToggleGroup = new ToggleGroup();
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // sets the toggle groups
+        startTimeAMPeriod.setToggleGroup(startPeriodToggleGroup);
+        startTimePMPeriod.setToggleGroup(startPeriodToggleGroup);
+        endTimeAMPeriod.setToggleGroup(endPeriodToggleGroup);
+        endTimePMPeriod.setToggleGroup(endPeriodToggleGroup);
         // 2 lines below adds the options to the list
         allAppointmentTypes.add((byte) 0);
         allAppointmentTypes.add((byte) 1);
+
         // for loop adds the customer names to a list
         for (int i=0; i < Customer.getAllCustomers().size(); i++) {
             allCustomersNames.add(Customer.getAllCustomers().get(i).getCustomerName());
@@ -78,7 +97,7 @@ public class editAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        /*
         int addressID = selectedCustomerObj.getAddressId();
         Address selectedAddressObj = new Address();
         try {
@@ -87,6 +106,7 @@ public class editAppointmentController implements Initializable {
             e.printStackTrace();
         }
 
+
         int cityID = selectedAddressObj.getCityId();
         City selectedCityObj = new City();
         try {
@@ -94,7 +114,7 @@ public class editAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        */
         customerSearchCombo.setItems(allCustomersNames);
         customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
         appointmentDatePicker.setValue(selectedApptObject.getStartDate());
@@ -106,6 +126,20 @@ public class editAppointmentController implements Initializable {
         endTimeCombo.setValue(selectedApptObject.getEnd());
         titleTextField.setText(selectedApptObject.getTitle());
         descriptionTextField.setText(selectedApptObject.getDescription());
+
+        // block of code below checks time and toggles appropriate radio button
+        LocalTime amTime = LocalTime.of(11,59);
+        if (selectedApptObject.getStartTime().isAfter(amTime)) {
+            startPeriodToggleGroup.selectToggle(startTimePMPeriod);
+        } else {
+            startPeriodToggleGroup.selectToggle(startTimeAMPeriod);
+        }
+
+        if (selectedApptObject.getEnd().isBefore(amTime)) {
+            endPeriodToggleGroup.selectToggle(endTimeAMPeriod);
+        } else {
+            endPeriodToggleGroup.selectToggle(endTimePMPeriod);
+        }
     }
 
     @FXML

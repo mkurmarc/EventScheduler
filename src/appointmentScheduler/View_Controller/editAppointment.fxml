@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -101,7 +102,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="startTimeCombo" prefWidth="169.0" editable="true">
+                  <ComboBox fx:id="startTimeCombo" editable="true" prefHeight="25.0" prefWidth="105.0">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Option 1" />
@@ -111,9 +112,15 @@
                         <String fx:value="Option 7" />
                      </value>
                      <HBox.margin>
-                        <Insets right="35.0" />
+                        <Insets right="15.0" />
                      </HBox.margin>
                   </ComboBox>
+                  <RadioButton fx:id="startTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="startTimePMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="PM" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -126,7 +133,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo" prefWidth="169.0" editable="true">
+                  <ComboBox fx:id="endTimeCombo" editable="true" prefHeight="25.0" prefWidth="105.0">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Option 1" />
@@ -135,7 +142,16 @@
                      <value>
                         <String fx:value="Option 7" />
                      </value>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
                   </ComboBox>
+                  <RadioButton fx:id="endTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="endTimePMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="PM" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">

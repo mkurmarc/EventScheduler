@@ -13,7 +13,8 @@ import java.util.Collections;
     Marc Rios
     ID:
 */
-public class TimeClass {
+public class TimeClass { // delete this class???
+
     private static ObservableList<LocalTime> listOfTimes = FXCollections.observableArrayList();
 
     public static ObservableList<LocalTime> getListOfTimes() {
