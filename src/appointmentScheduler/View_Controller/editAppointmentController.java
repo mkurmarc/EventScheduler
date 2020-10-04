@@ -2,10 +2,12 @@ package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.CityDaoImpl;
+import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
+import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,11 +22,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class editAppointmentController implements Initializable {
+    private static ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
+    private static ObservableList<Byte> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
 
     @FXML
     private ComboBox<String> customerSearchCombo;
@@ -36,10 +41,10 @@ public class editAppointmentController implements Initializable {
     private ComboBox<Byte> selectApptTypeCombo;
 
     @FXML
-    private ComboBox<?> startTimeCombo;
+    private ComboBox<LocalTime> startTimeCombo;
 
     @FXML
-    private ComboBox<?> endTimeCombo;
+    private ComboBox<LocalTime> endTimeCombo;
 
     @FXML
     private TextField titleTextField;
@@ -55,42 +60,52 @@ public class editAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
-        ObservableList<Byte> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
         // 2 lines below adds the options to the list
         allAppointmentTypes.add((byte) 0);
         allAppointmentTypes.add((byte) 1);
-
+        // for loop adds the customer names to a list
         for (int i=0; i < Customer.getAllCustomers().size(); i++) {
             allCustomersNames.add(Customer.getAllCustomers().get(i).getCustomerName());
-
         }
 
-        Appointment appointmentObj = new Appointment();
-        appointmentObj = Appointment.getAllAppointments().get(dashboardController.getIndexOfApptObject());
+        int indexOfApptObject = dashboardController.getIndexOfApptObject();
+        Appointment selectedApptObject = Appointment.getAllAppointments().get(indexOfApptObject); // object from user selection
 
-        Customer customerObj;
-        customerObj = Customer.getAllCustomers().get(dashboardController.getIndexOfApptObject());
-
-        Address addressObj = new Address();
-        City cityObj = new City();
+        int customerID = selectedApptObject.getCustomerId();
+        Customer selectedCustomerObj = new Customer();
         try {
-            addressObj = AddressDaoImpl.getAddress(customerObj.getCustomerId());
+            selectedCustomerObj = CustomerDaoImpl.getCustomer(customerID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        int addressID = selectedCustomerObj.getAddressId();
+        Address selectedAddressObj = new Address();
         try {
-            cityObj = CityDaoImpl.getCity(addressObj.getCityId());
+            selectedAddressObj = AddressDaoImpl.getAddress(addressID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        int cityID = selectedAddressObj.getCityId();
+        City selectedCityObj = new City();
+        try {
+            selectedCityObj = CityDaoImpl.getCity(cityID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         customerSearchCombo.setItems(allCustomersNames);
-        customerSearchCombo.setValue(customerObj.getCustomerName());
+        customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
+        appointmentDatePicker.setValue(selectedApptObject.getStartDate());
         selectApptTypeCombo.setItems(allAppointmentTypes);
-        selectApptTypeCombo.setValue(customerObj.getActive());
-        //appointmentDatePicker.setValue();
-
+        selectApptTypeCombo.setValue(selectedCustomerObj.getActive());
+        startTimeCombo.setItems(TimeClass.getListOfTimes());
+        startTimeCombo.setValue(selectedApptObject.getStartTime());
+        endTimeCombo.setItems(TimeClass.getListOfTimes());
+        endTimeCombo.setValue(selectedApptObject.getEnd());
+        titleTextField.setText(selectedApptObject.getTitle());
+        descriptionTextField.setText(selectedApptObject.getDescription());
     }
 
     @FXML

@@ -6,6 +6,7 @@ import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
+import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -255,5 +257,7 @@ public class dashboardController implements Initializable {
             e.printStackTrace();
         }
         appointmentsTableView.setItems(Appointment.getAllAppointments());
+        LocalTime late = LocalTime.parse("10:00:00");
+        TimeClass.getListOfTimes().add(late);
     }
 }

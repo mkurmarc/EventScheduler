@@ -101,28 +101,10 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="startTimeCombo" prefWidth="169.0">
+                  <ComboBox fx:id="startTimeCombo" prefWidth="169.0" editable="true">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Option 1" />
-                           <String fx:value="Option 4" />
-                           <String fx:value="Option 3" />
-                           <String fx:value="Option 5" />
-                           <String fx:value="Option 6" />
-                           <String fx:value="Option 7" />
-                           <String fx:value="Option 8" />
-                           <String fx:value="Option 9" />
-                           <String fx:value="Option 10" />
-                           <String fx:value="Option 11" />
-                           <String fx:value="Option 12" />
-                           <String fx:value="Option 13" />
-                           <String fx:value="Option 14" />
-                           <String fx:value="Option 15" />
-                           <String fx:value="Option 16" />
-                           <String fx:value="Option 17" />
-                           <String fx:value="Option 18" />
-                           <String fx:value="Option 19" />
-                           <String fx:value="Option 20" />
                         </FXCollections>
                      </items>
                      <value>
@@ -144,28 +126,10 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo" prefWidth="169.0">
+                  <ComboBox fx:id="endTimeCombo" prefWidth="169.0" editable="true">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Option 1" />
-                           <String fx:value="Option 4" />
-                           <String fx:value="Option 3" />
-                           <String fx:value="Option 5" />
-                           <String fx:value="Option 6" />
-                           <String fx:value="Option 7" />
-                           <String fx:value="Option 8" />
-                           <String fx:value="Option 9" />
-                           <String fx:value="Option 10" />
-                           <String fx:value="Option 11" />
-                           <String fx:value="Option 12" />
-                           <String fx:value="Option 13" />
-                           <String fx:value="Option 14" />
-                           <String fx:value="Option 15" />
-                           <String fx:value="Option 16" />
-                           <String fx:value="Option 17" />
-                           <String fx:value="Option 18" />
-                           <String fx:value="Option 19" />
-                           <String fx:value="Option 20" />
                         </FXCollections>
                      </items>
                      <value>
