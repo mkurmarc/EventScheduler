@@ -7,8 +7,7 @@ import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,35 +56,53 @@ public class customerInformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int indexOfApptObject = dashboardController.getIndexOfApptObject();
+        Appointment selectedApptObject = Appointment.getAllAppointments().get(indexOfApptObject); // object from user selection
+
         /*
-        Block below gets users selection from dashboard and transfers information of selected
-        appointment to the text fields in customer information screen
-        */
-        Customer customerObj;
-        customerObj = dashboardController.getAllCustomers().get(dashboardController.getIndexOfObject());
-        int customerID = customerObj.getCustomerId(); // gets the customer ID from dashboard user selection
-
-        Address addressObj = new Address();
+        block of code gets the customer ID from selected Appointment object, and uses it to retrieve a Customer object from
+        the SQL database using a CustomerDAO method.
+         */
+        int customerID = selectedApptObject.getCustomerId();
+        Customer selectedCustomerObj = new Customer();
         try {
-            addressObj = AddressDaoImpl.getAddress(customerID);
+            selectedCustomerObj = CustomerDaoImpl.getCustomer(customerID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        City cityObj = new City();
+        /*
+        block of code gets the address ID from selected Customer object, and uses it to retrieve a Address object from
+        the SQL database using an AddressDAO method.
+         */
+        int addressID = selectedCustomerObj.getAddressId();
+        Address selectedAddressObj = new Address();
         try {
-            cityObj = CityDaoImpl.getCity(addressObj.getCityId());
+            selectedAddressObj = AddressDaoImpl.getAddress(addressID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        varFullNameLabel.setText(customerObj.getCustomerName());
+        /*
+        block of code gets the city ID from selected Address object, and uses it to retrieve a City object from
+        the SQL database using a CityDAO method.
+         */
+        int cityID = selectedAddressObj.getCityId();
+        City selectedCityObj = new City();
+        try {
+            selectedCityObj = CityDaoImpl.getCity(cityID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // sets labels from all 3 objects created
+        varFullNameLabel.setText(selectedCustomerObj.getCustomerName());
         varIdLabel.setText(String.valueOf(customerID));
-        varAddress1Label.setText(addressObj.getAddress());
-        varAddress2Label.setText(addressObj.getAddress2());
-        varCityLabel.setText(cityObj.getCity());
-        varPostalCodeLabel.setText(addressObj.getPostalCode());
-        varPhoneLabel.setText(addressObj.getPhone());
+        varAddress1Label.setText(selectedAddressObj.getAddress());
+        varAddress2Label.setText(selectedAddressObj.getAddress2());
+        varCityLabel.setText(selectedCityObj.getCity());
+        varPostalCodeLabel.setText(selectedAddressObj.getPostalCode());
+        varPhoneLabel.setText(selectedAddressObj.getPhone());
     }
 
     @FXML

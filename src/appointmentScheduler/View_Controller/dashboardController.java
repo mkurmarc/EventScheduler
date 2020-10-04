@@ -26,12 +26,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class dashboardController implements Initializable {
-    private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-    private static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
-    //private static ObservableList<Address> allAddresses = FXCollections.observableArrayList();
-    private static ObservableList<City> allCities = FXCollections.observableArrayList();
-    private static ObservableList<Country> allCountries = FXCollections.observableArrayList();
-
     @FXML
     private MenuBar menuBarHome;
 
@@ -106,18 +100,8 @@ public class dashboardController implements Initializable {
 
     private static int indexOfObject;
 
-    // getters and setters for all lists
-    public static ObservableList<Appointment> getAllAppointments() {
-        return allAppointments;
-    }
-
-    public static ObservableList<Customer> getAllCustomers() {
-        return allCustomers;
-    }
-
-
-    // getter setters for id to be modified which allows access to other layers of the program
-    public static int getIndexOfObject() {
+    // getter for index to be modified which allows access to other layers of the program
+    public static int getIndexOfApptObject() {
         return indexOfObject;
     }
 
@@ -125,7 +109,7 @@ public class dashboardController implements Initializable {
     void viewCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
         Appointment viewCustomer = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (viewCustomer != null) {
-            indexOfObject = allAppointments.indexOf(viewCustomer);
+            indexOfObject = Appointment.getAllAppointments().indexOf(viewCustomer);
 
             Stage stage;
             Parent root;
@@ -182,8 +166,8 @@ public class dashboardController implements Initializable {
         if (deleteAppointment != null) {
             if (Alerts.confirmationWindow(3)) {
                 AppointmentDaoImpl.deleteAppointment(deleteAppointment);
-                allAppointments.remove(deleteAppointment);
-                appointmentsTableView.setItems(allAppointments);
+                Appointment.getAllAppointments().remove(deleteAppointment);
+                appointmentsTableView.setItems(Appointment.getAllAppointments());
             }
         }
         else {
@@ -200,7 +184,7 @@ public class dashboardController implements Initializable {
     void editAppointmentButtonHandler(ActionEvent actionEvent) throws IOException {
         Appointment editAppt = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (editAppt != null) {
-            indexOfObject = allAppointments.indexOf(editAppt);
+            indexOfObject = Appointment.getAllAppointments().indexOf(editAppt);
             Parent root;
             root = FXMLLoader.load(getClass().getResource("editAppointment.fxml"));
             Scene scene = new Scene(root);
@@ -255,23 +239,21 @@ public class dashboardController implements Initializable {
 
         // retrieve data from database and convert to lists for each table
         try {
-            if (allAppointments.size() != 0) {
-                for (int i=0; i < allAppointments.size(); i++ ) {
-                    if (!allAppointments.contains(allAppointments.get(i))) {
-                        allAppointments.add(allAppointments.get(i));
-                    }
-                }
-            } else {
-                allAppointments.addAll(AppointmentDaoImpl.getAllAppointments());
-            }
-
-            allCustomers.addAll(CustomerDaoImpl.getAllCustomers());
-            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
-//            allCities.addAll(CityDaoImpl.getAllCities());
-//            allCountries.addAll(Country.getAllCountries());
+//            if (Appointment.getAllAppointments().size() != 0) {
+//                for (int i=0; i < Appointment.getAllAppointments().size(); i++ ) {
+//                    if (!Appointment.getAllAppointments().contains(Appointment.getAllAppointments().get(i))) {
+//                        Appointment.getAllAppointments().add(Appointment.getAllAppointments().get(i));
+//                    }
+//                }
+//            } else {
+//                Appointment.getAllAppointments().addAll(AppointmentDaoImpl.getAllAppointments());
+//            }
+            Appointment.setAllAppointments(AppointmentDaoImpl.getAllAppointments()); // transfers data and sets from SQL server to list
+            //Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers()); // transfers data and sets from SQL server to list
+            //Address.setAllAddresses(AddressDaoImpl.getAllAddresses()); // transfers and sets data from SQL server to list
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        appointmentsTableView.setItems(allAppointments);
+        appointmentsTableView.setItems(Appointment.getAllAppointments());
     }
 }

@@ -61,16 +61,16 @@ public class editAppointmentController implements Initializable {
         allAppointmentTypes.add((byte) 0);
         allAppointmentTypes.add((byte) 1);
 
-        for (int i=0; i < dashboardController.getAllCustomers().size(); i++) {
-            allCustomersNames.add(dashboardController.getAllCustomers().get(i).getCustomerName());
+        for (int i=0; i < Customer.getAllCustomers().size(); i++) {
+            allCustomersNames.add(Customer.getAllCustomers().get(i).getCustomerName());
 
         }
 
         Appointment appointmentObj = new Appointment();
-        appointmentObj = dashboardController.getAllAppointments().get(dashboardController.getIndexOfObject());
+        appointmentObj = Appointment.getAllAppointments().get(dashboardController.getIndexOfApptObject());
 
         Customer customerObj;
-        customerObj = dashboardController.getAllCustomers().get(dashboardController.getIndexOfObject());
+        customerObj = Customer.getAllCustomers().get(dashboardController.getIndexOfApptObject());
 
         Address addressObj = new Address();
         City cityObj = new City();

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Country {
-
     // this list stores the data retrieved from the DB
     private static ObservableList<Country> allCountries = FXCollections.observableArrayList();
 

@@ -5,11 +5,16 @@ package appointmentScheduler.Model;
     ID:
 */
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Appointment {
+    private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+
     private int appointmentId;
     private int customerId;
     private int userId;
@@ -49,6 +54,14 @@ public class Appointment {
     }
 
     public Appointment() {
+    }
+
+    public static ObservableList<Appointment> getAllAppointments() {
+        return allAppointments;
+    }
+
+    public static void setAllAppointments(ObservableList<Appointment> allAppointments) {
+        Appointment.allAppointments = allAppointments;
     }
 
     public int getAppointmentId() {
