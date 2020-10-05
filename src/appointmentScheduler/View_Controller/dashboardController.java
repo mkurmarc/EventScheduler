@@ -1,14 +1,9 @@
 package appointmentScheduler.View_Controller;
 
-import appointmentScheduler.DAO.Impl.AddressDaoImpl;
-import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.DAO.Impl.CityDaoImpl;
-import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
+import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
 import appointmentScheduler.Utilities.TimeClass;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -100,18 +95,18 @@ public class dashboardController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
 
-    private static int indexOfObject;
+    private static int indexOfSelectedObj;
 
     // getter for index to be modified which allows access to other layers of the program
-    public static int getIndexOfApptObject() {
-        return indexOfObject;
+    public static int getIndexOfSelectedObj() {
+        return indexOfSelectedObj;
     }
 
     @FXML
     void viewCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
         Appointment viewCustomer = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (viewCustomer != null) {
-            indexOfObject = Appointment.getAllAppointments().indexOf(viewCustomer);
+            indexOfSelectedObj = Appointment.getAllAppointments().indexOf(viewCustomer);
 
             Stage stage;
             Parent root;
@@ -186,7 +181,7 @@ public class dashboardController implements Initializable {
     void editAppointmentButtonHandler(ActionEvent actionEvent) throws IOException {
         Appointment editAppt = appointmentsTableView.getSelectionModel().getSelectedItem();
         if (editAppt != null) {
-            indexOfObject = Appointment.getAllAppointments().indexOf(editAppt);
+            indexOfSelectedObj = Appointment.getAllAppointments().indexOf(editAppt);
             Parent root;
             root = FXMLLoader.load(getClass().getResource("editAppointment.fxml"));
             Scene scene = new Scene(root);
@@ -199,8 +194,22 @@ public class dashboardController implements Initializable {
     }
 
     @FXML
-    void editCustomerButtonHandler(ActionEvent event) {
-
+    void editCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
+        Appointment userSelectedObj = appointmentsTableView.getSelectionModel().getSelectedItem();
+        if (userSelectedObj != null) {
+            indexOfSelectedObj = Appointment.getAllAppointments().indexOf(userSelectedObj);
+            Stage stage;
+            Parent root;
+            stage = (Stage) editCustomerButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editCustomer.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            Alerts.selectionError(4);
+        }
     }
 
     @FXML
@@ -227,6 +236,9 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // below generates time list - in progress
+        LocalTime late = LocalTime.parse("10:00:00");
+        TimeClass.getListOfTimes().add(late);
 
         // Appointments table and columns
         dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
@@ -239,25 +251,16 @@ public class dashboardController implements Initializable {
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
-        // retrieve data from database and convert to lists for each table
+        // retrieve data from database and sets appointment list
         try {
-//            if (Appointment.getAllAppointments().size() != 0) {
-//                for (int i=0; i < Appointment.getAllAppointments().size(); i++ ) {
-//                    if (!Appointment.getAllAppointments().contains(Appointment.getAllAppointments().get(i))) {
-//                        Appointment.getAllAppointments().add(Appointment.getAllAppointments().get(i));
-//                    }
-//                }
-//            } else {
-//                Appointment.getAllAppointments().addAll(AppointmentDaoImpl.getAllAppointments());
-//            }
             Appointment.setAllAppointments(AppointmentDaoImpl.getAllAppointments()); // transfers data and sets from SQL server to list
+            Country.setAllCountries(CountryDaoImpl.getAllCountry());
             //Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers()); // transfers data and sets from SQL server to list
             //Address.setAllAddresses(AddressDaoImpl.getAllAddresses()); // transfers and sets data from SQL server to list
         } catch (SQLException e) {
             e.printStackTrace();
         }
         appointmentsTableView.setItems(Appointment.getAllAppointments());
-        LocalTime late = LocalTime.parse("10:00:00");
-        TimeClass.getListOfTimes().add(late);
+
     }
 }

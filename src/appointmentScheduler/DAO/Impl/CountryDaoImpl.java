@@ -20,7 +20,7 @@ import java.time.LocalTime;
 
 public class CountryDaoImpl {
 
-    public ObservableList<Country> getAllCountry() throws SQLException {
+    public static ObservableList<Country> getAllCountry() throws SQLException {
 
         ObservableList<Country> selectAllCountries = FXCollections.observableArrayList();
         Connection conn = DBConnection.startConnection(); // connect to DB

@@ -19,14 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class editAppointmentController implements Initializable {
-    private static ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
-    private static ObservableList<Byte> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
+
 
     @FXML
     private ComboBox<String> customerSearchCombo;
@@ -73,6 +71,8 @@ public class editAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
+        ObservableList<Byte> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
         // sets the toggle groups
         startTimeAMPeriod.setToggleGroup(startPeriodToggleGroup);
         startTimePMPeriod.setToggleGroup(startPeriodToggleGroup);
@@ -87,7 +87,7 @@ public class editAppointmentController implements Initializable {
             allCustomersNames.add(Customer.getAllCustomers().get(i).getCustomerName());
         }
 
-        int indexOfApptObject = dashboardController.getIndexOfApptObject();
+        int indexOfApptObject = dashboardController.getIndexOfSelectedObj();
         Appointment selectedApptObject = Appointment.getAllAppointments().get(indexOfApptObject); // object from user selection
 
         int customerID = selectedApptObject.getCustomerId();

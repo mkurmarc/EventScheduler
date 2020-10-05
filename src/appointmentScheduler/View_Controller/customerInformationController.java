@@ -7,7 +7,6 @@ import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,9 +55,8 @@ public class customerInformationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int indexOfApptObject = dashboardController.getIndexOfApptObject();
+        int indexOfApptObject = dashboardController.getIndexOfSelectedObj();
         Appointment selectedApptObject = Appointment.getAllAppointments().get(indexOfApptObject); // object from user selection
-
         /*
         block of code gets the customer ID from selected Appointment object, and uses it to retrieve a Customer object from
         the SQL database using a CustomerDAO method.
@@ -70,7 +68,6 @@ public class customerInformationController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         /*
         block of code gets the address ID from selected Customer object, and uses it to retrieve a Address object from
         the SQL database using an AddressDAO method.
@@ -82,7 +79,6 @@ public class customerInformationController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         /*
         block of code gets the city ID from selected Address object, and uses it to retrieve a City object from
         the SQL database using a CityDAO method.

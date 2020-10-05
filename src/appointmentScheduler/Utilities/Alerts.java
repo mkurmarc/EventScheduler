@@ -245,6 +245,12 @@ public class Alerts {
             alert.setContentText("Please select appointment from table before trying to view.");
             alert.showAndWait();
         }
+        if (code == 4) {
+            alert.setTitle("Selection error");
+            alert.setHeaderText("Cannot edit customer details");
+            alert.setContentText("Please select appointment from table before trying to edit customer details.");
+            alert.showAndWait();
+        }
 
     }
 
