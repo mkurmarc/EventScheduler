@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="457.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.editAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="457.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.editAppointmentController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="553.0" prefWidth="636.0" style="-fx-background-color: #205863;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -102,19 +102,11 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="startTimeCombo" editable="true" prefHeight="25.0" prefWidth="105.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Option 1" />
-                        </FXCollections>
-                     </items>
-                     <value>
-                        <String fx:value="Option 7" />
-                     </value>
+                  <TextField fx:id="startTimeTextField" prefHeight="25.0" prefWidth="110.0">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
-                  </ComboBox>
+                  </TextField>
                   <RadioButton fx:id="startTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -133,19 +125,11 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo" editable="true" prefHeight="25.0" prefWidth="105.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Option 1" />
-                        </FXCollections>
-                     </items>
-                     <value>
-                        <String fx:value="Option 7" />
-                     </value>
+                  <TextField fx:id="endTimeTextField" prefHeight="25.0" prefWidth="110.0">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
-                  </ComboBox>
+                  </TextField>
                   <RadioButton fx:id="endTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
                      <HBox.margin>
                         <Insets right="15.0" />

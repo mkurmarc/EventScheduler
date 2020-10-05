@@ -41,7 +41,7 @@ public class editAppointmentController implements Initializable {
     private ComboBox<String> selectApptTypeCombo;
 
     @FXML
-    private ComboBox<String> startTimeCombo;
+    private TextField startTimeTextField;
 
     @FXML
     private RadioButton startTimeAMPeriod;
@@ -50,7 +50,7 @@ public class editAppointmentController implements Initializable {
     private RadioButton startTimePMPeriod;
 
     @FXML
-    private ComboBox<String> endTimeCombo;
+    private TextField endTimeTextField;
 
     @FXML
     private RadioButton endTimeAMPeriod;
@@ -123,16 +123,16 @@ public class editAppointmentController implements Initializable {
             e.printStackTrace();
         }
         */
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
+
         customerSearchCombo.setItems(allCustomersNames);
         customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
         appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
         selectApptTypeCombo.setItems(allAppointmentTypes);
         selectApptTypeCombo.setValue(selectedApptObject.getType());
 
-        startTimeCombo.setItems(TimeClass.getListOfTimes());
-        startTimeCombo.setValue(selectedApptObject.getStart().toLocalTime());
-        endTimeCombo.setItems(TimeClass.getListOfTimes());
-        endTimeCombo.setValue(selectedApptObject.getEnd().toLocalTime());
+        startTimeTextField.setText(selectedApptObject.getStart().format(dtf));
+        endTimeTextField.setText(selectedApptObject.getEnd().format(dtf));
 
         titleTextField.setText(selectedApptObject.getTitle());
         descriptionTextField.setText(selectedApptObject.getDescription());
@@ -171,8 +171,7 @@ public class editAppointmentController implements Initializable {
         int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
         Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-YYYY");
-        DateTimeFormatter tf = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
 
         int appointmentID = selectedObject.getAppointmentId();
         int customerID = selectedObject.getCustomerId();
@@ -183,15 +182,11 @@ public class editAppointmentController implements Initializable {
         String contact = selectedObject.getContact();
         String type = selectApptTypeCombo.getValue();
         String url = selectedObject.getUrl();
-        LocalDateTime startDate = appointmentDatePicker.getValue();
-        // startTime and endTime may need to be tweaked if using AM/PM format cuz LocalTime is in 24hour format
-//        if (startTimeCombo.getValue().getClass().equals(String.class)){
-//
-//        }
-        LocalTime startTime = startTimeCombo.getValue();
-//        startTime = LocalTime.parse(startTime, tf);
-        LocalTime endTime = endTimeCombo.getValue();
-//        endTime = LocalTime.parse(endTime.format(tf));
+
+        LocalDate startDate = appointmentDatePicker.getValue();
+        LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
+        LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
+        LocalDateTime start = 
 
         LocalDateTime createDate = selectedObject.getCreateDate();
         String createdBy = selectedObject.getCreatedBy();
