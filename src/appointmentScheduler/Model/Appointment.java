@@ -8,10 +8,7 @@ package appointmentScheduler.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Appointment {
     private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
@@ -25,16 +22,15 @@ public class Appointment {
     private String contact;
     private String type;
     private String url;
-    private LocalDate startDate;
-    private LocalTime startTime;
-    private LocalTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
     private String lastUpdateBy;
 
     public Appointment(int appointmentId, int customerId, int userId, String title, String description, String location,
-                       String contact, String type, String url, LocalDate startDate, LocalTime startTime, LocalTime end,
+                       String contact, String type, String url, LocalDateTime start, LocalDateTime end,
                        LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdateBy) {
         this.appointmentId = appointmentId;
         this.customerId = customerId;
@@ -45,8 +41,7 @@ public class Appointment {
         this.contact = contact;
         this.type = type;
         this.url = url;
-        this.startDate = startDate;
-        this.startTime = startTime;
+        this.start = start;
         this.end = end;
         this.createDate = createDate;
         this.createdBy = createdBy;
@@ -89,21 +84,6 @@ public class Appointment {
         this.userId = userId;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
 
     public String getTitle() {
         return title;
@@ -153,11 +133,19 @@ public class Appointment {
         this.url = url;
     }
 
-    public LocalTime getEnd() {
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(LocalTime end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 

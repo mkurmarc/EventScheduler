@@ -11,10 +11,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZonedDateTime;
+
+import static java.time.ZoneId.systemDefault;
+import static java.time.ZoneOffset.UTC;
 
 public class AppointmentDaoImpl {
 
@@ -33,9 +34,6 @@ public class AppointmentDaoImpl {
 
         ResultSet resultSet = ps.getResultSet();
 
-//        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-YYYY");
-//        DateTimeFormatter tf = DateTimeFormatter.ofPattern("h:mm a");
-
         while (resultSet.next()) // while there is data in ResultSet the while loop continues
         {
             int appointmentID = resultSet.getInt("appointmentId");
@@ -47,18 +45,34 @@ public class AppointmentDaoImpl {
             String contact = resultSet.getString("contact");
             String type = resultSet.getString("type");
             String url = resultSet.getString("url");
-            LocalDate startDate = resultSet.getTimestamp("start").toLocalDateTime().toLocalDate();
-            LocalTime startTime = resultSet.getTimestamp("start").toLocalDateTime().toLocalTime();
-            LocalTime end = resultSet.getTimestamp("end").toLocalDateTime().toLocalTime();
-            // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
-            LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
+            /*
+            below converts start, end, createDate, lastUpdate DB timestamp to LocalDateTime to ZonedDateTime in UTC to
+            ZonedDateTime in system default then back to LocalDateTime
+            */
+            LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+            ZonedDateTime startOrigin = start.atZone(UTC);
+            ZonedDateTime startTarget = startOrigin.withZoneSameInstant(systemDefault());
+            start = startTarget.toLocalDateTime();
 
+            LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
+            ZonedDateTime endOrigin = end.atZone(UTC);
+            ZonedDateTime endTarget = endOrigin.withZoneSameInstant(systemDefault());
+            end = endTarget.toLocalDateTime();
+
+            LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
+            ZonedDateTime createDateOrigin = createDate.atZone(UTC);
+            ZonedDateTime createDateTarget = createDateOrigin.withZoneSameInstant(systemDefault());
+            createDate = createDateTarget.toLocalDateTime();
+
+            LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
+            ZonedDateTime lastUpdateOrigin = lastUpdate.atZone(UTC);
+            ZonedDateTime lastUpdateTarget = lastUpdateOrigin.withZoneSameInstant(systemDefault());
+            lastUpdate = lastUpdateTarget.toLocalDateTime();
             // create each row into a country object, and then add it to the observable list
             Appointment appointmentObject = new Appointment(appointmentID, customerId, userId, title,
-                description, location, contact, type, url, startDate, startTime, end, dateTime, createdBy, lastUpdate,
+                description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate,
                     lastUpdateBy);
 
             selectAllAppointments.add(appointmentObject); // add object to observable list
@@ -95,9 +109,8 @@ public class AppointmentDaoImpl {
             String contact = resultSet.getString("contact");
             String type = resultSet.getString("type");
             String url = resultSet.getString("url");
-            LocalDate startDate = resultSet.getTimestamp("start").toLocalDateTime().toLocalDate();
-            LocalTime startTime = resultSet.getTimestamp("start").toLocalDateTime().toLocalTime();
-            LocalTime end = resultSet.getTimestamp("end").toLocalDateTime().toLocalTime();
+            LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
+            LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
             LocalDateTime dateTime = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
@@ -106,7 +119,7 @@ public class AppointmentDaoImpl {
 
             // create each row into a country object, and then add it to the observable list
             appointmentObject = new Appointment(appointmentID, customerId, userId, title,
-                    description, location, contact, type, url, startDate, startTime, end, dateTime, createdBy, lastUpdate,
+                    description, location, contact, type, url, start, end, dateTime, createdBy, lastUpdate,
                     lastUpdateBy);
         }
         DBConnection.closeConnection(); // close DB connection
@@ -116,37 +129,37 @@ public class AppointmentDaoImpl {
     public void createAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String insertStatement = "INSERT INTO appointment(appointmentId, customerId, userId, title, description," +
+        String insertStatement = "INSERT INTO appointment(customerId, userId, title, description," +
                 "location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)" +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         DBQuery.setPreparedStatement(conn, insertStatement); // creates preparedStatement
 
         PreparedStatement ps = DBQuery.getPreparedStatement();
 
         // Values for the insert statement are set below
-        ps.setInt(1, appointment.getAppointmentId());
-        ps.setInt(2, appointment.getCustomerId());
-        ps.setInt(3, appointment.getUserId());
-        ps.setString(4, appointment.getTitle());
-        ps.setString(5, appointment.getDescription());
-        ps.setString(6, appointment.getLocation());
-        ps.setString(7, appointment.getContact());
-        ps.setString(8, appointment.getType());
-        ps.setString(9, appointment.getUrl());
-        ps.setTimestamp(10, Timestamp.valueOf(appointment.getStartDate().atTime(appointment.getStartTime())));
-        ps.setTimestamp(11, Timestamp.valueOf(appointment.getEnd().atDate(LocalDate.now())));
-        ps.setTimestamp(12, Timestamp.valueOf(appointment.getCreateDate()));
-        ps.setString(13, appointment.getCreatedBy());
-        ps.setTimestamp(14, Timestamp.valueOf(appointment.getLastUpdate()));
-        ps.setString(15, appointment.getLastUpdateBy());
+
+        ps.setInt(1, appointment.getCustomerId());
+        ps.setInt(2, appointment.getUserId());
+        ps.setString(3, appointment.getTitle());
+        ps.setString(4, appointment.getDescription());
+        ps.setString(5, appointment.getLocation());
+        ps.setString(6, appointment.getContact());
+        ps.setString(7, appointment.getType());
+        ps.setString(8, appointment.getUrl());
+        ps.setTimestamp(9, Timestamp.valueOf(appointment.getStart()));
+        ps.setTimestamp(10, Timestamp.valueOf(appointment.getEnd()));
+        ps.setTimestamp(11, Timestamp.valueOf(appointment.getCreateDate()));
+        ps.setString(12, appointment.getCreatedBy());
+        ps.setTimestamp(13, Timestamp.valueOf(appointment.getLastUpdate()));
+        ps.setString(14, appointment.getLastUpdateBy());
 
         ps.execute(); // execute PreparedStatement
         DBConnection.closeConnection(); // close DB connection
     }
 
     // Update or modify a single row of data from the database
-    public void updateAppointment(Appointment appointment) throws SQLException {
+    public static void updateAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String updateStatement = "UPDATE appointment SET title =?, description =?, location =?, contact =?, type =?, " +
@@ -163,8 +176,8 @@ public class AppointmentDaoImpl {
         ps.setString(4, appointment.getContact());
         ps.setString(5, appointment.getType());
         ps.setString(6, appointment.getUrl());
-        ps.setTimestamp(7, Timestamp.valueOf(appointment.getStartDate().atTime(appointment.getStartTime())));
-        ps.setTimestamp(8, Timestamp.valueOf(appointment.getEnd().atDate(LocalDate.now())));
+        ps.setTimestamp(7, Timestamp.valueOf(appointment.getStart()));
+        ps.setTimestamp(8, Timestamp.valueOf(appointment.getEnd()));
         ps.setTimestamp(9, Timestamp.valueOf(appointment.getCreateDate()));
         ps.setString(10, appointment.getCreatedBy());
         ps.setTimestamp(11, Timestamp.valueOf(appointment.getLastUpdate()));

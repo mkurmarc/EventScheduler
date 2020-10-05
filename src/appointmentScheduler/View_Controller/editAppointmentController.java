@@ -1,5 +1,6 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.Customer;
@@ -18,7 +19,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
@@ -33,10 +38,10 @@ public class editAppointmentController implements Initializable {
     private DatePicker appointmentDatePicker;
 
     @FXML
-    private ComboBox<Byte> selectApptTypeCombo;
+    private ComboBox<String> selectApptTypeCombo;
 
     @FXML
-    private ComboBox<LocalTime> startTimeCombo;
+    private ComboBox<String> startTimeCombo;
 
     @FXML
     private RadioButton startTimeAMPeriod;
@@ -45,7 +50,7 @@ public class editAppointmentController implements Initializable {
     private RadioButton startTimePMPeriod;
 
     @FXML
-    private ComboBox<LocalTime> endTimeCombo;
+    private ComboBox<String> endTimeCombo;
 
     @FXML
     private RadioButton endTimeAMPeriod;
@@ -72,15 +77,18 @@ public class editAppointmentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
-        ObservableList<Byte> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
+        ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
         // sets the toggle groups
         startTimeAMPeriod.setToggleGroup(startPeriodToggleGroup);
         startTimePMPeriod.setToggleGroup(startPeriodToggleGroup);
         endTimeAMPeriod.setToggleGroup(endPeriodToggleGroup);
         endTimePMPeriod.setToggleGroup(endPeriodToggleGroup);
-        // 2 lines below adds the options to the list
-        allAppointmentTypes.add((byte) 0);
-        allAppointmentTypes.add((byte) 1);
+        // lines below adds the options to the list
+        allAppointmentTypes.add("Training"); // fix must be a string not byte
+        allAppointmentTypes.add("Presentation");
+        allAppointmentTypes.add("Scrum");
+        allAppointmentTypes.add("Code Review");
+        allAppointmentTypes.add("Meeting");
 
         // for loop adds the customer names to a list
         for (int i=0; i < Customer.getAllCustomers().size(); i++) {
@@ -117,25 +125,27 @@ public class editAppointmentController implements Initializable {
         */
         customerSearchCombo.setItems(allCustomersNames);
         customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
-        appointmentDatePicker.setValue(selectedApptObject.getStartDate());
+        appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
         selectApptTypeCombo.setItems(allAppointmentTypes);
-        selectApptTypeCombo.setValue(selectedCustomerObj.getActive());
+        selectApptTypeCombo.setValue(selectedApptObject.getType());
+
         startTimeCombo.setItems(TimeClass.getListOfTimes());
-        startTimeCombo.setValue(selectedApptObject.getStartTime());
+        startTimeCombo.setValue(selectedApptObject.getStart().toLocalTime());
         endTimeCombo.setItems(TimeClass.getListOfTimes());
-        endTimeCombo.setValue(selectedApptObject.getEnd());
+        endTimeCombo.setValue(selectedApptObject.getEnd().toLocalTime());
+
         titleTextField.setText(selectedApptObject.getTitle());
         descriptionTextField.setText(selectedApptObject.getDescription());
 
         // block of code below checks time and toggles appropriate radio button
         LocalTime amTime = LocalTime.of(11,59);
-        if (selectedApptObject.getStartTime().isAfter(amTime)) {
+        if (selectedApptObject.getStart().isAfter(ChronoLocalDateTime.from(amTime))) {
             startPeriodToggleGroup.selectToggle(startTimePMPeriod);
         } else {
             startPeriodToggleGroup.selectToggle(startTimeAMPeriod);
         }
 
-        if (selectedApptObject.getEnd().isBefore(amTime)) {
+        if (selectedApptObject.getEnd().isBefore(ChronoLocalDateTime.from(amTime))) {
             endPeriodToggleGroup.selectToggle(endTimeAMPeriod);
         } else {
             endPeriodToggleGroup.selectToggle(endTimePMPeriod);
@@ -157,7 +167,49 @@ public class editAppointmentController implements Initializable {
     }
 
     @FXML
-    void saveEditApptButtonHandler(ActionEvent event) {
+    void saveEditApptButtonHandler(ActionEvent event) throws SQLException, IOException {
+        int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
+        Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM-dd-YYYY");
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("hh:mm");
+
+        int appointmentID = selectedObject.getAppointmentId();
+        int customerID = selectedObject.getCustomerId();
+        int userID = selectedObject.getUserId();
+        String title = titleTextField.getText();
+        String description = descriptionTextField.getText();
+        String location = selectedObject.getLocation();
+        String contact = selectedObject.getContact();
+        String type = selectApptTypeCombo.getValue();
+        String url = selectedObject.getUrl();
+        LocalDateTime startDate = appointmentDatePicker.getValue();
+        // startTime and endTime may need to be tweaked if using AM/PM format cuz LocalTime is in 24hour format
+//        if (startTimeCombo.getValue().getClass().equals(String.class)){
+//
+//        }
+        LocalTime startTime = startTimeCombo.getValue();
+//        startTime = LocalTime.parse(startTime, tf);
+        LocalTime endTime = endTimeCombo.getValue();
+//        endTime = LocalTime.parse(endTime.format(tf));
+
+        LocalDateTime createDate = selectedObject.getCreateDate();
+        String createdBy = selectedObject.getCreatedBy();
+        LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdateBy = selectedObject.getLastUpdateBy();
+
+        Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location, contact,
+                type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+
+        AppointmentDaoImpl.updateAppointment(updatedApptObj);
+
+        Stage stage;
+        Parent root;
+        stage = (Stage) saveEditApptButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

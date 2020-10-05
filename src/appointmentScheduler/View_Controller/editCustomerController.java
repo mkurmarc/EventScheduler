@@ -1,6 +1,7 @@
 package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.AddressDaoImpl;
+import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
 import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Model.*;
@@ -112,15 +113,15 @@ public class editCustomerController implements Initializable {
             }
         }
 
-        String fullName = selectedCustomerObj.getCustomerName();
+        String fullName = selectedCustomerObj.getCustomerName(); // gets full name from user selected object
         int sizeFullName = fullName.length();
         String firstName = "";
         String lastName = "";
+        // if statement splits full name into first and last name
         if (fullName.contains(" ")) {
             firstName = fullName.substring(0, fullName.indexOf(" ")).trim();
             lastName = fullName.substring(fullName.indexOf(" "), sizeFullName).trim();
         }
-
 
         // sets text fields from all 3 objects created
         firstNameTextField.setText(firstName);
@@ -132,7 +133,6 @@ public class editCustomerController implements Initializable {
         countryTextField.setText(selectedCountryObj.getCountry());
         phoneTextField.setText(selectedAddressObj.getPhone());
         activeComboBox.setValue(selectedCustomerObj.getActive());
-        //activeChoiceBox.setItems(selectedCustomerObj.getActive());
     }
 
     @FXML
@@ -150,7 +150,23 @@ public class editCustomerController implements Initializable {
     }
 
     @FXML
-    void saveEditCustomerButtonHandler(ActionEvent event) {
+    void saveEditCustomerButtonHandler(ActionEvent event) throws SQLException, IOException {
+        int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
+        Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
+//        int customerID = selectedObject.getCustomerId();
+//        int addressID =
+//        String title = firstNameTextField.getText() + " " + lastNameTextField.getText();
+
+        //AppointmentDaoImpl.updateAppointment(selectedObject); // updates database
+
+        Stage stage;
+        Parent root;
+        stage = (Stage) saveEditCustomerButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
