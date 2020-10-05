@@ -138,14 +138,21 @@ public class editAppointmentController implements Initializable {
         descriptionTextField.setText(selectedApptObject.getDescription());
 
         // block of code below checks time and toggles appropriate radio button
+        LocalDateTime selectedStartDateTime = selectedApptObject.getStart();
+        LocalTime selectedStartTime = selectedStartDateTime.toLocalTime();
+
+        LocalDateTime selectedEndDateTime = selectedApptObject.getEnd();
+        LocalTime selectedEndTime = selectedEndDateTime.toLocalTime();
+
         LocalTime amTime = LocalTime.of(11,59);
-        if (selectedApptObject.getStart().isAfter(ChronoLocalDateTime.from(amTime))) {
+
+        if (selectedStartTime.isAfter(amTime)) {
             startPeriodToggleGroup.selectToggle(startTimePMPeriod);
         } else {
             startPeriodToggleGroup.selectToggle(startTimeAMPeriod);
         }
 
-        if (selectedApptObject.getEnd().isBefore(ChronoLocalDateTime.from(amTime))) {
+        if (selectedEndTime.isBefore(amTime)) {
             endPeriodToggleGroup.selectToggle(endTimeAMPeriod);
         } else {
             endPeriodToggleGroup.selectToggle(endTimePMPeriod);
@@ -171,8 +178,6 @@ public class editAppointmentController implements Initializable {
         int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
         Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
-
         int appointmentID = selectedObject.getAppointmentId();
         int customerID = selectedObject.getCustomerId();
         int userID = selectedObject.getUserId();
@@ -182,11 +187,15 @@ public class editAppointmentController implements Initializable {
         String contact = selectedObject.getContact();
         String type = selectApptTypeCombo.getValue();
         String url = selectedObject.getUrl();
-
-        LocalDate startDate = appointmentDatePicker.getValue();
+        /*
+        block below gets LocalDate and LocalTime from picker and text fields to create LocalDateTime objects, start and
+        end, to then use for appointment object creation
+         */
+        LocalDate apptDate = appointmentDatePicker.getValue();
         LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
         LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
-        LocalDateTime start = 
+        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
+        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
 
         LocalDateTime createDate = selectedObject.getCreateDate();
         String createdBy = selectedObject.getCreatedBy();

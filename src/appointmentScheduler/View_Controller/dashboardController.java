@@ -236,13 +236,11 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // below generates time list - in progress
-        LocalTime late = LocalTime.parse("10:00:00");
-        TimeClass.getListOfTimes().add(late);
+        //
 
         // Appointments table and columns
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
         endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
