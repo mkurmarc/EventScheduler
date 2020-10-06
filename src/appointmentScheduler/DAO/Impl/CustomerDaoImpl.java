@@ -90,16 +90,26 @@ public class CustomerDaoImpl {
         return customerObject;
     }
 
-    public void addCustomer(Customer customerAndAddress) {
+    public void addCustomer(Customer customer) {
 
     }
 
-    public void updateCustomer(Customer customerAndAddress) {
+    public void updateCustomer(Customer customer) {
         // update
     }
 
-    public void deleteCustomer(Customer customerAndAddress) {
-        // delete
+    public static void deleteCustomer(Customer customer) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
+
+        String deleteStatement = "DELETE FROM customer WHERE customerId = ?;";
+
+        DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
+        PreparedStatement ps = DBQuery.getPreparedStatement();
+
+        ps.setInt(1, customer.getCustomerId());
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
     }
 }
 /*

@@ -103,7 +103,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="viewCustomerButton" mnemonicParsing="false" onAction="#viewCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="viewCustomerButton" mnemonicParsing="false" onAction="#viewCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW APT CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
@@ -113,7 +113,7 @@
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="editCustomerButton" mnemonicParsing="false" onAction="#editCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="editCustomerButton" mnemonicParsing="false" onAction="#editCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT APT CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>

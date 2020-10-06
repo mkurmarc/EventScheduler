@@ -235,6 +235,21 @@ public class AppointmentDaoImpl {
         ps.execute(); // execute PreparedStatement
         DBConnection.closeConnection(); // close DB connection
     }
+
+    // deletes appointments associated with a customer ID
+    public static void deleteAppointmentByID(int customerID) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
+        String deleteStatement = "DELETE FROM appointment WHERE customerId = ?;";
+
+        DBQuery.setPreparedStatement(conn, deleteStatement); // create PreparedStatement
+
+        PreparedStatement ps = DBQuery.getPreparedStatement();
+
+        ps.setInt(1, customerID); // Sets value for prepared statement
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
+    }
 }
 /*
     @AUTHOR

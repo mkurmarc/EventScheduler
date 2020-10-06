@@ -196,7 +196,7 @@ public class Alerts {
             alert.setHeaderText("Are you sure you want to cancel?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
-            return result.get() == ButtonType.OK;
+            return result.isPresent() && result.get() == ButtonType.OK;
         }
         // code 2 means go back to main screen confirmation message
         if (code == 2) {
@@ -211,14 +211,15 @@ public class Alerts {
             alert.setHeaderText("Are you sure you want to delete this appointment?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
-            return result.get() == ButtonType.OK;
+            return result.isPresent() && result.get() == ButtonType.OK;
         }
         if (code == 4) {
             alert.setTitle("Delete");
-            alert.setHeaderText("Are you sure you want to delete this customer?");
+            alert.setHeaderText("Deleting this customer will delete associated appointments." +
+                    "Are you sure you want to delete this customer?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
-            return result.get() == ButtonType.OK;
+            return result.isPresent() && result.get() == ButtonType.OK;
         }
         return false;
     }
@@ -230,25 +231,37 @@ public class Alerts {
         if (code == 1) {
             alert.setTitle("Delete error");
             alert.setHeaderText("Cannot delete appointment");
-            alert.setContentText("Please select appointment from table before trying to delete.");
+            alert.setContentText("Please select appointment row from table before trying to delete.");
             alert.showAndWait();
         }
         if (code == 2) {
-            alert.setTitle("View error");
+            alert.setTitle("Selection error");
             alert.setHeaderText("Cannot view customer details");
-            alert.setContentText("Please select appointment from table before trying to view.");
+            alert.setContentText("Please select appointment row from table before trying to view.");
             alert.showAndWait();
         }
         if (code == 3) {
             alert.setTitle("Selection error");
             alert.setHeaderText("Cannot edit appointment details");
-            alert.setContentText("Please select appointment from table before trying to view.");
+            alert.setContentText("Please select appointment row from table before trying to view.");
             alert.showAndWait();
         }
         if (code == 4) {
             alert.setTitle("Selection error");
             alert.setHeaderText("Cannot edit customer details");
-            alert.setContentText("Please select appointment from table before trying to edit customer details.");
+            alert.setContentText("Please select appointment row from table before trying to edit customer details.");
+            alert.showAndWait();
+        }
+        if (code == 5) {
+            alert.setTitle("Selection error");
+            alert.setHeaderText("Cannot view customer details");
+            alert.setContentText("Please select customer row from table before trying to view.");
+            alert.showAndWait();
+        }
+        if (code == 6) {
+            alert.setTitle("Delete error");
+            alert.setHeaderText("Cannot delete Customer");
+            alert.setContentText("Please select customer row from table before trying to delete.");
             alert.showAndWait();
         }
 
