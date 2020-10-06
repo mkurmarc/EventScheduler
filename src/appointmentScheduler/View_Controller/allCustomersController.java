@@ -142,7 +142,22 @@ public class allCustomersController implements Initializable {
     }
 
     @FXML
-    void editCustomerButtonHandler(ActionEvent event) {
+    void editCustomerButtonHandler(ActionEvent event) throws IOException {
+        Customer editCustomer = customerTableView.getSelectionModel().getSelectedItem();
+        if (editCustomer != null) {
+            indexOfSelectedCustomer = Customer.getAllCustomers().indexOf(editCustomer);
 
+            Stage stage;
+            Parent root;
+            stage = (Stage) editCustomerButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editCustomer.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            Alerts.selectionError(7);
+        }
     }
 }

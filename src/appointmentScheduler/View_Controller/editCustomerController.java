@@ -62,21 +62,9 @@ public class editCustomerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
-        Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj);// object from user selection
-
-        /*
-        block of code gets the address ID from selected Customer object, and uses it to retrieve a Address object from
-        the SQL database using an AddressDAO method.
-         */
-        int customerID = selectedObject.getCustomerId();
+        int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
         Customer selectedCustomerObj = new Customer();
-        try {
-            selectedCustomerObj = CustomerDaoImpl.getCustomer(customerID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
         /*
         block of code gets the address ID from selected Customer object, and uses it to retrieve a Address object from
         the SQL database using an AddressDAO method.

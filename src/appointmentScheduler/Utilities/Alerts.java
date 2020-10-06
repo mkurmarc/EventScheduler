@@ -271,6 +271,12 @@ public class Alerts {
             alert.setContentText("Please select customer row from table before trying to delete.");
             alert.showAndWait();
         }
+        if (code == 7) {
+            alert.setTitle("Selection error");
+            alert.setHeaderText("Cannot edit customer details");
+            alert.setContentText("Please select customer row from table before trying to edit.");
+            alert.showAndWait();
+        }
 
     }
 

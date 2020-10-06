@@ -18,8 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -86,9 +85,6 @@ public class dashboardController implements Initializable {
     private Button viewCustomerButton;
 
     @FXML
-    private Button editCustomerButton;
-
-    @FXML
     private Button addAppointmentButton;
 
     @FXML
@@ -102,6 +98,14 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // sets date label with PST
+        ZoneId zoneID = ZoneId.of("America/Los_Angeles");
+        LocalDateTime todayDateTime = LocalDateTime.now();
+        ZonedDateTime zdtToday = todayDateTime.atZone(zoneID);
+        LocalDate todayDate;
+        todayDate = zdtToday.toLocalDate();
+
+        varDateLabel.setText(String.valueOf(todayDate));
         // Appointments table and columns
         dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
@@ -167,25 +171,6 @@ public class dashboardController implements Initializable {
         }
         else {
             Alerts.selectionError(2);
-        }
-    }
-
-    @FXML
-    void editCustomerButtonHandler(ActionEvent actionEvent) throws IOException {
-        Appointment userSelectedObj = appointmentsTableView.getSelectionModel().getSelectedItem();
-        if (userSelectedObj != null) {
-            indexOfSelectedObj = Appointment.getAllAppointments().indexOf(userSelectedObj);
-            Stage stage;
-            Parent root;
-            stage = (Stage) editCustomerButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("editCustomer.fxml"));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else {
-            Alerts.selectionError(4);
         }
     }
 
