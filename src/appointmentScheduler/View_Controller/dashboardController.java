@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -48,31 +49,31 @@ public class dashboardController implements Initializable {
     private TableView<Appointment> appointmentsTableView;
 
     @FXML
-    private TableColumn<?, ?> dateAppointmentColumn;
+    private TableColumn<Appointment, LocalDate> dateAppointmentColumn;
 
     @FXML
-    private TableColumn<?, ?> startTimeAppointmentColumn;
+    private TableColumn<Appointment, LocalTime> startTimeAppointmentColumn;
 
     @FXML
-    private TableColumn<?, ?> endTimeAppointmentColumn;
+    private TableColumn<Appointment, LocalTime> endTimeAppointmentColumn;
 
     @FXML
-    private TableColumn<?, ?> appointmentIdColumn;
+    private TableColumn<Appointment, Integer> appointmentIdColumn;
 
     @FXML
-    private TableColumn<?, ?> titleColumn;
+    private TableColumn<Appointment, String> titleColumn;
 
     @FXML
-    private TableColumn<?, ?> descriptionColumn;
+    private TableColumn<Appointment, String> descriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> typeColumn;
+    private TableColumn<Appointment, String> typeColumn;
 
     @FXML
-    private TableColumn<?, ?> customerIdColumn;
+    private TableColumn<Appointment, Integer> customerIdColumn;
 
     @FXML
-    private TableColumn<?, ?> locationColumn;
+    private TableColumn<Appointment, String> locationColumn;
 
     @FXML
     private Button viewCustomerButton;
@@ -236,9 +237,13 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //
+
 
         // Appointments table and columns
+//        dateAppointmentColumn.setCellValueFactory(cellData -> {
+//            return cellData.getValue().getStart().toLocalTime();
+//        });
+
         dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
         startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
         endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
