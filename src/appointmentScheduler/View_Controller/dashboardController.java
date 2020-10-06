@@ -237,16 +237,10 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
         // Appointments table and columns
-//        dateAppointmentColumn.setCellValueFactory(cellData -> {
-//            return cellData.getValue().getStart().toLocalTime();
-//        });
-
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -258,12 +252,9 @@ public class dashboardController implements Initializable {
         try {
             Appointment.setAllAppointments(AppointmentDaoImpl.getAllAppointments()); // transfers data and sets from SQL server to list
             Country.setAllCountries(CountryDaoImpl.getAllCountry());
-            //Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers()); // transfers data and sets from SQL server to list
-            //Address.setAllAddresses(AddressDaoImpl.getAllAddresses()); // transfers and sets data from SQL server to list
         } catch (SQLException e) {
             e.printStackTrace();
         }
         appointmentsTableView.setItems(Appointment.getAllAppointments());
-
     }
 }

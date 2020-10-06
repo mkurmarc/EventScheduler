@@ -190,20 +190,28 @@ public class editAppointmentController implements Initializable {
         /*
         block below gets LocalDate and LocalTime from picker and text fields to create LocalDateTime objects, start and
         end, to then use for appointment object creation
-         */
+        */
         LocalDate apptDate = appointmentDatePicker.getValue();
         LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
         LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
         LocalDateTime start = LocalDateTime.of(apptDate, startTime);
         LocalDateTime end = LocalDateTime.of(apptDate, endTime);
 
+        DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String startDateString = start.format(dtfDate);
+
+        DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
+        String startTimeString = start.format(dtfTime);
+        String endTimeString = end.format(dtfTime);
+
         LocalDateTime createDate = selectedObject.getCreateDate();
         String createdBy = selectedObject.getCreatedBy();
         LocalDateTime lastUpdate = LocalDateTime.now();
         String lastUpdateBy = selectedObject.getLastUpdateBy();
 
-        Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location, contact,
-                type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+        Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+                contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,
+                lastUpdate, lastUpdateBy);
 
         AppointmentDaoImpl.updateAppointment(updatedApptObj);
 

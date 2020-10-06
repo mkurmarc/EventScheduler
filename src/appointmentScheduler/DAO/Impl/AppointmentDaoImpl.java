@@ -12,8 +12,10 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.time.ZoneId.systemDefault;
 import static java.time.ZoneOffset.UTC;
@@ -54,32 +56,34 @@ public class AppointmentDaoImpl {
             ZoneId zoneID = ZoneId.of("America/Los_Angeles");
             LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
             ZonedDateTime zdtStart = start.atZone(zoneID);
-            //ZonedDateTime startOrigin = start.atZone(UTC);
-            //ZonedDateTime startTarget = startOrigin.withZoneSameInstant(zoneID);
             start = zdtStart.toLocalDateTime();
+            LocalTime startTime = start.toLocalTime();
+
+            DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String startDateString = start.format(dtfDate);
+
+            DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
+            String startTimeString = start.format(dtfTime);
 
             LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             ZonedDateTime zdtEnd = end.atZone(zoneID);
-//            ZonedDateTime endOrigin = end.atZone(UTC);
-//            ZonedDateTime endTarget = endOrigin.withZoneSameInstant(zoneID);
             end = zdtEnd.toLocalDateTime();
+            LocalTime endTime = end.toLocalTime();
+
+            String endTimeString = end.format(dtfTime);
 
             LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             ZonedDateTime zdtCreateDate = createDate.atZone(zoneID);
-//            ZonedDateTime createDateOrigin = createDate.atZone(UTC);
-//            ZonedDateTime createDateTarget = createDateOrigin.withZoneSameInstant(zoneID);
             createDate = zdtCreateDate.toLocalDateTime();
 
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             ZonedDateTime zdtLastUpdate = lastUpdate.atZone(zoneID);
-//            ZonedDateTime lastUpdateOrigin = lastUpdate.atZone(UTC);
-//            ZonedDateTime lastUpdateTarget = lastUpdateOrigin.withZoneSameInstant(zoneID);
             lastUpdate = zdtLastUpdate.toLocalDateTime();
 
             // create each row into a country object, and then add it to the observable list
-            Appointment appointmentObject = new Appointment(appointmentID, customerId, userId, title,
-                description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate,
-                    lastUpdateBy);
+            Appointment appointmentObject = new Appointment(appointmentID, customerId, userId, title, description,
+                    location, contact, type, url, start, startDateString, startTimeString, end, endTimeString,
+                    createDate, createdBy, lastUpdate, lastUpdateBy);
 
             selectAllAppointments.add(appointmentObject); // add object to observable list
         }
@@ -123,32 +127,34 @@ public class AppointmentDaoImpl {
             ZoneId zoneID = ZoneId.of("America/Los_Angeles");
             LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
             ZonedDateTime zdtStart = start.atZone(zoneID);
-//            ZonedDateTime startOrigin = start.atZone(UTC);
-//            ZonedDateTime startTarget = startOrigin.withZoneSameInstant(zoneID);
             start = zdtStart.toLocalDateTime();
+            LocalTime startTime = start.toLocalTime();
+
+            DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String startDateString = start.format(dtfDate);
+
+            DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
+            String startTimeString = start.format(dtfTime);
 
             LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             ZonedDateTime zdtEnd = end.atZone(zoneID);
-//            ZonedDateTime endOrigin = end.atZone(UTC);
-//            ZonedDateTime endTarget = endOrigin.withZoneSameInstant(zoneID);
             end = zdtEnd.toLocalDateTime();
+            LocalTime endTime = end.toLocalTime();
+
+            String endTimeString = end.format(dtfTime);
 
             LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             ZonedDateTime zdtCreateDate = createDate.atZone(zoneID);
-//            ZonedDateTime createDateOrigin = createDate.atZone(UTC);
-//            ZonedDateTime createDateTarget = createDateOrigin.withZoneSameInstant(zoneID);
             createDate = zdtCreateDate.toLocalDateTime();
 
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             ZonedDateTime zdtLastUpdate = lastUpdate.atZone(zoneID);
-//            ZonedDateTime lastUpdateOrigin = lastUpdate.atZone(UTC);
-//            ZonedDateTime lastUpdateTarget = lastUpdateOrigin.withZoneSameInstant(zoneID);
             lastUpdate = zdtLastUpdate.toLocalDateTime();
 
-            // create an appointment object from result set data
-            appointmentObject = new Appointment(appointmentID, customerId, userId, title,
-                    description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate,
-                    lastUpdateBy);
+            // create each row into a country object, and then add it to the observable list
+            appointmentObject = new Appointment(appointmentID, customerId, userId, title, description,
+                    location, contact, type, url, start, startDateString, startTimeString, end, endTimeString,
+                    createDate, createdBy, lastUpdate, lastUpdateBy);
         }
         DBConnection.closeConnection(); // close DB connection
         return appointmentObject;
