@@ -7,6 +7,7 @@ import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class customerInformationController implements Initializable {
+    public Button backToCustomersButton;
 
 //    ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 //    ObservableList<Address> allAddresses = FXCollections.observableArrayList();
@@ -108,6 +110,20 @@ public class customerInformationController implements Initializable {
             Parent root;
             stage = (Stage) backButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    @FXML
+    public void backToCustomersHandler(ActionEvent actionEvent) throws IOException {
+        if (confirmationWindow(5)) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) backToCustomersButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

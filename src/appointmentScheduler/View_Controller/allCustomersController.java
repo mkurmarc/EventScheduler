@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -56,7 +57,17 @@ public class allCustomersController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Sets the customer table
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        activeColumn.setCellValueFactory(new PropertyValueFactory<>("active"));
+        lastUpdateByColumn.setCellValueFactory(new PropertyValueFactory<>("lastUpdateBy"));
 
+        try {
+            Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        customerTableView.setItems(Customer.getAllCustomers());
     }
 
     public static int getIndexOfSelectedCustomer() {

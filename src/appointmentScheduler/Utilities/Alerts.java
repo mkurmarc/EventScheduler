@@ -221,6 +221,13 @@ public class Alerts {
             Optional<ButtonType> result = alert.showAndWait();
             return result.isPresent() && result.get() == ButtonType.OK;
         }
+        if (code == 5) {
+            alert.setTitle("Go Back");
+            alert.setHeaderText("Are you sure you want to go back to the customers screen?");
+            alert.setContentText("Click ok to confirm");
+            Optional<ButtonType> result = alert.showAndWait();
+            return result.isPresent() && result.get() == ButtonType.OK;
+        }
         return false;
     }
 
