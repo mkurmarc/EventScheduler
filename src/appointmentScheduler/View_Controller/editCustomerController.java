@@ -129,7 +129,7 @@ public class editCustomerController implements Initializable {
             Stage stage;
             Parent root;
             stage = (Stage) cancelEditCustomerButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

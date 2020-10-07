@@ -2,6 +2,7 @@ package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
+import appointmentScheduler.Main;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.TimeClass;
@@ -77,18 +78,11 @@ public class editAppointmentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
-        ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList(); // list for combo box
         // sets the toggle groups
         startTimeAMPeriod.setToggleGroup(startPeriodToggleGroup);
         startTimePMPeriod.setToggleGroup(startPeriodToggleGroup);
         endTimeAMPeriod.setToggleGroup(endPeriodToggleGroup);
         endTimePMPeriod.setToggleGroup(endPeriodToggleGroup);
-        // lines below adds the options to the list
-        allAppointmentTypes.add("Training"); // fix must be a string not byte
-        allAppointmentTypes.add("Presentation");
-        allAppointmentTypes.add("Scrum");
-        allAppointmentTypes.add("Code Review");
-        allAppointmentTypes.add("Meeting");
 
         // for loop adds the customer names to a list
         for (int i=0; i < Customer.getAllCustomers().size(); i++) {
@@ -105,30 +99,13 @@ public class editAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*
-        int addressID = selectedCustomerObj.getAddressId();
-        Address selectedAddressObj = new Address();
-        try {
-            selectedAddressObj = AddressDaoImpl.getAddress(addressID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-
-        int cityID = selectedAddressObj.getCityId();
-        City selectedCityObj = new City();
-        try {
-            selectedCityObj = CityDaoImpl.getCity(cityID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        */
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
 
         customerSearchCombo.setItems(allCustomersNames);
         customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
         appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
-        selectApptTypeCombo.setItems(allAppointmentTypes);
+        selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
         selectApptTypeCombo.setValue(selectedApptObject.getType());
 
         startTimeTextField.setText(selectedApptObject.getStart().format(dtf));
@@ -175,6 +152,7 @@ public class editAppointmentController implements Initializable {
 
     @FXML
     void saveEditApptButtonHandler(ActionEvent event) throws SQLException, IOException {
+        boolean ifModifiedSuccessfully = false;
         int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
         Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 

@@ -160,7 +160,7 @@ public class AppointmentDaoImpl {
         return appointmentObject;
     }
 
-    public void createAppointment(Appointment appointment) throws SQLException {
+    public static void createAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String insertStatement = "INSERT INTO appointment(customerId, userId, title, description," +

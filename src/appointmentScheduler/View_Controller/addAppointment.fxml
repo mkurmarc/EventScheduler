@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #2f7280; -fx-border-width: 2;" VBox.vgrow="SOMETIMES">
                <children>
-                  <Label prefHeight="31.0" prefWidth="254.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="ADD APPOINTMENT" textAlignment="CENTER" />
+                  <Label prefHeight="31.0" prefWidth="254.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 26; -fx-font-weight: bold; -fx-underline: true;" text="ADD APPOINTMENT" textAlignment="CENTER" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -31,7 +32,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="25.0" prefWidth="176.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Customer Search">
+                  <Label prefHeight="25.0" prefWidth="176.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff;                   -fx-font-size: 18; -fx-font-weight: bold;" text="Customer Search">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -76,7 +77,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="108.0" prefHeight="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Select Start Time">
+                  <Label style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Input Start Time">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -84,15 +85,22 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="startTimeCombo" prefWidth="169.0">
+                  <TextField fx:id="startTimeTextField" prefHeight="25.0" prefWidth="100.0">
                      <HBox.margin>
-                        <Insets right="35.0" />
-                     </HBox.margin></ComboBox>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <RadioButton fx:id="startTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="startTimePMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="PM" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="21.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18; -fx-font-weight: bold;" text="Select End Time">
+                  <Label prefHeight="21.0" style="-fx-font-family: Arial; -fx-text-fill: fefdff; -fx-font-size: 18;                   -fx-font-weight: bold;" text="Input End Time">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -100,7 +108,17 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo1" prefWidth="169.0" />
+                  <TextField fx:id="endTimeTextField" prefHeight="25.0" prefWidth="99.0">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <RadioButton fx:id="endTimeAMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="AM">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="endTimePMPeriod" mnemonicParsing="false" style="-fx-font-family: arial; -fx-text-fill: fefdff; -fx-font-size: 12; -fx-font-weight: bold;" text="PM" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" VBox.vgrow="ALWAYS">
@@ -133,7 +151,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="descriptionTextField1" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="descriptionTextField" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -142,12 +160,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="saveAddApptButton" mnemonicParsing="false" onAction="#saveAddApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
+                  <Button fx:id="saveAddApptButton" mnemonicParsing="false" onAction="#saveAddApptButtonHandler" prefHeight="44.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Save">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelAddApptButton" mnemonicParsing="false" onAction="#cancelAddApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
+                  <Button fx:id="cancelAddApptButton" mnemonicParsing="false" onAction="#cancelAddApptButtonHandler" prefHeight="43.0" prefWidth="70.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-text-fill: fefdff; -fx-font-weight: bold;" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />

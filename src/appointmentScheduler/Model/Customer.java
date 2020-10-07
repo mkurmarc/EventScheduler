@@ -109,6 +109,11 @@ public class Customer {
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
+
+    @Override
+    public String toString() {
+        return customerName;
+    }
 }
 /*
     @AUTHOR

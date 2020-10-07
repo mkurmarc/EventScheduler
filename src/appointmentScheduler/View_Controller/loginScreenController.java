@@ -1,9 +1,9 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.CountryDaoImpl;
+import appointmentScheduler.Model.Country;
 import appointmentScheduler.Model.User;
 import appointmentScheduler.Utilities.Alerts;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -55,6 +56,8 @@ public class loginScreenController implements Initializable {
             Alerts.loginError(4, loginUsernameTextField, loginPasswordField);
         }
         if (checkLoginCredentials(userName, password)) {
+            // sets current user
+            //User.setCurrentUserName(userName);
             // open dashboard fxml file
             Stage stageDashboard;
             Parent root;
@@ -85,6 +88,12 @@ public class loginScreenController implements Initializable {
         }
         catch(MissingResourceException e) {
             e.getMessage();
+        }
+
+        try {
+            Country.setAllCountries(CountryDaoImpl.getAllCountry());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

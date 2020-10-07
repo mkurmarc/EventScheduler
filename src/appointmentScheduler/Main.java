@@ -10,6 +10,8 @@ import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
 import com.sun.javaws.IconUtil;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,7 +35,7 @@ public class Main extends Application {
                 "admin", LocalDateTime.now(), "admin");
         User.addUser(adminUser);
 
-        Parent root = FXMLLoader.load(getClass().getResource("View_Controller/dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View_Controller/loginScreen.fxml"));
         primaryStage.setTitle("Appointment Scheduler Dashboard");
         primaryStage.setScene(new Scene(root, 816, 536));
         primaryStage.show();

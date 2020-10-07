@@ -4,6 +4,8 @@ import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
 import appointmentScheduler.Utilities.TimeClass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class dashboardController implements Initializable {
+    private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
+            "Presentation","Scrum","Code Review","Meeting");
+
+    private static ObservableList<Integer> appointmentIdList = FXCollections.observableArrayList();
 
     @FXML
     private MenuBar menuBarHome;
@@ -98,6 +104,13 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for (int i=0; i< Appointment.getAllAppointments().size(); i++) {
+            int id = Appointment.getAllAppointments().get(i).getAppointmentId();
+            if (!appointmentIdList.contains(id)) {
+                appointmentIdList.add(id);
+            }
+        }
+
         // sets date label with PST
         ZoneId zoneID = ZoneId.of("America/Los_Angeles");
         LocalDateTime todayDateTime = LocalDateTime.now();
@@ -119,12 +132,26 @@ public class dashboardController implements Initializable {
 
         // retrieve data from database and sets appointment list
         try {
-            Appointment.setAllAppointments(AppointmentDaoImpl.getAllAppointments()); // transfers data and sets from SQL server to list
-            Country.setAllCountries(CountryDaoImpl.getAllCountry());
+            // transfers data and sets from SQL server to list
+            Appointment.setAllAppointments(AppointmentDaoImpl.getAllAppointments());
+            Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         appointmentsTableView.setItems(Appointment.getAllAppointments());
+    }
+
+    // list getters and setters
+    public static ObservableList<String> getAllAppointmentTypes() {
+        return allAppointmentTypes;
+    }
+
+    public static ObservableList<Integer> getAppointmentIdList() {
+        return appointmentIdList;
+    }
+
+    public static void setAppointmentIdList(ObservableList<Integer> appointmentIdList) {
+        dashboardController.appointmentIdList = appointmentIdList;
     }
 
     // getter for index to be modified which allows access to other layers of the program
