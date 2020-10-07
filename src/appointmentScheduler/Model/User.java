@@ -21,7 +21,6 @@ public class User {
     private String createdBy;
     private LocalDateTime lastUpdate;
     private String lastUpdateBy;
-    private static String currentUserName;
 
     public User(int userId, String userName, String password, byte active, LocalDateTime createDate, String createdBy,
                 LocalDateTime lastUpdate, String lastUpdateBy) {
@@ -58,14 +57,6 @@ public class User {
 
     public static void setUserList(ObservableList<User> userList) {
         User.userList = userList;
-    }
-
-    public static String getCurrentUserName() {
-        return currentUserName;
-    }
-
-    public static void setCurrentUserName(String currentUserName) {
-        User.currentUserName = currentUserName;
     }
 
     public int getUserId() {

@@ -27,8 +27,7 @@ import java.util.ResourceBundle;
 public class dashboardController implements Initializable {
     private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
             "Presentation","Scrum","Code Review","Meeting");
-
-    private static ObservableList<Integer> appointmentIdList = FXCollections.observableArrayList();
+    //private static ObservableList<Integer> appointmentIdList = FXCollections.observableArrayList();
 
     @FXML
     private MenuBar menuBarHome;
@@ -104,13 +103,6 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (int i=0; i< Appointment.getAllAppointments().size(); i++) {
-            int id = Appointment.getAllAppointments().get(i).getAppointmentId();
-            if (!appointmentIdList.contains(id)) {
-                appointmentIdList.add(id);
-            }
-        }
-
         // sets date label with PST
         ZoneId zoneID = ZoneId.of("America/Los_Angeles");
         LocalDateTime todayDateTime = LocalDateTime.now();
@@ -144,14 +136,6 @@ public class dashboardController implements Initializable {
     // list getters and setters
     public static ObservableList<String> getAllAppointmentTypes() {
         return allAppointmentTypes;
-    }
-
-    public static ObservableList<Integer> getAppointmentIdList() {
-        return appointmentIdList;
-    }
-
-    public static void setAppointmentIdList(ObservableList<Integer> appointmentIdList) {
-        dashboardController.appointmentIdList = appointmentIdList;
     }
 
     // getter for index to be modified which allows access to other layers of the program

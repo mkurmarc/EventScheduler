@@ -72,7 +72,6 @@ public class Alerts {
                 alert.setContentText("Field is empty!");
                 break;
             }
-            /*
             case 2: {
                 alert.setContentText("Please select existing customer!");
                 break;
@@ -93,8 +92,6 @@ public class Alerts {
                 alert.setContentText("Select end time");
                 break;
             }
-
-             */
             case 7: {
                 alert.setContentText("Title too long!");
                 break;
@@ -126,6 +123,19 @@ public class Alerts {
             case 14: {
                 alert.setContentText("Zip code must be an integer.\n(Example: \"91731\")");
                 break;
+            }
+            case 15: {
+                alert.setContentText("Title cannot be empty!");
+                break;
+            }
+            case 16: {
+                alert.setContentText("Description cannot be empty!");
+            }
+            case 17: {
+                alert.setContentText("Appointment start time must be after 7:59 AM and before 4:45 PM!");
+            }
+            case 18: {
+                alert.setContentText("Appointment end time after 7:59 AM and before 5:00 PM!");
             }
             default: {
                 alert.setContentText("Unknown error!");
