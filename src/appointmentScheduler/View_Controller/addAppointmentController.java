@@ -33,8 +33,6 @@ import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 
 public class addAppointmentController implements Initializable {
-
-
     @FXML
     private ComboBox<Customer> customerSearchCombo;
 
@@ -45,10 +43,10 @@ public class addAppointmentController implements Initializable {
     private ComboBox<String> selectApptTypeCombo;
 
     @FXML
-    private TextField startTimeTextField;
+    public ComboBox<LocalTime> startTimeCombo;
 
     @FXML
-    private TextField endTimeTextField;
+    public ComboBox<LocalTime> endTimeCombo;
 
     @FXML
     private TextField titleTextField;
@@ -57,10 +55,19 @@ public class addAppointmentController implements Initializable {
     private TextField descriptionTextField;
 
     @FXML
+    private TextField locationTextField;
+
+    @FXML
     private RadioButton startTimeAMPeriod;
 
     @FXML
     private RadioButton startTimePMPeriod;
+
+    @FXML
+    private RadioButton endTimeAMPeriod;
+
+    @FXML
+    private RadioButton endTimePMPeriod;
 
     @FXML
     private Button saveAddApptButton;
@@ -72,6 +79,28 @@ public class addAppointmentController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         customerSearchCombo.setItems(Customer.getAllCustomers());
         selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
+
+        LocalTime startTime = LocalTime.of(8,0);
+        LocalTime endTime = LocalTime.of(17,0);
+
+        while(startTime.isBefore(endTime.plusSeconds(1))) {
+            startTimeCombo.getItems().add(startTime);
+            endTimeCombo.getItems().add(startTime);
+            startTime = startTime.plusMinutes(15);
+        }
+
+        startTimeCombo.setPromptText("Select time");
+        endTimeCombo.setPromptText("Select time");
+        startTimeCombo.setVisibleRowCount(6);
+        endTimeCombo.setVisibleRowCount(6);
+
+
+
+
+//        startTimeCombo.setItems(Appointment.getAllAppointments());
+//        endTimeCombo.setItems(Appointment.getAllAppointments());
+
+
     }
 
     @FXML
@@ -95,29 +124,34 @@ public class addAppointmentController implements Initializable {
         int customerID = customerSelected.getCustomerId();
         int userID  = User.getUserList().get(0).getUserId();
         int appointmentID = 123; // hard code because mySQL generates its own apptID
-
+        LocalDate apptDate = appointmentDatePicker.getValue();
+        String type = selectApptTypeCombo.getValue();
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
-        String location = " ";
+        String location = locationTextField.getText();
         String contact = " ";
         String url = " ";
+
         /*
         block below gets LocalDate and LocalTime from picker and text fields to create LocalDateTime objects, start and
         end, to then use for appointment object creation
         */
-        LocalDate apptDate = appointmentDatePicker.getValue();
-        LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
-        LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
-        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
-        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
-        String type = selectApptTypeCombo.getValue();
-
-        DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String startDateString = start.format(dtfDate);
-
         DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
-        String startTimeString = start.format(dtfTime);
-        String endTimeString = end.format(dtfTime);
+        DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+
+//        LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
+//        LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
+//        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
+//        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
+
+
+
+//        String startDateString = start.format(dtfDate);
+//
+//
+//        String startTimeString = start.format(dtfTime);
+//        String endTimeString = end.format(dtfTime);
 
         LocalDateTime createDate = LocalDateTime.now();
         String createdBy = User.getUserList().get(0).getUserName();
@@ -148,20 +182,28 @@ public class addAppointmentController implements Initializable {
 
  */
 
-        Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,
-                lastUpdate, lastUpdateBy);
+//        Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+//                contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,
+//                lastUpdate, lastUpdateBy);
 
-        try {
-            AppointmentDaoImpl.createAppointment(newApptObj);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            AppointmentDaoImpl.createAppointment(newApptObj);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+    }
+
+    public void startTimeComboHandler(ActionEvent actionEvent) {
+
+    }
+
+    public void endTimeComboHandler(ActionEvent actionEvent) {
+
     }
 }
