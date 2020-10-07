@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
@@ -65,7 +67,6 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     private Button cancelAddApptButton;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -125,7 +126,7 @@ public class addAppointmentController implements Initializable {
 
         LocalTime openTime = LocalTime.of(8,0);
         LocalTime closeTime = LocalTime.of(5, 0);
-
+/*
         if (startTime.isBefore(openTime) || startTime.isAfter(closeTime.minusMinutes(15))) {
             Alerts.errorAppointment(17, startTimeTextField);
         }
@@ -144,6 +145,8 @@ public class addAppointmentController implements Initializable {
         if (description.length() > 100) {
             Alerts.errorAppointment(8, descriptionTextField);
         }
+
+ */
 
         Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
                 contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,

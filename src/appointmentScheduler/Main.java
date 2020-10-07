@@ -4,6 +4,7 @@ package appointmentScheduler;
     Marc Rios
     ID:
 */
+import appointmentScheduler.Interfaces.GeneralInterface;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.User;
 import appointmentScheduler.Utilities.DBConnection;
@@ -42,9 +43,13 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //Connection conn = DBConnection.startConnection(); // connect to DB
+        //GeneralInterface square = n -> n * n;
+        //System.out.println(square.calculateSquare(5));
+
+        GeneralInterface message = s -> "Hello " + s;
+        System.out.println(message.getMessage("meow"));
+
         launch(args);
-        //DBConnection.closeConnection(); // close DB connection
     }
 }
 /*

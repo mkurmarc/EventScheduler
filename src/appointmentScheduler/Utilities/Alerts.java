@@ -145,6 +145,24 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    public static void errorDateTimeAppt(int code, TextField textField, String parsedString) {
+        textFieldError(textField);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error adding appointment");
+        alert.setHeaderText("Cannot add appointment");
+
+        switch (code) {
+            case 1: {
+                alert.setContentText(parsedString + "is not the correct format. Use format \"12:00\"");
+                break;
+            }
+            case 2: {
+                alert.setContentText("Field is empty!");
+                break;
+            }
+        }
+    }
+
     public static void loginError(int code, TextField textField, PasswordField passwordField) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Error");
