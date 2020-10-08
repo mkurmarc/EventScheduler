@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 public class dashboardController implements Initializable {
     private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
             "Presentation","Scrum","Code Review","Meeting");
-    //private static ObservableList<Integer> appointmentIdList = FXCollections.observableArrayList();
 
     @FXML
     private MenuBar menuBarHome;

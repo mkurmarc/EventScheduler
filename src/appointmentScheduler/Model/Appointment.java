@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment {
     private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
@@ -211,6 +212,13 @@ public class Appointment {
 
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter  dtf = DateTimeFormatter.ofPattern("HH:mm a");
+        String formatTime = start.format(dtf);
+        return (formatTime);
     }
 }
 /*
