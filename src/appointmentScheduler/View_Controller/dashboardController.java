@@ -110,10 +110,15 @@ public class dashboardController implements Initializable {
         todayDate = zdtToday.toLocalDate();
 
         varDateLabel.setText(String.valueOf(todayDate));
-        // Appointments table and columns
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        /*
+        Below sets appointments table and columns
+        */
+        // the "date" refers to the getter in Appointments model class, getDate()
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        // the "startTime" refers to the getter in Appointments model class, getStartTime()
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        // the "endTime" refers to the getter in Appointments model class, getEndTime()
+        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -130,7 +135,25 @@ public class dashboardController implements Initializable {
             e.printStackTrace();
         }
         appointmentsTableView.setItems(Appointment.getAllAppointments());
+
+        ObservableList<Appointment> aList = Appointment.getAllAppointments();
+        ObservableList<Appointment> fList = aList.filtered(a -> {
+            LocalDate selectedDate = datePickerAppointments.getValue();
+            if(viewAllRadioButton.isSelected()) {
+                a.getStart().getMonth().
+            }
+            if(viewMonthRadioButton.isSelected()) {
+
+            }
+            if(viewWeekRadioButton.isSelected()) {
+
+            }
+            return true;
+        });
+
     }
+
+
 
     // list getters and setters
     public static ObservableList<String> getAllAppointmentTypes() {

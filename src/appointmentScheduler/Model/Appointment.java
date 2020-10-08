@@ -8,6 +8,7 @@ package appointmentScheduler.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -61,6 +62,21 @@ public class Appointment {
 
     public static void setAllAppointments(ObservableList<Appointment> allAppointments) {
         Appointment.allAppointments = allAppointments;
+    }
+
+    // this is used for the TableView column
+    public LocalDate getDate() {
+        return start.toLocalDate();
+    }
+
+    // this is used for the TableView column
+    public LocalTime getStartTime() {
+        return start.toLocalTime();
+    }
+
+    // this is used for the TableView column
+    public LocalTime getEndTime() {
+        return end.toLocalTime();
     }
 
     public int getAppointmentId() {
