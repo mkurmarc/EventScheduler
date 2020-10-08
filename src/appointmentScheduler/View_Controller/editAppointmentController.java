@@ -33,7 +33,7 @@ public class editAppointmentController implements Initializable {
 
 
     @FXML
-    private ComboBox<String> customerSearchCombo;
+    private ComboBox<Customer> customerSearchCombo;
 
     @FXML
     private DatePicker appointmentDatePicker;
@@ -42,22 +42,10 @@ public class editAppointmentController implements Initializable {
     private ComboBox<String> selectApptTypeCombo;
 
     @FXML
-    private TextField startTimeTextField;
+    private ComboBox<LocalTime> startTimeCombo;
 
     @FXML
-    private RadioButton startTimeAMPeriod;
-
-    @FXML
-    private RadioButton startTimePMPeriod;
-
-    @FXML
-    private TextField endTimeTextField;
-
-    @FXML
-    private RadioButton endTimeAMPeriod;
-
-    @FXML
-    private RadioButton endTimePMPeriod;
+    private ComboBox<LocalTime> endTimeCombo;
 
     @FXML
     private TextField titleTextField;
@@ -66,73 +54,48 @@ public class editAppointmentController implements Initializable {
     private TextField descriptionTextField;
 
     @FXML
+    private TextField locationTextField;
+
+    @FXML
     private Button saveEditApptButton;
 
     @FXML
     private Button cancelEditApptButton;
 
-    ToggleGroup startPeriodToggleGroup = new ToggleGroup();
-    ToggleGroup endPeriodToggleGroup = new ToggleGroup();
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> allCustomersNames = FXCollections.observableArrayList(); // list for combo box
-        // sets the toggle groups
-        startTimeAMPeriod.setToggleGroup(startPeriodToggleGroup);
-        startTimePMPeriod.setToggleGroup(startPeriodToggleGroup);
-        endTimeAMPeriod.setToggleGroup(endPeriodToggleGroup);
-        endTimePMPeriod.setToggleGroup(endPeriodToggleGroup);
-
-        // for loop adds the customer names to a list
-        for (int i=0; i < Customer.getAllCustomers().size(); i++) {
-            allCustomersNames.add(Customer.getAllCustomers().get(i).getCustomerName());
-        }
-
         int indexOfApptObject = dashboardController.getIndexOfSelectedObj();
         Appointment selectedApptObject = Appointment.getAllAppointments().get(indexOfApptObject); // object from user selection
-
         int customerID = selectedApptObject.getCustomerId();
+
         Customer selectedCustomerObj = new Customer();
         try {
             selectedCustomerObj = CustomerDaoImpl.getCustomer(customerID);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
-
-        customerSearchCombo.setItems(allCustomersNames);
-        customerSearchCombo.setValue(selectedCustomerObj.getCustomerName());
-        appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
-        selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
-        selectApptTypeCombo.setValue(selectedApptObject.getType());
-
-        startTimeTextField.setText(selectedApptObject.getStart().format(dtf));
-        endTimeTextField.setText(selectedApptObject.getEnd().format(dtf));
-
-        titleTextField.setText(selectedApptObject.getTitle());
-        descriptionTextField.setText(selectedApptObject.getDescription());
-
-        // block of code below checks time and toggles appropriate radio button
-        LocalDateTime selectedStartDateTime = selectedApptObject.getStart();
-        LocalTime selectedStartTime = selectedStartDateTime.toLocalTime();
-
-        LocalDateTime selectedEndDateTime = selectedApptObject.getEnd();
-        LocalTime selectedEndTime = selectedEndDateTime.toLocalTime();
-
-        LocalTime amTime = LocalTime.of(11,59);
-
-        if (selectedStartTime.isAfter(amTime)) {
-            startPeriodToggleGroup.selectToggle(startTimePMPeriod);
-        } else {
-            startPeriodToggleGroup.selectToggle(startTimeAMPeriod);
-        }
-
-        if (selectedEndTime.isBefore(amTime)) {
-            endPeriodToggleGroup.selectToggle(endTimeAMPeriod);
-        } else {
-            endPeriodToggleGroup.selectToggle(endTimePMPeriod);
+            // code below this comment sets the items and values for each fxml element
+            customerSearchCombo.setItems(Customer.getAllCustomers());
+            customerSearchCombo.setValue(selectedCustomerObj);
+            appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
+            LocalTime startTime = LocalTime.of(8, 0);
+            LocalTime endTime = LocalTime.of(17, 0);
+            // while loop generates the local time list for the start and end times
+            while (startTime.isBefore(endTime.plusSeconds(1))) {
+                startTimeCombo.getItems().add(startTime);
+                endTimeCombo.getItems().add(startTime);
+                startTime = startTime.plusMinutes(15);
+            }
+            // removes start time of 17:00 because that is business closing time
+            startTimeCombo.getItems().remove(startTimeCombo.getItems().size() - 1);
+            //removes end time of 08:00 because that is the business opening time
+            endTimeCombo.getItems().remove(endTimeCombo.getItems().remove(0));
+            startTimeCombo.setValue(LocalTime.from(selectedApptObject.getStart()));
+            endTimeCombo.setValue(LocalTime.from(selectedApptObject.getEnd()));
+            selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
+            selectApptTypeCombo.setValue(selectedApptObject.getType());
+            titleTextField.setText(selectedApptObject.getTitle());
+            descriptionTextField.setText(selectedApptObject.getDescription());
+            locationTextField.setText(selectedApptObject.getLocation());
         }
     }
 
@@ -152,45 +115,37 @@ public class editAppointmentController implements Initializable {
 
     @FXML
     void saveEditApptButtonHandler(ActionEvent event) throws SQLException, IOException {
-        boolean ifModifiedSuccessfully = false;
         int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
-        Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
+        Appointment selectedCustomerObj = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
-        int appointmentID = selectedObject.getAppointmentId();
-        int customerID = selectedObject.getCustomerId();
-        int userID = selectedObject.getUserId();
+        int appointmentID = selectedCustomerObj.getAppointmentId();
+        int customerID = selectedCustomerObj.getCustomerId();
+        int userID = selectedCustomerObj.getUserId();
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
-        String location = selectedObject.getLocation();
-        String contact = selectedObject.getContact();
+        String location = locationTextField.getText();
+        String contact = selectedCustomerObj.getContact();
         String type = selectApptTypeCombo.getValue();
-        String url = selectedObject.getUrl();
+        String url = selectedCustomerObj.getUrl();
         /*
-        block below gets LocalDate and LocalTime from picker and text fields to create LocalDateTime objects, start and
-        end, to then use for appointment object creation
+        block below gets LocalDate and LocalTime from picker and combo boxes to create LocalDateTime objects, start and
+        end, to then use them for appointment object creation
         */
         LocalDate apptDate = appointmentDatePicker.getValue();
-        LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
-        LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
+        LocalTime startTime = startTimeCombo.getValue();
+        LocalTime endTime = endTimeCombo.getValue();
         LocalDateTime start = LocalDateTime.of(apptDate, startTime);
         LocalDateTime end = LocalDateTime.of(apptDate, endTime);
-
-        DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String startDateString = start.format(dtfDate);
-
-        DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
-        String startTimeString = start.format(dtfTime);
-        String endTimeString = end.format(dtfTime);
-
-        LocalDateTime createDate = selectedObject.getCreateDate();
-        String createdBy = selectedObject.getCreatedBy();
+        // gets the last four parameters from the user selected customer object for appointment object creation
+        LocalDateTime createDate = selectedCustomerObj.getCreateDate();
+        String createdBy = selectedCustomerObj.getCreatedBy();
         LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdateBy = selectedObject.getLastUpdateBy();
+        String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
         Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,
-                lastUpdate, lastUpdateBy);
+                contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
+        // maybe change DAO implementation to return boolean fpr the purpose of changing to next scene or not
         AppointmentDaoImpl.updateAppointment(updatedApptObj);
 
         Stage stage;

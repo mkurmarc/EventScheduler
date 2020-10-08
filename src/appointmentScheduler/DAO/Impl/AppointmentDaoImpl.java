@@ -57,20 +57,10 @@ public class AppointmentDaoImpl {
             LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
             ZonedDateTime zdtStart = start.atZone(zoneID);
             start = zdtStart.toLocalDateTime();
-            LocalTime startTime = start.toLocalTime();
-
-            DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String startDateString = start.format(dtfDate);
-
-            DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
-            String startTimeString = start.format(dtfTime);
 
             LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             ZonedDateTime zdtEnd = end.atZone(zoneID);
             end = zdtEnd.toLocalDateTime();
-            LocalTime endTime = end.toLocalTime();
-
-            String endTimeString = end.format(dtfTime);
 
             LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             ZonedDateTime zdtCreateDate = createDate.atZone(zoneID);
@@ -82,8 +72,7 @@ public class AppointmentDaoImpl {
 
             // create each row into a country object, and then add it to the observable list
             Appointment appointmentObject = new Appointment(appointmentID, customerId, userId, title, description,
-                    location, contact, type, url, start, startDateString, startTimeString, end, endTimeString,
-                    createDate, createdBy, lastUpdate, lastUpdateBy);
+                    location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
             selectAllAppointments.add(appointmentObject); // add object to observable list
         }
@@ -128,20 +117,10 @@ public class AppointmentDaoImpl {
             LocalDateTime start = resultSet.getTimestamp("start").toLocalDateTime();
             ZonedDateTime zdtStart = start.atZone(zoneID);
             start = zdtStart.toLocalDateTime();
-            LocalTime startTime = start.toLocalTime();
-
-            DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String startDateString = start.format(dtfDate);
-
-            DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
-            String startTimeString = start.format(dtfTime);
 
             LocalDateTime end = resultSet.getTimestamp("end").toLocalDateTime();
             ZonedDateTime zdtEnd = end.atZone(zoneID);
             end = zdtEnd.toLocalDateTime();
-            LocalTime endTime = end.toLocalTime();
-
-            String endTimeString = end.format(dtfTime);
 
             LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             ZonedDateTime zdtCreateDate = createDate.atZone(zoneID);
@@ -153,8 +132,7 @@ public class AppointmentDaoImpl {
 
             // create each row into a country object, and then add it to the observable list
             appointmentObject = new Appointment(appointmentID, customerId, userId, title, description,
-                    location, contact, type, url, start, startDateString, startTimeString, end, endTimeString,
-                    createDate, createdBy, lastUpdate, lastUpdateBy);
+                    location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
         }
         DBConnection.closeConnection(); // close DB connection
         return appointmentObject;

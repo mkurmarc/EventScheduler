@@ -43,10 +43,10 @@ public class addAppointmentController implements Initializable {
     private ComboBox<String> selectApptTypeCombo;
 
     @FXML
-    public ComboBox<LocalTime> startTimeCombo;
+    private ComboBox<LocalTime> startTimeCombo;
 
     @FXML
-    public ComboBox<LocalTime> endTimeCombo;
+    private ComboBox<LocalTime> endTimeCombo;
 
     @FXML
     private TextField titleTextField;
@@ -56,18 +56,6 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     private TextField locationTextField;
-
-    @FXML
-    private RadioButton startTimeAMPeriod;
-
-    @FXML
-    private RadioButton startTimePMPeriod;
-
-    @FXML
-    private RadioButton endTimeAMPeriod;
-
-    @FXML
-    private RadioButton endTimePMPeriod;
 
     @FXML
     private Button saveAddApptButton;
@@ -120,42 +108,25 @@ public class addAppointmentController implements Initializable {
         int userID  = User.getUserList().get(0).getUserId();
         int appointmentID = 123; // hard code because mySQL generates its own apptID
 
-
         LocalDate apptDate = appointmentDatePicker.getValue();
-        LocalTime start = startTimeCombo.getValue();
-        LocalTime end = endTimeCombo.getValue();
+        LocalTime startTime = startTimeCombo.getValue();
+        LocalTime endTime = endTimeCombo.getValue();
         String type = selectApptTypeCombo.getValue();
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
         String location = locationTextField.getText();
         String contact = " ";
         String url = " ";
-
         /*
-        block below gets LocalDate and LocalTime from picker and text fields to create LocalDateTime objects, start and
+        block below gets LocalDate and LocalTime from picker and combo boxed to create LocalDateTime objects, start and
         end, to then use for appointment object creation
         */
-        DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm a");
-        DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-
-
-
-//        LocalTime startTime = LocalTime.parse(startTimeTextField.getText());
-//        LocalTime endTime = LocalTime.parse(endTimeTextField.getText());
-//        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
-//        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
-//        String startDateString = start.format(dtfDate);
-//        String startTimeString = start.format(dtfTime);
-//        String endTimeString = end.format(dtfTime);
-
+        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
+        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
         LocalDateTime createDate = LocalDateTime.now();
         String createdBy = User.getUserList().get(0).getUserName();
         LocalDateTime lastUpdate = LocalDateTime.now();
         String lastUpdateBy = User.getUserList().get(0).getUserName();
-
-        LocalTime openTime = LocalTime.of(8,0);
-        LocalTime closeTime = LocalTime.of(5, 0);
 /*
         if (startTime.isBefore(openTime) || startTime.isAfter(closeTime.minusMinutes(15))) {
             Alerts.errorAppointment(17, startTimeTextField);
@@ -177,16 +148,14 @@ public class addAppointmentController implements Initializable {
         }
 
  */
-
         Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                contact, type, url, start, startDateString, startTimeString, end, endTimeString, createDate, createdBy,
-                lastUpdate, lastUpdateBy);
+                contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-//        try {
-//            AppointmentDaoImpl.createAppointment(newApptObj);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            AppointmentDaoImpl.createAppointment(newApptObj);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
         Scene scene = new Scene(parent);

@@ -111,9 +111,9 @@ public class dashboardController implements Initializable {
 
         varDateLabel.setText(String.valueOf(todayDate));
         // Appointments table and columns
-        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        dateAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        startTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endTimeAppointmentColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));

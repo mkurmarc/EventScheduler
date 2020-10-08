@@ -25,19 +25,15 @@ public class Appointment {
     private String type;
     private String url;
     private LocalDateTime start;
-    private String startDate;
-    private String startTime;
     private LocalDateTime end;
-    private String endTime;
     private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
     private String lastUpdateBy;
 
     public Appointment(int appointmentId, int customerId, int userId, String title, String description, String location,
-                       String contact, String type, String url, LocalDateTime start, String startDate, String startTime,
-                       LocalDateTime end, String endTime, LocalDateTime createDate, String createdBy,
-                       LocalDateTime lastUpdate, String lastUpdateBy) {
+                       String contact, String type, String url, LocalDateTime start, LocalDateTime end,
+                       LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdateBy) {
         this.appointmentId = appointmentId;
         this.customerId = customerId;
         this.userId = userId;
@@ -48,10 +44,7 @@ public class Appointment {
         this.type = type;
         this.url = url;
         this.start = start;
-        this.startDate = startDate;
-        this.startTime = startTime;
         this.end = end;
-        this.endTime = endTime;
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
@@ -61,29 +54,6 @@ public class Appointment {
     public Appointment() {
     }
 
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
 
     public static ObservableList<Appointment> getAllAppointments() {
         return allAppointments;
