@@ -9,7 +9,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class Alerts {
 
@@ -163,6 +166,7 @@ public class Alerts {
         }
     }
 
+    // add another parameter, 1 or 0, for english or spanish
     public static void loginError(int code, TextField textField, PasswordField passwordField) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Error");
@@ -202,6 +206,50 @@ public class Alerts {
         alert.showAndWait();
     }
 
+
+    public static void spanishLoginError(int code, TextField textField, PasswordField passwordField) {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Nat", Locale.getDefault());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rb.getString("login_error"));
+            alert.setHeaderText(rb.getString("cannot_login"));
+            switch (code) {
+                case 1: {
+                    alert.setContentText(rb.getString("username_empty"));
+                    textFieldError(textField);
+                    break;
+                }
+                case 2: {
+                    alert.setContentText(rb.getString("password_empty"));
+                    passwordFieldError(passwordField);
+                    break;
+                }
+                case 3: {
+                    alert.setContentText(rb.getString("username_too_long"));
+                    textFieldError(textField);
+                    break;
+                }
+                case 4: {
+                    alert.setContentText(rb.getString("password_too_long"));
+                    passwordFieldError(passwordField);
+                    break;
+                }
+                case 5: {
+                    alert.setContentText(rb.getString("no_match"));
+                    break;
+                }
+                default: {
+                    alert.setContentText(rb.getString("unknown_error"));
+                    textFieldError(textField);
+                    passwordFieldError(passwordField);
+                    break;
+                }
+            }
+            alert.showAndWait();
+        } catch(MissingResourceException e) {
+            e.getMessage();
+        }
+    }
 
     public static void passwordFieldError(PasswordField passwordField) {
         if (passwordField != null) {
