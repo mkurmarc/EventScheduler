@@ -64,19 +64,19 @@ public class Alerts {
         alert.showAndWait();
     }
 
-    public static void errorAppointment(int code, TextField textField) {
-        textFieldError(textField);
+    public static void errorAppointment(int code) {
+//        textFieldError(textField);
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error adding appointment");
         alert.setHeaderText("Cannot add appointment");
         switch (code) {
             case 1: {
-                alert.setContentText("Field is empty!");
+                alert.setContentText("Please enter valid values in text fields.");
                 break;
             }
             case 2: {
-                alert.setContentText("Please select existing customer!");
+                alert.setContentText("Please select existing customer.");
                 break;
             }
             case 3: {

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -103,30 +104,31 @@ public class addAppointmentController implements Initializable {
     @FXML
     void saveAddApptButtonHandler(ActionEvent event) throws IOException {
         // uses customer object to complete creation of appointment object
-        Customer customerSelected = customerSearchCombo.getValue();
-        int customerID = customerSelected.getCustomerId();
-        int userID  = User.getUserList().get(0).getUserId();
-        int appointmentID = 123; // hard code because mySQL generates its own apptID
+        try {
+            Customer customerSelected = customerSearchCombo.getValue();
+            int customerID = customerSelected.getCustomerId();
+            int userID  = User.getUserList().get(0).getUserId();
+            int appointmentID = 123; // hard code because mySQL generates its own apptID
 
-        LocalDate apptDate = appointmentDatePicker.getValue();
-        LocalTime startTime = startTimeCombo.getValue();
-        LocalTime endTime = endTimeCombo.getValue();
-        String type = selectApptTypeCombo.getValue();
-        String title = titleTextField.getText();
-        String description = descriptionTextField.getText();
-        String location = locationTextField.getText();
-        String contact = " ";
-        String url = " ";
+            LocalDate apptDate = appointmentDatePicker.getValue();
+            LocalTime startTime = startTimeCombo.getValue();
+            LocalTime endTime = endTimeCombo.getValue();
+            String type = selectApptTypeCombo.getValue();
+            String title = titleTextField.getText();
+            String description = descriptionTextField.getText();
+            String location = locationTextField.getText();
+            String contact = " ";
+            String url = " ";
         /*
         block below gets LocalDate and LocalTime from picker and combo boxed to create LocalDateTime objects, start and
         end, to then use for appointment object creation
         */
-        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
-        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
-        LocalDateTime createDate = LocalDateTime.now();
-        String createdBy = User.getUserList().get(0).getUserName();
-        LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdateBy = User.getUserList().get(0).getUserName();
+            LocalDateTime start = LocalDateTime.of(apptDate, startTime);
+            LocalDateTime end = LocalDateTime.of(apptDate, endTime);
+            LocalDateTime createDate = LocalDateTime.now();
+            String createdBy = User.getUserList().get(0).getUserName();
+            LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdateBy = User.getUserList().get(0).getUserName();
 /*
         if (startTime.isBefore(openTime) || startTime.isAfter(closeTime.minusMinutes(15))) {
             Alerts.errorAppointment(17, startTimeTextField);
@@ -148,27 +150,29 @@ public class addAppointmentController implements Initializable {
         }
 
  */
-        Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+            Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+                    contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-        try {
             AppointmentDaoImpl.createAppointment(newApptObj);
+
+            Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+            Scene scene = new Scene(parent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+
+        } catch (NullPointerException e) {
+            //System.out.println("Null Pointer Ex: " + e.getMessage());
+            if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
+            else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
+            else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
+            else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            //System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
+            if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-        Scene scene = new Scene(parent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    public void startTimeComboHandler(ActionEvent actionEvent) {
-
-    }
-
-    public void endTimeComboHandler(ActionEvent actionEvent) {
 
     }
 }
