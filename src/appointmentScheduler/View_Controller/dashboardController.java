@@ -118,7 +118,7 @@ public class dashboardController implements Initializable {
         viewMonthRadioButton.setToggleGroup(filterGroup);
         viewWeekRadioButton.setToggleGroup(filterGroup);
         // sets default radio button selected to view all appts
-        filterGroup.selectToggle(viewMonthRadioButton);
+        filterGroup.selectToggle(viewAllRadioButton);
 
         /*
         Below sets appointments table and columns
@@ -148,28 +148,19 @@ public class dashboardController implements Initializable {
         LocalDate selectedDate = datePickerAppointments.getValue();
 
         ObservableList<Appointment> aList = Appointment.getAllAppointments();
-        ObservableList<Appointment> fList = aList.filtered(a -> {
-
-            return a.getDate().getMonth().equals(selectedDate.getMonth());
-//            return true;
-
-        });
-
+        /*
+        Lambda expression compares list of appts start dates to user selected date month, and shows the ones that
+        are equal. This helps present filter logic in one section of the code.
+        */
+//        ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
+//        if(viewMonthRadioButton.isSelected()) {
+//            appointmentsTableView.setItems(fList);
+//        }
         if(viewAllRadioButton.isSelected()) {
             appointmentsTableView.setItems(Appointment.getAllAppointments());
         }
-        if(viewMonthRadioButton.isSelected()) {
-            appointmentsTableView.setItems(fList);
-        }
-    }
 
-//            if(viewAllRadioButton.isSelected()) {
-//                a.getStart()
-//            }
-//            return a.getStart().getMonth() == selectedDate.getMonth();
-//            if(viewWeekRadioButton.isSelected()) {
-//               // a.getStart().get
-//            }
+    }
 
     // list getters and setters
     public static ObservableList<String> getAllAppointmentTypes() {
@@ -271,15 +262,35 @@ public class dashboardController implements Initializable {
 
     }
 
-    // REMOVE HANDLERS FOR RADIO BUTTONS???
+    @FXML
+    public void datePickerHandler(ActionEvent actionEvent) {
+        LocalDate selectedDate = datePickerAppointments.getValue();
+        ObservableList<Appointment> aList = Appointment.getAllAppointments();
+        if(viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
+        if(viewMonthRadioButton.isSelected()) {
+            ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
+            appointmentsTableView.setItems(fList);
+        }
+//        if(viewWeekRadioButton.isSelected()) {
+//
+//        }
+    }
+
     @FXML
     void viewAllRadioButtonHandler(ActionEvent event) {
-
+        appointmentsTableView.setItems(Appointment.getAllAppointments());
     }
 
     @FXML
     void viewMonthRadioButtonHandler(ActionEvent event) {
-//        appointmentsTableView.setItems();
+        LocalDate selectedDate = datePickerAppointments.getValue();
+        ObservableList<Appointment> aList = Appointment.getAllAppointments();
+        /*
+        Lambda expression compares list of appts start dates to user selected date month, and shows the ones that
+        are equal. This helps present filter logic in one section of the code.
+        */
+        ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
+        appointmentsTableView.setItems(fList);
     }
 
     @FXML
