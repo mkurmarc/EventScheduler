@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class dashboardController implements Initializable {
     private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
@@ -99,6 +100,8 @@ public class dashboardController implements Initializable {
 
     private static int indexOfSelectedObj;
 
+    ToggleGroup filterGroup = new ToggleGroup();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,8 +111,15 @@ public class dashboardController implements Initializable {
         ZonedDateTime zdtToday = todayDateTime.atZone(zoneID);
         LocalDate todayDate;
         todayDate = zdtToday.toLocalDate();
-
         varDateLabel.setText(String.valueOf(todayDate));
+
+        // sets the toggle groups
+        viewAllRadioButton.setToggleGroup(filterGroup);
+        viewMonthRadioButton.setToggleGroup(filterGroup);
+        viewWeekRadioButton.setToggleGroup(filterGroup);
+        // sets default radio button selected to view all appts
+        filterGroup.selectToggle(viewMonthRadioButton);
+
         /*
         Below sets appointments table and columns
         */
@@ -134,26 +144,32 @@ public class dashboardController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        appointmentsTableView.setItems(Appointment.getAllAppointments());
+        datePickerAppointments.setValue(LocalDate.now());
+        LocalDate selectedDate = datePickerAppointments.getValue();
 
         ObservableList<Appointment> aList = Appointment.getAllAppointments();
         ObservableList<Appointment> fList = aList.filtered(a -> {
-            LocalDate selectedDate = datePickerAppointments.getValue();
-            if(viewAllRadioButton.isSelected()) {
-                a.getStart().getMonth().
-            }
-            if(viewMonthRadioButton.isSelected()) {
 
-            }
-            if(viewWeekRadioButton.isSelected()) {
+            return a.getDate().getMonth().equals(selectedDate.getMonth());
+//            return true;
 
-            }
-            return true;
         });
 
+        if(viewAllRadioButton.isSelected()) {
+            appointmentsTableView.setItems(Appointment.getAllAppointments());
+        }
+        if(viewMonthRadioButton.isSelected()) {
+            appointmentsTableView.setItems(fList);
+        }
     }
 
-
+//            if(viewAllRadioButton.isSelected()) {
+//                a.getStart()
+//            }
+//            return a.getStart().getMonth() == selectedDate.getMonth();
+//            if(viewWeekRadioButton.isSelected()) {
+//               // a.getStart().get
+//            }
 
     // list getters and setters
     public static ObservableList<String> getAllAppointmentTypes() {
@@ -263,7 +279,7 @@ public class dashboardController implements Initializable {
 
     @FXML
     void viewMonthRadioButtonHandler(ActionEvent event) {
-
+//        appointmentsTableView.setItems();
     }
 
     @FXML
