@@ -84,7 +84,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="startTimeCombo" onAction="#startTimeComboHandler" prefHeight="25.0" prefWidth="175.0">
+                  <ComboBox fx:id="startTimeCombo" prefHeight="25.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -101,7 +101,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="endTimeCombo" onAction="#endTimeComboHandler" prefHeight="25.0" prefWidth="175.0">
+                  <ComboBox fx:id="endTimeCombo" prefHeight="25.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>

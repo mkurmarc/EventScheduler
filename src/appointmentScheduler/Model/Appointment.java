@@ -199,13 +199,13 @@ public class Appointment {
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
-
-    @Override
-    public String toString() {
-        DateTimeFormatter  dtf = DateTimeFormatter.ofPattern("HH:mm a");
-        String formatTime = start.format(dtf);
-        return (formatTime);
-    }
+//
+//    @Override
+//    public String toString() {
+//        DateTimeFormatter  dtf = DateTimeFormatter.ofPattern("HH:mm a");
+//        String formatTime = start.format(dtf);
+//        return (formatTime);
+//    }
 }
 /*
     @AUTHOR

@@ -60,7 +60,6 @@ public class loginScreenController implements Initializable {
     void loginButtonHandler(ActionEvent event) throws IOException {
         String userName = loginUsernameTextField.getText();
         String password = loginPasswordField.getText();
-
         // error checks and  messages if language is english default
         if (!Locale.getDefault().getLanguage().equals("es")) {
 //            if (userName == null) {
@@ -100,7 +99,7 @@ public class loginScreenController implements Initializable {
         }
 
         if (checkLoginCredentials(userName, password)) {
-            // open dashboard fxml file
+            // open dashboard fxml file is username and password match
             Stage stageDashboard;
             Parent root;
             stageDashboard = (Stage) loginButton.getScene().getWindow();

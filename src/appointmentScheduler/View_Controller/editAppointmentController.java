@@ -5,6 +5,7 @@ import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Main;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.Customer;
+import appointmentScheduler.Utilities.Alerts;
 import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -73,30 +75,31 @@ public class editAppointmentController implements Initializable {
             selectedCustomerObj = CustomerDaoImpl.getCustomer(customerID);
         } catch (SQLException e) {
             e.printStackTrace();
-            // code below this comment sets the items and values for each fxml element
-            customerSearchCombo.setItems(Customer.getAllCustomers());
-            customerSearchCombo.setValue(selectedCustomerObj);
-            appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
-            LocalTime startTime = LocalTime.of(8, 0);
-            LocalTime endTime = LocalTime.of(17, 0);
-            // while loop generates the local time list for the start and end times
-            while (startTime.isBefore(endTime.plusSeconds(1))) {
-                startTimeCombo.getItems().add(startTime);
-                endTimeCombo.getItems().add(startTime);
-                startTime = startTime.plusMinutes(15);
-            }
-            // removes start time of 17:00 because that is business closing time
-            startTimeCombo.getItems().remove(startTimeCombo.getItems().size() - 1);
-            //removes end time of 08:00 because that is the business opening time
-            endTimeCombo.getItems().remove(endTimeCombo.getItems().remove(0));
-            startTimeCombo.setValue(LocalTime.from(selectedApptObject.getStart()));
-            endTimeCombo.setValue(LocalTime.from(selectedApptObject.getEnd()));
-            selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
-            selectApptTypeCombo.setValue(selectedApptObject.getType());
-            titleTextField.setText(selectedApptObject.getTitle());
-            descriptionTextField.setText(selectedApptObject.getDescription());
-            locationTextField.setText(selectedApptObject.getLocation());
         }
+        // code below this comment sets the items and values for each fxml element
+        customerSearchCombo.setItems(Customer.getAllCustomers());
+        customerSearchCombo.setValue(selectedCustomerObj);
+        appointmentDatePicker.setValue(selectedApptObject.getStart().toLocalDate());
+        LocalTime startTime = LocalTime.of(8, 0);
+        LocalTime endTime = LocalTime.of(17, 0);
+        // while loop generates the local time list for the start and end times
+        while (startTime.isBefore(endTime.plusSeconds(1))) {
+            startTimeCombo.getItems().add(startTime);
+            endTimeCombo.getItems().add(startTime);
+            startTime = startTime.plusMinutes(15);
+        }
+        // removes start time of 17:00 because that is business closing time
+        startTimeCombo.getItems().remove(startTimeCombo.getItems().size() - 1);
+        //removes end time of 08:00 because that is the business opening time
+        endTimeCombo.getItems().remove(endTimeCombo.getItems().remove(0));
+        startTimeCombo.setValue(LocalTime.from(selectedApptObject.getStart()));
+        endTimeCombo.setValue(LocalTime.from(selectedApptObject.getEnd()));
+        selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
+        selectApptTypeCombo.setValue(selectedApptObject.getType());
+        titleTextField.setText(selectedApptObject.getTitle());
+        descriptionTextField.setText(selectedApptObject.getDescription());
+        locationTextField.setText(selectedApptObject.getLocation());
+
     }
 
     @FXML
@@ -114,47 +117,61 @@ public class editAppointmentController implements Initializable {
     }
 
     @FXML
-    void saveEditApptButtonHandler(ActionEvent event) throws SQLException, IOException {
-        int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
-        Appointment selectedCustomerObj = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
+    void saveEditApptButtonHandler(ActionEvent event) throws IOException {
+        try {
+            int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
+            Appointment selectedCustomerObj = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
 
-        int appointmentID = selectedCustomerObj.getAppointmentId();
-        int customerID = selectedCustomerObj.getCustomerId();
-        int userID = selectedCustomerObj.getUserId();
-        String title = titleTextField.getText();
-        String description = descriptionTextField.getText();
-        String location = locationTextField.getText();
-        String contact = selectedCustomerObj.getContact();
-        String type = selectApptTypeCombo.getValue();
-        String url = selectedCustomerObj.getUrl();
+            int appointmentID = selectedCustomerObj.getAppointmentId();
+            int customerID = selectedCustomerObj.getCustomerId();
+            int userID = selectedCustomerObj.getUserId();
+            String title = titleTextField.getText();
+            String description = descriptionTextField.getText();
+            String location = locationTextField.getText();
+            String contact = selectedCustomerObj.getContact();
+            String type = selectApptTypeCombo.getValue();
+            String url = selectedCustomerObj.getUrl();
         /*
         block below gets LocalDate and LocalTime from picker and combo boxes to create LocalDateTime objects, start and
         end, to then use them for appointment object creation
         */
-        LocalDate apptDate = appointmentDatePicker.getValue();
-        LocalTime startTime = startTimeCombo.getValue();
-        LocalTime endTime = endTimeCombo.getValue();
-        LocalDateTime start = LocalDateTime.of(apptDate, startTime);
-        LocalDateTime end = LocalDateTime.of(apptDate, endTime);
-        // gets the last four parameters from the user selected customer object for appointment object creation
-        LocalDateTime createDate = selectedCustomerObj.getCreateDate();
-        String createdBy = selectedCustomerObj.getCreatedBy();
-        LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
+            LocalDate apptDate = appointmentDatePicker.getValue();
+            LocalTime startTime = startTimeCombo.getValue();
+            LocalTime endTime = endTimeCombo.getValue();
+            LocalDateTime start = LocalDateTime.of(apptDate, startTime);
+            LocalDateTime end = LocalDateTime.of(apptDate, endTime);
+            // gets the last four parameters from the user selected customer object for appointment object creation
+            LocalDateTime createDate = selectedCustomerObj.getCreateDate();
+            String createdBy = selectedCustomerObj.getCreatedBy();
+            LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
-        Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+            Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+                    contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-        // maybe change DAO implementation to return boolean fpr the purpose of changing to next scene or not
-        AppointmentDaoImpl.updateAppointment(updatedApptObj);
+            // maybe change DAO implementation to return boolean fpr the purpose of changing to next scene or not
+            AppointmentDaoImpl.updateAppointment(updatedApptObj);
+            // below block changes screen to dashboard
+            Stage stage;
+            Parent root;
+            stage = (Stage) saveEditApptButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-        Stage stage;
-        Parent root;
-        stage = (Stage) saveEditApptButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        } catch (NullPointerException e) {
+            System.out.println("Null Pointer Ex: " + e.getMessage());
+            if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
+            else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
+            else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
+            else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            //System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
+            if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -19,10 +19,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.time.*;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class dashboardController implements Initializable {
@@ -111,15 +112,14 @@ public class dashboardController implements Initializable {
         ZonedDateTime zdtToday = todayDateTime.atZone(zoneID);
         LocalDate todayDate;
         todayDate = zdtToday.toLocalDate();
-        varDateLabel.setText(String.valueOf(todayDate));
 
+        varDateLabel.setText(String.valueOf(todayDate));
         // sets the toggle groups
         viewAllRadioButton.setToggleGroup(filterGroup);
         viewMonthRadioButton.setToggleGroup(filterGroup);
         viewWeekRadioButton.setToggleGroup(filterGroup);
         // sets default radio button selected to view all appts
         filterGroup.selectToggle(viewAllRadioButton);
-
         /*
         Below sets appointments table and columns
         */
@@ -144,22 +144,24 @@ public class dashboardController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //sets date picker date to user's now() date
         datePickerAppointments.setValue(LocalDate.now());
-        LocalDate selectedDate = datePickerAppointments.getValue();
+        if(viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
 
-        ObservableList<Appointment> aList = Appointment.getAllAppointments();
-        /*
-        Lambda expression compares list of appts start dates to user selected date month, and shows the ones that
-        are equal. This helps present filter logic in one section of the code.
-        */
-//        ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
-//        if(viewMonthRadioButton.isSelected()) {
-//            appointmentsTableView.setItems(fList);
-//        }
-        if(viewAllRadioButton.isSelected()) {
-            appointmentsTableView.setItems(Appointment.getAllAppointments());
-        }
+        List<Appointment> allAppts = Appointment.getAllAppointments();
+        // uses lambda to compare 2 appointment objects' LocalTime
+        allAppts.sort((Appointment a, Appointment b) -> a.getStart().toLocalTime().compareTo(b.getStart().toLocalTime()));
 
+        LocalTime soonest = allAppts.get(allAppts.size() -1).getStart().toLocalTime();
+//        LocalTime furthest = allAppts.get(0).getStart().toLocalTime();
+//        System.out.println("Max: " + soonest);
+//        System.out.println("Min " + furthest);
+        LocalTime currentTime = LocalTime.now();
+        long timeToAppt = ChronoUnit.MINUTES.between(soonest, currentTime);
+
+        if(timeToAppt > 0 && timeToAppt <= 15) {
+            System.out.println(timeToAppt);
+        } else System.out.println("You are in the clear!");
     }
 
     // list getters and setters

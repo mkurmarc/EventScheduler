@@ -65,8 +65,6 @@ public class Alerts {
     }
 
     public static void errorAppointment(int code) {
-//        textFieldError(textField);
-
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error adding appointment");
         alert.setHeaderText("Cannot add appointment");
