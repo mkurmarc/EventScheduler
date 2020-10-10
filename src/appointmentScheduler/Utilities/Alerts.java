@@ -4,11 +4,13 @@ package appointmentScheduler.Utilities;
     Marc Rios
     ID:
 */
+import appointmentScheduler.Model.Appointment;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.time.LocalTime;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Optional;
@@ -164,8 +166,9 @@ public class Alerts {
         }
     }
 
-    // add another parameter, 1 or 0, for english or spanish
     public static void loginError(int code, TextField textField, PasswordField passwordField) {
+        textFieldError(textField);
+        passwordFieldError(passwordField);
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Error");
         alert.setHeaderText("Cannot login");
@@ -203,7 +206,6 @@ public class Alerts {
         }
         alert.showAndWait();
     }
-
 
     public static void spanishLoginError(int code, TextField textField, PasswordField passwordField) {
         try {
@@ -254,7 +256,6 @@ public class Alerts {
             passwordField.setStyle("-fx-border-color: red");
         }
     }
-
 
     private static void textFieldError(TextField textField) {
         if (textField != null) {
@@ -352,6 +353,14 @@ public class Alerts {
             alert.showAndWait();
         }
 
+    }
+
+    public static void appointmentAlert(long timeToAppt) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Reminder");
+        alert.setHeaderText("Appointment will be starting soon");
+        alert.setContentText("Appointment will start in approximately " + timeToAppt + " minute(s)");
+        alert.show();
     }
 
 }

@@ -25,6 +25,7 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class dashboardController implements Initializable {
     private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
@@ -146,22 +147,30 @@ public class dashboardController implements Initializable {
         }
         //sets date picker date to user's now() date
         datePickerAppointments.setValue(LocalDate.now());
-        if(viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
+        if (viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
 
+        LocalDateTime currentDT = LocalDateTime.now();
         List<Appointment> allAppts = Appointment.getAllAppointments();
-        // uses lambda to compare 2 appointment objects' LocalTime
-        allAppts.sort((Appointment a, Appointment b) -> a.getStart().toLocalTime().compareTo(b.getStart().toLocalTime()));
-
-        LocalTime soonest = allAppts.get(allAppts.size() -1).getStart().toLocalTime();
-//        LocalTime furthest = allAppts.get(0).getStart().toLocalTime();
-//        System.out.println("Max: " + soonest);
-//        System.out.println("Min " + furthest);
-        LocalTime currentTime = LocalTime.now();
-        long timeToAppt = ChronoUnit.MINUTES.between(soonest, currentTime);
-
-        if(timeToAppt > 0 && timeToAppt <= 15) {
-            System.out.println(timeToAppt);
-        } else System.out.println("You are in the clear!");
+        /*
+         uses lambda to filter appt object's by checking if object's month  is equal to user's current month at login,
+         and if the object's LocalTime is after user's current time. The filtered results are put into a new list,
+         filteredList. The lambda expression saves a lot of coding time and space because using large for loop would be
+         the alternative.
+        */
+        List<Appointment> filteredList = allAppts
+                .stream()
+                .filter(a -> a.getStart().getMonth().equals(currentDT.getMonth()) && a.getStart().toLocalTime().isAfter(currentDT.toLocalTime()))
+                .collect(Collectors.toList());
+        /*
+         for loop goes through the filtered list to find the time in minutes between current time and appt time, and
+         if the time to appt is between 0 and 15 minutes, an alert informs the user.
+        */
+        for(int i=0; i < filteredList.size(); i++) {
+            long timeToAppt = ChronoUnit.MINUTES.between(currentDT.toLocalTime(), filteredList.get(i).getStart().toLocalTime());
+            if(timeToAppt > 0 && timeToAppt <= 15) {
+                Alerts.appointmentAlert(timeToAppt);
+            }
+        }
     }
 
     // list getters and setters
@@ -270,8 +279,12 @@ public class dashboardController implements Initializable {
         ObservableList<Appointment> aList = Appointment.getAllAppointments();
         if(viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
         if(viewMonthRadioButton.isSelected()) {
+        /*
+        Lambda expression filters the appointment list and compares each appt object's month to the user selected month,
+        and adds results to another list, fList. This helps present filter logic in one section of the code.
+        */
             ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
-            appointmentsTableView.setItems(fList);
+            appointmentsTableView.setItems(fList); // sets new list to table view
         }
 //        if(viewWeekRadioButton.isSelected()) {
 //
@@ -288,11 +301,11 @@ public class dashboardController implements Initializable {
         LocalDate selectedDate = datePickerAppointments.getValue();
         ObservableList<Appointment> aList = Appointment.getAllAppointments();
         /*
-        Lambda expression compares list of appts start dates to user selected date month, and shows the ones that
-        are equal. This helps present filter logic in one section of the code.
+        Lambda expression filters the appointment list and compares each appt object's month to the user selected month,
+        and adds results to another list, fList. This helps present filter logic in one section of the code.
         */
         ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
-        appointmentsTableView.setItems(fList);
+        appointmentsTableView.setItems(fList); // sets new list to table view
     }
 
     @FXML
