@@ -1,8 +1,12 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
+import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
+import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.Alerts;
 import javafx.event.ActionEvent;
@@ -64,6 +68,8 @@ public class allCustomersController implements Initializable {
 
         try {
             Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers());
+            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
+            City.setAllCities(CityDaoImpl.getAllCities());
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -135,7 +135,7 @@ public class Alerts {
                 break;
             }
             case 16: {
-                alert.setContentText("Description cannot be empty!");
+                alert.setContentText("Active option not selected! Select active(1) or not active(0).");
             }
             case 17: {
                 alert.setContentText("Appointment start time must be after 7:59 AM and before 4:45 PM!");

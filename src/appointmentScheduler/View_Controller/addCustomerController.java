@@ -2,6 +2,7 @@ package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.Model.Country;
 import appointmentScheduler.Model.Customer;
+import appointmentScheduler.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
@@ -68,21 +70,29 @@ public class addCustomerController implements Initializable {
     @FXML
     void saveAddCustomerButtonHandler(ActionEvent event) {
 
+        int customerID = 1;
         String customerFirstName = firstNameTextField.getText();
         String customerLastName = lastNameTextField.getText();
-        String customerName = customerFirstName + customerLastName;
+        String customerName = customerFirstName + " " + customerLastName;
+        byte active = activeComboBox.getValue().getActive();
+
         int addressId = 123; // make auto increment function and place here
-        String address = address1TextField.getText();
+        String address1 = address1TextField.getText();
         String address2 = address2TextField.getText();
-        int cityId = 45; // make auto increment function and place here
         String postalCode = postalCodeTextField.getText();
         String phone = phoneTextField.getText();
-        byte active = activeComboBox.getValue().getActive();
-        String createDate = "";
-        // below use User class when User class is integrated
-        String createdBy = "";
-        String lastUpdate = "";
-        String lastUpdatedBy = "";
+
+        int cityId = 45;
+        String cityName = cityTextField.getText();
+
+        int countryID = 1;
+        String countryName = countryCombo.getValue().getCountry();
+
+        // gets the last four parameters for all object creation in this handler
+        LocalDateTime createDate = LocalDateTime.now();
+        String createdBy = User.getUserList().get(0).getUserName();
+        LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdateBy = User.getUserList().get(0).getUserName();
 
         /*
         Customer(customerId, customerName, addressId, active, String createDate, String createdBy,
