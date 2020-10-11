@@ -11,10 +11,7 @@ import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -94,11 +91,30 @@ public class CustomerDaoImpl {
 
     }
 
-    public void updateCustomer(Customer customer) {
-        // update
+    public void updateCustomer(Customer customerParameter) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
+
+        String updateStatement = "UPDATE customer SET customerName =?, addressId =?, active =?, createDate =?, " +
+                "createdBy =?, lastUpdate =?, lastUpdateBy =? WHERE customerId =?;";
+
+        DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
+
+        // Values for the update statement are set below
+        ps.setString(1, customerParameter.getCustomerName());
+        ps.setInt(2, customerParameter.getAddressId());
+        ps.setByte(3, customerParameter.getActive());
+        ps.setTimestamp(4, Timestamp.valueOf(customerParameter.getCreateDate()));
+        ps.setString(5, customerParameter.getCreatedBy());
+        ps.setTimestamp(6, Timestamp.valueOf(customerParameter.getLastUpdate()));
+        ps.setString(7, customerParameter.getLastUpdateBy());
+        ps.setInt(8, customerParameter.getCustomerId());
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
     }
 
-    public static  void deleteCustomer(Customer customer) throws SQLException {
+    public static void deleteCustomer(Customer customer) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String deleteStatement = "DELETE FROM customer WHERE customerId = ?;";

@@ -115,7 +115,7 @@ public class AddressDaoImpl {
         DBConnection.closeConnection(); // close DB connection
     }
 
-    public void updateAddress(Address addressArgument) throws SQLException {
+    public static void updateAddress(Address addressParameter) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String updateStatement = "UPDATE appointment SET address =?, address2 =?, cityId =?, postalCode =?," +
@@ -125,16 +125,16 @@ public class AddressDaoImpl {
         PreparedStatement ps =  DBQuery.getPreparedStatement();
 
         // Values for the update statement are set below
-        ps.setString(1, addressArgument.getAddress());
-        ps.setString(2, addressArgument.getAddress2());
-        ps.setInt(3, addressArgument.getCityId());
-        ps.setString(4, addressArgument.getPostalCode());
-        ps.setString(5, addressArgument.getPhone());
-        ps.setTimestamp(6, Timestamp.valueOf(addressArgument.getCreateDate()));
-        ps.setString(7, addressArgument.getCreatedBy());
-        ps.setTimestamp(8, Timestamp.valueOf(addressArgument.getLastUpdate()));
-        ps.setString(9, addressArgument.getLastUpdateBy());
-        ps.setInt(10, addressArgument.getAddressId());
+        ps.setString(1, addressParameter.getAddress());
+        ps.setString(2, addressParameter.getAddress2());
+        ps.setInt(3, addressParameter.getCityId());
+        ps.setString(4, addressParameter.getPostalCode());
+        ps.setString(5, addressParameter.getPhone());
+        ps.setTimestamp(6, Timestamp.valueOf(addressParameter.getCreateDate()));
+        ps.setString(7, addressParameter.getCreatedBy());
+        ps.setTimestamp(8, Timestamp.valueOf(addressParameter.getLastUpdate()));
+        ps.setString(9, addressParameter.getLastUpdateBy());
+        ps.setInt(10, addressParameter.getAddressId());
 
         ps.execute(); // execute PreparedStatement
         DBConnection.closeConnection(); // close DB connection
