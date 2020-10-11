@@ -19,12 +19,11 @@ import java.util.ResourceBundle;
 public class Alerts {
 
     // Method creates error messages based of the code given and highlights error field in red
-    public static void errorCustomer(int code, TextField textField) {
-        textFieldError(textField);
+    public static void errorCustomer(int code) {
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error adding customer");
-        alert.setHeaderText("Cannot add customer");
+        alert.setTitle("Error adding/updating customer");
+        alert.setHeaderText("Cannot add/update customer");
         switch (code) {
             case 1: {
                 alert.setContentText("Field is empty!");
@@ -56,6 +55,10 @@ public class Alerts {
             }
             case 9: {
                 alert.setContentText("Active option must be selected!");
+                break;
+            }
+            case 10: {
+                alert.setContentText("Select a country!");
                 break;
             }
             default: {
@@ -112,7 +115,7 @@ public class Alerts {
                 break;
             }
             case 11: {
-                alert.setContentText("Address 1 field is too long");
+                alert.setContentText("Select a country!");
                 break;
             }
             case 12: {

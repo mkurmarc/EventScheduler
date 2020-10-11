@@ -118,8 +118,8 @@ public class AddressDaoImpl {
     public static void updateAddress(Address addressParameter) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String updateStatement = "UPDATE appointment SET address =?, address2 =?, cityId =?, postalCode =?," +
-                "phone =?, createDate =?, createdBy =?, lastUpdate =?, lastUpdateBy =? WHERE appointmentId =?;";
+        String updateStatement = "UPDATE address SET address =?, address2 =?, cityId =?, postalCode =?," +
+                "phone =?, createDate =?, createdBy =?, lastUpdate =?, lastUpdateBy =? WHERE addressId =?;";
 
         DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
         PreparedStatement ps =  DBQuery.getPreparedStatement();

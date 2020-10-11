@@ -2,6 +2,7 @@ package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
+import appointmentScheduler.Utilities.Alerts;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -144,49 +146,81 @@ public class editCustomerController implements Initializable {
 
     @FXML
     void saveEditCustomerButtonHandler(ActionEvent event) throws SQLException, IOException {
-        int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
-        Customer selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
-        // gets address obj from mySQL server
-        Address selectedAddressObj = AddressDaoImpl.getAddress(selectedCustomerObj.getAddressId());
+        try {
+            int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
+            Customer selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
+            // gets address obj from mySQL server
+            Address selectedAddressObj = AddressDaoImpl.getAddress(selectedCustomerObj.getAddressId());
 
+            // next few lines get data from user and from user selected customer object for creation of new customer object
+            int customerID = selectedCustomerObj.getCustomerId();
+            int cityID = selectedAddressObj.getCityId();
+            String customerName = firstNameTextField.getText() + " " + lastNameTextField.getText();
+            int addressID = selectedCustomerObj.getAddressId();
 
-        // next few lines get data from user and from user selected customer object for creation of new customer object
-        int customerID = selectedCustomerObj.getCustomerId();
-        String customerName = firstNameTextField.getText() + " " + lastNameTextField.getText();
-        int addressID = selectedCustomerObj.getAddressId();
-        Byte active = activeComboBox.getValue();
-        // next few lines get date from user for creation of new address object
-        String address1 = addressTextField.getText();
-        String address2 = addressTextField2.getText();
-        int cityID = selectedAddressObj.getCityId();
-        String postalCode = postalCodeTextField.getText();
-        String phoneNo = phoneTextField.getText();
-        // get city object
-        City selectedCityObj = CityDaoImpl.getCity(cityID);
-        String city = selectedCityObj.getCity();
-        int countryID = selectedCityObj.getCountryId();
-        // get country object
-        Country selectedCountryObj = CountryDaoImpl.getCountry(countryID);
-        String countryName = selectedCountryObj.getCountry();
-        // gets the last four parameters for all object creation in this handler
-        LocalDateTime createDate = selectedCustomerObj.getCreateDate();
-        String createdBy = selectedCustomerObj.getCreatedBy();
-        LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
+            // next few lines get date from user for creation of new address object
+            String address1 = addressTextField.getText();
+            String address2 = addressTextField2.getText();
+            String city = cityTextField.getText();
+            Country country = countryCombo.getValue();
+            String postalCode = postalCodeTextField.getText();
+            String phoneNo = phoneTextField.getText();
+            int countryID = country.getCountryId();
+            Byte active = activeComboBox.getValue();
+            // get city object using for loop
+//            City selectedCityObj = new City();
+//            for (int i=0; i < City.getAllCities().size(); i++) {
+//                if (City.getAllCities().get(i).getCountryId() == cityID) {
+//                    selectedCityObj = City.getAllCities().get(i);
+//                }
+//            }
+            
+//            // get country object using for loop
+//            Country selectedCountryObj = new Country();
+//            for (int i=0; i < Country.getAllCountries().size(); i++) {
+//                if (Country.getAllCountries().get(i).getCountryId() == countryID) {
+//                    selectedCountryObj = Country.getAllCountries().get(i);
+//                }
+//            }
 
-        Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
-                lastUpdate, lastUpdateBy);
+            // gets the last four parameters for all object creation in this handler
+            LocalDateTime createDate = selectedCustomerObj.getCreateDate();
+            String createdBy = selectedCustomerObj.getCreatedBy();
+            LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
-        // customer dao save here
+            // create objects for mySQL updates
+            Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
+                    lastUpdate, lastUpdateBy);
+            Address editedAddressObj = new Address(addressID, address1, address2, cityID, postalCode, phoneNo, createDate,
+                    createdBy, lastUpdate, lastUpdateBy);
+            City editedCityObj = new City(cityID, city, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
 
+            // customer dao update statement
+            CustomerDaoImpl.updateCustomer(editedCustomerObj);
+            // address dao update statement
+            AddressDaoImpl.updateAddress(editedAddressObj);
+            // city dao update statement
+            CityDaoImpl.updateCity(editedCityObj);
 
-        Stage stage;
-        Parent root;
-        stage = (Stage) saveEditCustomerButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            // below block changes screen to dashboard
+            Stage stage;
+            Parent root;
+            stage = (Stage) saveEditCustomerButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (NullPointerException e) {
+            System.out.println("Null Pointer Ex: " + e.getMessage());
+            if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
+            else if(activeComboBox.getValue() == null) Alerts.errorAppointment(9);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
     }
 }

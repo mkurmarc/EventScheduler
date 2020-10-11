@@ -37,14 +37,13 @@ public class CountryDaoImpl {
             int countryId = resultSet.getInt("countryId");
             String countryName = resultSet.getString("country");
             // getDate() retrieves date from db column. toLocalDate() converts it into LocalDate type
-            LocalDate date = resultSet.getDate("createDate").toLocalDate();
-            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
             // create each row into a country object, and then add it to the observable list
-            Country countryObject = new Country(countryId, countryName, date, time, createdBy, lastUpdate, lastUpdateBy);
+            Country countryObject = new Country(countryId, countryName, createDate, createdBy, lastUpdate, lastUpdateBy);
             selectAllCountries.add(countryObject); // add object to observable list
         }
         DBConnection.closeConnection(); // close DB connection
@@ -57,40 +56,30 @@ public class CountryDaoImpl {
 
         Country selectedCountry = new Country();
 
-        String selectStatement = "SELECT" + countryID + "FROM country";
-        DBQuery.setPreparedStatement(conn, selectStatement);
-        PreparedStatement prepStatement = DBQuery.getPreparedStatement();
+        String selectStatement = "SELECT * FROM country WHERE countryId =?;";
 
-        prepStatement.execute();
-        ResultSet resultSet = prepStatement.getResultSet();
+        DBQuery.setPreparedStatement(conn, selectStatement);
+        PreparedStatement ps = DBQuery.getPreparedStatement();
+
+        ps.setInt(1,countryID);
+
+        ps.execute();
+        ResultSet resultSet = ps.getResultSet();
 
         while (resultSet.next())
         {
             int countryId = resultSet.getInt("countryId");
             String country = resultSet.getString("country");
-            LocalDate date = resultSet.getDate("createDate").toLocalDate();
-            LocalTime time = resultSet.getTime("createDate").toLocalTime();
+            LocalDateTime createDate = resultSet.getTimestamp("createDate").toLocalDateTime();
             String createdBy = resultSet.getString("createdBy");
             LocalDateTime lastUpdate = resultSet.getTimestamp("lastUpdate").toLocalDateTime();
             String lastUpdateBy = resultSet.getString("lastUpdateBy");
 
-            selectedCountry = new Country(countryId, country, date, time, createdBy, lastUpdate, lastUpdateBy);
+            selectedCountry = new Country(countryID, country, createDate, createdBy, lastUpdate, lastUpdateBy);
         }
         DBConnection.closeConnection(); // close DB connection
 
         return selectedCountry;
-    }
-
-    public void insertCountry(Country country) {
-
-    }
-
-    public void updateCountry(Country country) {
-
-    }
-
-    public void deleteCountry(Country country) {
-
     }
 }
 /*

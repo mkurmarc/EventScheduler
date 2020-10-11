@@ -91,7 +91,7 @@ public class CustomerDaoImpl {
 
     }
 
-    public void updateCustomer(Customer customerParameter) throws SQLException {
+    public static void updateCustomer(Customer customerParameter) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String updateStatement = "UPDATE customer SET customerName =?, addressId =?, active =?, createDate =?, " +

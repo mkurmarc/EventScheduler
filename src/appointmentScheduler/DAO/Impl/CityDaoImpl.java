@@ -12,10 +12,7 @@ import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 
 public class CityDaoImpl {
@@ -85,8 +82,26 @@ public class CityDaoImpl {
         return cityObj;
     }
 
-    public void updateCity(City city) {
+    public static void updateCity(City city) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
 
+        String updateStatement = "UPDATE city SET city =?, countryId =?, createDate =?, createdBy =?, " +
+                "lastUpdate =?, lastUpdateBy =? WHERE cityId =?;";
+
+        DBQuery.setPreparedStatement(conn, updateStatement); // creates preparedStatement
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
+
+        // Values for the update statement are set below
+        ps.setString(1, city.getCity());
+        ps.setInt(2, city.getCountryId());
+        ps.setTimestamp(3, Timestamp.valueOf(city.getCreateDate()));
+        ps.setString(4, city.getCreatedBy());
+        ps.setTimestamp(5, Timestamp.valueOf(city.getLastUpdate()));
+        ps.setString(6, city.getLastUpdateBy());
+        ps.setInt(7, city.getCityId());
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
     }
 
     public void deleteCity(City city) {
