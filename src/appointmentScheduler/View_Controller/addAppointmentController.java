@@ -129,27 +129,7 @@ public class addAppointmentController implements Initializable {
             String createdBy = User.getUserList().get(0).getUserName();
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = User.getUserList().get(0).getUserName();
-/*
-        if (startTime.isBefore(openTime) || startTime.isAfter(closeTime.minusMinutes(15))) {
-            Alerts.errorAppointment(17, startTimeTextField);
-        }
-        if (endTime.isBefore(openTime) || endTime.isAfter(closeTime)) {
-            Alerts.errorAppointment(18, endTimeTextField);
-        }
-        if (title.equals("")) {
-            Alerts.errorAppointment(15, titleTextField);
-        }
-        if (description.equals("")) {
-            Alerts.errorAppointment(16, descriptionTextField);
-        }
-        if (title.length() > 50) {
-            Alerts.errorAppointment(7, titleTextField);
-        }
-        if (description.length() > 100) {
-            Alerts.errorAppointment(8, descriptionTextField);
-        }
 
- */
             Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
                     contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 

@@ -1,11 +1,10 @@
 package appointmentScheduler.View_Controller;
 
-import appointmentScheduler.DAO.Impl.AddressDaoImpl;
-import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.DAO.Impl.CityDaoImpl;
-import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
+import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
 import com.sun.xml.internal.bind.v2.model.core.ID;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
@@ -45,7 +45,7 @@ public class editCustomerController implements Initializable {
     private TextField postalCodeTextField;
 
     @FXML
-    private TextField countryTextField;
+    private ComboBox<Country> countryCombo;
 
     @FXML
     private TextField phoneTextField;
@@ -111,6 +111,9 @@ public class editCustomerController implements Initializable {
             lastName = fullName.substring(fullName.indexOf(" "), sizeFullName).trim();
         }
 
+        ObservableList<Byte> activeList = FXCollections.observableArrayList();
+        activeList.add((byte) 0);
+        activeList.add((byte) 1);
         // sets text fields from all 3 objects created
         firstNameTextField.setText(firstName);
         lastNameTextField.setText(lastName);
@@ -118,8 +121,10 @@ public class editCustomerController implements Initializable {
         addressTextField2.setText(selectedAddressObj.getAddress2());
         cityTextField.setText(selectedCityObj.getCity());
         postalCodeTextField.setText(selectedAddressObj.getPostalCode());
-        countryTextField.setText(selectedCountryObj.getCountry());
+        countryCombo.setItems(Country.getAllCountries());
+        countryCombo.setValue(selectedCountryObj);
         phoneTextField.setText(selectedAddressObj.getPhone());
+        activeComboBox.setItems(activeList);
         activeComboBox.setValue(selectedCustomerObj.getActive());
     }
 
@@ -139,14 +144,41 @@ public class editCustomerController implements Initializable {
 
     @FXML
     void saveEditCustomerButtonHandler(ActionEvent event) throws SQLException, IOException {
-        int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
-        Appointment selectedObject = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
+        int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
+        Customer selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
+        // gets address obj from mySQL server
+        Address selectedAddressObj = AddressDaoImpl.getAddress(selectedCustomerObj.getAddressId());
 
-//        int customerID = selectedObject.getCustomerId();
-//        int addressID =
-//        String title = firstNameTextField.getText() + " " + lastNameTextField.getText();
 
-        //AppointmentDaoImpl.updateAppointment(selectedObject); // updates database
+        // next few lines get data from user and from user selected customer object for creation of new customer object
+        int customerID = selectedCustomerObj.getCustomerId();
+        String customerName = firstNameTextField.getText() + " " + lastNameTextField.getText();
+        int addressID = selectedCustomerObj.getAddressId();
+        Byte active = activeComboBox.getValue();
+        // next few lines get date from user for creation of new address object
+        String address1 = addressTextField.getText();
+        String address2 = addressTextField2.getText();
+        int cityID = selectedAddressObj.getCityId();
+        String postalCode = postalCodeTextField.getText();
+        String phoneNo = phoneTextField.getText();
+        // get city object
+        City selectedCityObj = CityDaoImpl.getCity(cityID);
+        String city = selectedCityObj.getCity();
+        int countryID = selectedCityObj.getCountryId();
+        // get country object
+        Country selectedCountryObj = CountryDaoImpl.getCountry(countryID);
+        String countryName = selectedCountryObj.getCountry();
+        // gets the last four parameters for all object creation in this handler
+        LocalDateTime createDate = selectedCustomerObj.getCreateDate();
+        String createdBy = selectedCustomerObj.getCreatedBy();
+        LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
+
+        Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
+                lastUpdate, lastUpdateBy);
+
+        // customer dao save here
+
 
         Stage stage;
         Parent root;

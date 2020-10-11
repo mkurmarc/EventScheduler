@@ -1,15 +1,14 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.Model.Country;
+import appointmentScheduler.Model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,10 +18,6 @@ import java.util.ResourceBundle;
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class addCustomerController implements Initializable {
-
-    @FXML
-    private TextField phoneNumberTextField;
-
     @FXML
     private TextField firstNameTextField;
 
@@ -39,13 +34,16 @@ public class addCustomerController implements Initializable {
     private TextField cityTextField;
 
     @FXML
-    private TextField zipCodeTextField;
+    private TextField postalCodeTextField;
 
     @FXML
-    private Label companyNameLabel;
+    private ComboBox<Country> countryCombo;
 
     @FXML
-    private ChoiceBox<Byte> activeChoice;
+    private TextField phoneTextField;
+
+    @FXML
+    private ComboBox<Customer> activeComboBox;
 
     @FXML
     private Button saveAddCustomerButton;
@@ -77,9 +75,9 @@ public class addCustomerController implements Initializable {
         String address = address1TextField.getText();
         String address2 = address2TextField.getText();
         int cityId = 45; // make auto increment function and place here
-        String postalCode = zipCodeTextField.getText();
-        String phone = phoneNumberTextField.getText();
-        byte active = activeChoice.getValue();
+        String postalCode = postalCodeTextField.getText();
+        String phone = phoneTextField.getText();
+        byte active = activeComboBox.getValue().getActive();
         String createDate = "";
         // below use User class when User class is integrated
         String createdBy = "";

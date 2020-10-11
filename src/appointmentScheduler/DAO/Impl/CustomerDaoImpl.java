@@ -98,7 +98,7 @@ public class CustomerDaoImpl {
         // update
     }
 
-    public static void deleteCustomer(Customer customer) throws SQLException {
+    public static  void deleteCustomer(Customer customer) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
         String deleteStatement = "DELETE FROM customer WHERE customerId = ?;";

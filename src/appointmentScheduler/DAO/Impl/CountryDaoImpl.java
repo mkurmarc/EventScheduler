@@ -51,7 +51,7 @@ public class CountryDaoImpl {
         return selectAllCountries;
     }
 
-    public Country getCountry(int countryID) throws SQLException {
+    public static Country getCountry(int countryID) throws SQLException {
 
         Connection conn = DBConnection.startConnection(); // connect to DB
 
