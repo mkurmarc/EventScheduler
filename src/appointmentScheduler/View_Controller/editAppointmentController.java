@@ -118,6 +118,7 @@ public class editAppointmentController implements Initializable {
 
     @FXML
     void saveEditApptButtonHandler(ActionEvent event) throws IOException {
+        boolean noErrors = true;
         try {
             int indexOfSelectedObj = dashboardController.getIndexOfSelectedObj();
             Appointment selectedCustomerObj = Appointment.getAllAppointments().get(indexOfSelectedObj); // object from user selection
@@ -146,12 +147,44 @@ public class editAppointmentController implements Initializable {
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
+            // checks user inputs for errors
+            if(title.length() > 255) {
+                noErrors = false;
+                Alerts.errorAppointment(7);
+            }
+            if(title.isEmpty()) {
+                noErrors = false;
+                Alerts.errorAppointment(15);
+            }
+            if(description.length() > 300) {
+                noErrors = false;
+                Alerts.errorAppointment(8);
+            }
+            if(location.length() > 45) {
+                noErrors = false;
+                Alerts.errorAppointment(9);
+            }
+
             Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
                     contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-            // maybe change DAO implementation to return boolean fpr the purpose of changing to next scene or not
+            // updates appt in database
             AppointmentDaoImpl.updateAppointment(updatedApptObj);
-            // below block changes screen to dashboard
+        }
+        catch (NullPointerException e) {
+            if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
+            else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
+            else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
+            else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
+        }
+        catch (SQLIntegrityConstraintViolationException e) {
+            if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // below block changes screen to dashboard
+        if(!noErrors) {
             Stage stage;
             Parent root;
             stage = (Stage) saveEditApptButton.getScene().getWindow();
@@ -160,18 +193,6 @@ public class editAppointmentController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
-        } catch (NullPointerException e) {
-            System.out.println("Null Pointer Ex: " + e.getMessage());
-            if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
-            else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
-            else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
-            else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
-        } catch (SQLIntegrityConstraintViolationException e) {
-            //System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
-            if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -115,7 +115,7 @@ public class Alerts {
                 break;
             }
             case 9: {
-                alert.setContentText("First name field is too long!");
+                alert.setContentText("Location is too long!");
                 break;
             }
             case 10: {

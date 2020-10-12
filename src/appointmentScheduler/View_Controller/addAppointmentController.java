@@ -1,6 +1,7 @@
 package appointmentScheduler.View_Controller;
 
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
+import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Model.User;
@@ -103,12 +104,20 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     void saveAddApptButtonHandler(ActionEvent event) throws IOException {
+        boolean noErrors = true;
         // uses customer object to complete creation of appointment object
         try {
             Customer customerSelected = customerSearchCombo.getValue();
             int customerID = customerSelected.getCustomerId();
             int userID  = User.getUserList().get(0).getUserId();
-            int appointmentID = 123; // hard code because mySQL generates its own apptID
+
+            // appointment ID list is created, sorted, and address ID is created by adding 1 to last item on the list
+            ObservableList<Integer> apptIdList = FXCollections.observableArrayList();
+            for(int i = 0; i < Appointment.getAllAppointments().size(); i++) {
+                apptIdList.add(Appointment.getAllAppointments().get(i).getAppointmentId());
+            }
+            apptIdList = apptIdList.sorted();
+            int appointmentID = apptIdList.get(apptIdList.size() - 1) + 1;
 
             LocalDate apptDate = appointmentDatePicker.getValue();
             LocalTime startTime = startTimeCombo.getValue();
@@ -129,32 +138,48 @@ public class addAppointmentController implements Initializable {
             String createdBy = User.getUserList().get(0).getUserName();
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = User.getUserList().get(0).getUserName();
-
+            // checks user inputs for errors
+            if(title.length() > 255) {
+                noErrors = false;
+                Alerts.errorAppointment(7);
+            }
+            if(title.isEmpty()) {
+                noErrors = false;
+                Alerts.errorAppointment(15);
+            }
+            if(description.length() > 300) {
+                noErrors = false;
+                Alerts.errorAppointment(8);
+            }
+            if(location.length() > 45) {
+                noErrors = false;
+                Alerts.errorAppointment(9);
+            }
+            // appt object created from user input
             Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
                     contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
-
+            // creates new appt and adds it to database
             AppointmentDaoImpl.createAppointment(newApptObj);
-
-            Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-            Scene scene = new Scene(parent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();
-
-        } catch (NullPointerException e) {
-            //System.out.println("Null Pointer Ex: " + e.getMessage());
+        }
+        catch (NullPointerException e) {
             if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
             else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
             else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
             else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
         }
         catch (SQLIntegrityConstraintViolationException e) {
-            //System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
             if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
+        // below block changes screen to dashboard
+        if(!noErrors) {
+            Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+            Scene scene = new Scene(parent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        }
     }
 }

@@ -89,26 +89,26 @@ public class addCustomerController implements Initializable {
     void saveAddCustomerButtonHandler(ActionEvent event) throws IOException {
         boolean errorsPresent = false;
         try {
-            // customer ID list is created, sorted, and customer ID is created by adding 1 to the size of the list
+            // customer ID list is created, sorted, and customer ID is created by adding 1 to last item on the list
             ObservableList<Integer> customerIdList = FXCollections.observableArrayList();
             for(int i=0; i < Customer.getAllCustomers().size(); i++) {
                 customerIdList.add(Customer.getAllCustomers().get(i).getAddressId());
             }
             customerIdList = customerIdList.sorted();
-            int customerID = customerIdList.size() + 1;
+            int customerID = customerIdList.get(customerIdList.size() - 1) + 1;
 
             String customerFirstName = firstNameTextField.getText();
             String customerLastName = lastNameTextField.getText();
             String customerName = customerFirstName + " " + customerLastName;
             byte active = activeComboBox.getValue();
 
-            // address ID list is created, sorted, and address ID is created by adding 1 to the size of the list
+            // address ID list is created, sorted, and address ID is created by adding 1 to last item on the list
             ObservableList<Integer> addressIdList = FXCollections.observableArrayList();
             for(int i=0; i < Address.getAllAddresses().size(); i++) {
                 addressIdList.add(Address.getAllAddresses().get(i).getAddressId());
             }
             addressIdList = addressIdList.sorted();
-            int addressId = addressIdList.size() + 1;
+            int addressId = addressIdList.get(addressIdList.size() - 1) + 1;
 
             String address1 = address1TextField.getText();
             String address2 = address2TextField.getText();
@@ -125,7 +125,7 @@ public class addCustomerController implements Initializable {
                     found = true;
                 }
             }
-            if(!found) {
+            if(!found) { // maybe change logic for this if statement, look to other id creation logic
                 for(int i=0; i < City.getAllCities().size(); i++) {
                     if(City.getAllCities().get(i).getCityId() == cityId) {
                         cityId++;
