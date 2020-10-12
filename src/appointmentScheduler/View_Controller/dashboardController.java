@@ -159,14 +159,16 @@ public class dashboardController implements Initializable {
         */
         List<Appointment> filteredList = allAppts
                 .stream()
-                .filter(a -> a.getStart().getMonth().equals(currentDT.getMonth()) && a.getStart().toLocalTime().isAfter(currentDT.toLocalTime()))
+                .filter(a -> a.getStart().getMonth().equals(currentDT.getMonth()) &&
+                        a.getStart().toLocalTime().isAfter(currentDT.toLocalTime()))
                 .collect(Collectors.toList());
         /*
          for loop goes through the filtered list to find the time in minutes between current time and appt time, and
          if the time to appt is between 0 and 15 minutes, an alert informs the user.
         */
         for(int i=0; i < filteredList.size(); i++) {
-            long timeToAppt = ChronoUnit.MINUTES.between(currentDT.toLocalTime(), filteredList.get(i).getStart().toLocalTime());
+            long timeToAppt = ChronoUnit.MINUTES.between(currentDT.toLocalTime(),
+                    filteredList.get(i).getStart().toLocalTime());
             if(timeToAppt > 0 && timeToAppt <= 15) {
                 Alerts.appointmentAlert(timeToAppt);
             }
@@ -286,9 +288,32 @@ public class dashboardController implements Initializable {
             ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
             appointmentsTableView.setItems(fList); // sets new list to table view
         }
-//        if(viewWeekRadioButton.isSelected()) {
-//
-//        }
+        if(viewWeekRadioButton.isSelected()) {
+            ObservableList<Appointment> fList = FXCollections.observableArrayList();
+            for(int i=0; i < aList.size(); i++) {
+                Month monthSelected = selectedDate.getMonth();
+                Month apptMonth = aList.get(i).getStart().getMonth();
+                int selectedDayOfMonth = selectedDate.getDayOfMonth();
+                int apptDayOfMonth = aList.get(i).getStart().getDayOfMonth();
+
+                if(selectedDayOfMonth <= 7) {
+                    if(monthSelected.equals(apptMonth) && apptDayOfMonth <= 7) fList.add(aList.get(i));
+                }
+                if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 7 && selectedDayOfMonth <= 14) {
+                    if(apptDayOfMonth > 7 && apptDayOfMonth <= 14) fList.add(aList.get(i));
+                }
+                if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 14 && selectedDayOfMonth <= 21) {
+                    if(apptDayOfMonth > 14 && apptDayOfMonth <= 21) fList.add(aList.get(i));
+                }
+                if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 21 && selectedDayOfMonth <= 28) {
+                    if(apptDayOfMonth > 21 && apptDayOfMonth <= 28) fList.add(aList.get(i));
+                }
+                if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 28) {
+                    if(apptDayOfMonth > 28) fList.add(aList.get(i));
+                }
+            }
+            appointmentsTableView.setItems(fList); // sets new list to table view
+        }
     }
 
     @FXML
@@ -310,6 +335,31 @@ public class dashboardController implements Initializable {
 
     @FXML
     void viewWeekRadioButtonHandler(ActionEvent event) {
+        LocalDate selectedDate = datePickerAppointments.getValue();
+        ObservableList<Appointment> aList = Appointment.getAllAppointments();
+        ObservableList<Appointment> fList = FXCollections.observableArrayList();
+        for(int i=0; i < aList.size(); i++) {
+            Month monthSelected = selectedDate.getMonth();
+            Month apptMonth = aList.get(i).getStart().getMonth();
+            int selectedDayOfMonth = selectedDate.getDayOfMonth();
+            int apptDayOfMonth = aList.get(i).getStart().getDayOfMonth();
 
+            if(selectedDayOfMonth <= 7) {
+                if(monthSelected.equals(apptMonth) && apptDayOfMonth <= 7) fList.add(aList.get(i));
+            }
+            if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 7 && selectedDayOfMonth <= 14) {
+                if(apptDayOfMonth > 7 && apptDayOfMonth <= 14) fList.add(aList.get(i));
+            }
+            if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 14 && selectedDayOfMonth <= 21) {
+                if(apptDayOfMonth > 14 && apptDayOfMonth <= 21) fList.add(aList.get(i));
+            }
+            if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 21 && selectedDayOfMonth <= 28) {
+                if(apptDayOfMonth > 21 && apptDayOfMonth <= 28) fList.add(aList.get(i));
+            }
+            if(monthSelected.equals(apptMonth) && selectedDayOfMonth > 28) {
+                if(apptDayOfMonth > 28) fList.add(aList.get(i));
+            }
+        }
+        appointmentsTableView.setItems(fList); // sets new list to table view
     }
 }
