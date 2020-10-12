@@ -216,23 +216,26 @@ public class editCustomerController implements Initializable {
                 noErrors = false;
                 Alerts.errorCustomer(6);
             }
-            // create objects for mySQL updates
-            Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
-                    lastUpdate, lastUpdateBy);
-            Address editedAddressObj = new Address(addressID, address1, address2, cityID, postalCode, phoneNo, createDate,
-                    createdBy, lastUpdate, lastUpdateBy);
-            City editedCityObj = new City(cityID, city, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-            System.out.println("Saving to database...");
-            // city dao update statement
-            CityDaoImpl.updateCity(editedCityObj);
-            // address dao update statement
-            AddressDaoImpl.updateAddress(editedAddressObj);
-            // customer dao update statement
-            CustomerDaoImpl.updateCustomer(editedCustomerObj);
+            if(noErrors) {
+                // create objects for mySQL updates
+                Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
+                        lastUpdate, lastUpdateBy);
+                Address editedAddressObj = new Address(addressID, address1, address2, cityID, postalCode, phoneNo, createDate,
+                        createdBy, lastUpdate, lastUpdateBy);
+                City editedCityObj = new City(cityID, city, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
+
+                System.out.println("Saving to database...");
+                // city dao update statement
+                CityDaoImpl.updateCity(editedCityObj);
+                // address dao update statement
+                AddressDaoImpl.updateAddress(editedAddressObj);
+                // customer dao update statement
+                CustomerDaoImpl.updateCustomer(editedCustomerObj);
+            }
         }
         catch (NullPointerException e) {
-            System.out.println("Null Pointer Ex: " + e.getMessage());
+            noErrors = false;
             if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
             else if(activeComboBox.getValue() == null) Alerts.errorAppointment(9);
         }

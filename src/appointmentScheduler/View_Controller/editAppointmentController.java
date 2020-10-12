@@ -151,7 +151,38 @@ public class editAppointmentController implements Initializable {
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
+            // check if start/end times of user input do not interfere with the current start/end times
+            for(int i=0; i < Appointment.getAllAppointments().size(); i++) {
+                LocalTime existingStartTime = Appointment.getAllAppointments().get(i).getStartTime();
+                LocalTime existingEndTime = Appointment.getAllAppointments().get(i).getEndTime();
+                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(17);
+                }
+                else if(startTime.equals(existingStartTime) || startTime.equals(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(17);
+                }
+
+                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(18);
+                }
+                else if(endTime.equals(existingStartTime) || endTime.equals(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(18);
+                }
+            }
+
             // checks user inputs for errors
+            if(startTime.isAfter(endTime) || endTime.isBefore(startTime)) {
+                noErrors = false;
+                Alerts.errorAppointment(19);
+            }
+            if(startTime.equals(endTime)) {
+                noErrors = false;
+                Alerts.errorAppointment(20);
+            }
             if(title.length() > 255) {
                 noErrors = false;
                 Alerts.errorAppointment(7);
@@ -169,19 +200,23 @@ public class editAppointmentController implements Initializable {
                 Alerts.errorAppointment(9);
             }
 
-            Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                    contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+            if(noErrors) {
+                Appointment updatedApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+                        contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-            // updates appt in database
-            AppointmentDaoImpl.updateAppointment(updatedApptObj);
+                // updates appt in database
+                AppointmentDaoImpl.updateAppointment(updatedApptObj);
+            }
         }
         catch (NullPointerException e) {
+            noErrors = false;
             if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
             else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
             else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
             else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
         }
         catch (SQLIntegrityConstraintViolationException e) {
+            noErrors = false;
             if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
         }
         catch (SQLException e) {

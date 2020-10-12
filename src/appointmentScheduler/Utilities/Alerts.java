@@ -144,12 +144,25 @@ public class Alerts {
             }
             case 16: {
                 alert.setContentText("Active option not selected! Select active(1) or not active(0).");
+                break;
             }
             case 17: {
-                alert.setContentText("Appointment start time must be after 7:59 AM and before 4:45 PM!");
+                alert.setContentText("Appointment start time overlaps with an existing appointment time. Please change" +
+                        "selected start time!");
+                break;
             }
             case 18: {
-                alert.setContentText("Appointment end time after 7:59 AM and before 5:00 PM!");
+                alert.setContentText("Appointment end time overlaps with an existing appointment time. Please change" +
+                        "selected end time!");
+                break;
+            }
+            case 19: {
+                alert.setContentText("Start time cannot be after end time!");
+                break;
+            }
+            case 20: {
+                alert.setContentText("Start time and end time cannot be the same!");
+                break;
             }
             default: {
                 alert.setContentText("Unknown error!");
@@ -157,24 +170,6 @@ public class Alerts {
             }
         }
         alert.showAndWait();
-    }
-
-    public static void errorDateTimeAppt(int code, TextField textField, String parsedString) {
-        textFieldError(textField);
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error adding appointment");
-        alert.setHeaderText("Cannot add appointment");
-
-        switch (code) {
-            case 1: {
-                alert.setContentText(parsedString + "is not the correct format. Use format \"12:00\"");
-                break;
-            }
-            case 2: {
-                alert.setContentText("Field is empty!");
-                break;
-            }
-        }
     }
 
     public static void loginError(int code, TextField textField, PasswordField passwordField) {

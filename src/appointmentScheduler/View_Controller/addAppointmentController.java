@@ -127,17 +127,53 @@ public class addAppointmentController implements Initializable {
             String location = locationTextField.getText();
             String contact = " ";
             String url = " ";
-        /*
-        block below gets LocalDate and LocalTime from picker and combo boxed to create LocalDateTime objects, start and
-        end, to then use for appointment object creation
-        */
+            /*
+            block below gets LocalDate and LocalTime from picker and combo boxed to create LocalDateTime objects, start
+            and end, to then use for appointment object creation
+            */
             LocalDateTime start = LocalDateTime.of(apptDate, startTime);
             LocalDateTime end = LocalDateTime.of(apptDate, endTime);
             LocalDateTime createDate = LocalDateTime.now();
             String createdBy = User.getUserList().get(0).getUserName();
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = User.getUserList().get(0).getUserName();
+
+            // check if start/end times of user input do not interfere with the current start/end times
+            for(int i=0; i < Appointment.getAllAppointments().size(); i++) {
+                LocalTime existingStartTime = Appointment.getAllAppointments().get(i).getStartTime();
+                LocalTime existingEndTime = Appointment.getAllAppointments().get(i).getEndTime();
+                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(17);
+                    break;
+                }
+                else if(startTime.equals(existingStartTime) || startTime.equals(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(17);
+                    break;
+                }
+
+                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(18);
+                    break;
+                }
+                else if(endTime.equals(existingStartTime) || endTime.equals(existingEndTime)) {
+                    noErrors = false;
+                    Alerts.errorAppointment(18);
+                    break;
+                }
+            }
+
             // checks user inputs for errors
+            if(startTime.isAfter(endTime)) {
+                noErrors = false;
+                Alerts.errorAppointment(19);
+            }
+            if(startTime.equals(endTime)) {
+                noErrors = false;
+                Alerts.errorAppointment(20);
+            }
             if(title.length() > 255) {
                 noErrors = false;
                 Alerts.errorAppointment(7);
@@ -154,19 +190,24 @@ public class addAppointmentController implements Initializable {
                 noErrors = false;
                 Alerts.errorAppointment(9);
             }
-            // appt object created from user input
-            Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
-                    contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
-            // creates new appt and adds it to database
-            AppointmentDaoImpl.createAppointment(newApptObj);
+
+            if(noErrors) {
+                // appt object created from user input
+                Appointment newApptObj = new Appointment(appointmentID, customerID, userID, title, description, location,
+                        contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy);
+                // creates new appt and adds it to database
+                AppointmentDaoImpl.createAppointment(newApptObj);
+            }
         }
         catch (NullPointerException e) {
+            noErrors = false;
             if(customerSearchCombo.getValue() == null) Alerts.errorAppointment(2);
             else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
             else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
             else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
         }
         catch (SQLIntegrityConstraintViolationException e) {
+            noErrors = false;
             if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
         }
         catch (SQLException e) {

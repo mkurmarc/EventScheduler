@@ -203,7 +203,7 @@ public class addCustomerController implements Initializable {
             }
         }
         catch (NullPointerException e) {
-            System.out.println("Null Pointer Ex: " + e.getMessage());
+            errorsPresent = true;
             if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
             if(activeComboBox.getValue() == null) Alerts.errorCustomer(9);
         }
