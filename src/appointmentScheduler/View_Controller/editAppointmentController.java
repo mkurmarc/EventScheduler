@@ -1,9 +1,13 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
+import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
 import appointmentScheduler.Main;
+import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.Alerts;
 import appointmentScheduler.Utilities.TimeClass;
@@ -184,7 +188,7 @@ public class editAppointmentController implements Initializable {
             e.printStackTrace();
         }
         // below block changes screen to dashboard
-        if(!noErrors) {
+        if(noErrors) {
             Stage stage;
             Parent root;
             stage = (Stage) saveEditApptButton.getScene().getWindow();

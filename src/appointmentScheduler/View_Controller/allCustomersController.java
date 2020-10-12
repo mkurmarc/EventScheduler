@@ -68,8 +68,6 @@ public class allCustomersController implements Initializable {
 
         try {
             Customer.setAllCustomers(CustomerDaoImpl.getAllCustomers());
-            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
-            City.setAllCities(CityDaoImpl.getAllCities());
         } catch (SQLException e) {
             e.printStackTrace();
         }

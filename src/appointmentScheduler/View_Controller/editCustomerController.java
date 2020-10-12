@@ -64,6 +64,13 @@ public class editCustomerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            City.setAllCities(CityDaoImpl.getAllCities());
+            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
         Customer selectedCustomerObj = new Customer();
         selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
@@ -146,6 +153,7 @@ public class editCustomerController implements Initializable {
 
     @FXML
     void saveEditCustomerButtonHandler(ActionEvent event) throws SQLException, IOException {
+        boolean noErrors = true;
         try {
             int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
             Customer selectedCustomerObj = Customer.getAllCustomers().get(indexOfSelectedObj);
@@ -179,6 +187,35 @@ public class editCustomerController implements Initializable {
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
+            // code block alerts users if inputs incorrect
+            if(firstNameTextField.getText().isEmpty()|| lastNameTextField.getText().isEmpty()) {
+                noErrors = false;
+                Alerts.errorCustomer(11);
+            }
+            if(customerName.length() > 45) {
+                noErrors = false;
+                Alerts.errorCustomer(2);
+            }
+            if(address1.length() > 50) {
+                noErrors = false;
+                Alerts.errorCustomer(4);
+            }
+            if(address2.length() > 50) {
+                noErrors = false;
+                Alerts.errorCustomer(5);
+            }
+            if(postalCode.length() > 10) {
+                noErrors = false;
+                Alerts.errorCustomer(3);
+            }
+            if(phoneNo.length() > 20) {
+                noErrors = false;
+                Alerts.errorCustomer(12);
+            }
+            if(city.length() > 50) {
+                noErrors = false;
+                Alerts.errorCustomer(6);
+            }
             // create objects for mySQL updates
             Customer editedCustomerObj = new Customer(customerID, customerName, addressID, active, createDate, createdBy,
                     lastUpdate, lastUpdateBy);
@@ -186,16 +223,24 @@ public class editCustomerController implements Initializable {
                     createdBy, lastUpdate, lastUpdateBy);
             City editedCityObj = new City(cityID, city, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
 
-            // customer dao update statement
-            CustomerDaoImpl.updateCustomer(editedCustomerObj);
-            // address dao update statement
-            AddressDaoImpl.updateAddress(editedAddressObj);
+            System.out.println("Saving to database...");
             // city dao update statement
             CityDaoImpl.updateCity(editedCityObj);
-
-            System.out.println("Saving to database...");
-
-            // below block changes screen to dashboard
+            // address dao update statement
+            AddressDaoImpl.updateAddress(editedAddressObj);
+            // customer dao update statement
+            CustomerDaoImpl.updateCustomer(editedCustomerObj);
+        }
+        catch (NullPointerException e) {
+            System.out.println("Null Pointer Ex: " + e.getMessage());
+            if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
+            else if(activeComboBox.getValue() == null) Alerts.errorAppointment(9);
+        }
+        catch (SQLException e) {
+                e.printStackTrace();
+        }
+        // below block changes screen to dashboard
+        if(noErrors) {
             Stage stage;
             Parent root;
             stage = (Stage) saveEditCustomerButton.getScene().getWindow();
@@ -204,17 +249,6 @@ public class editCustomerController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
-        } catch (NullPointerException e) {
-            System.out.println("Null Pointer Ex: " + e.getMessage());
-            if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
-            else if(activeComboBox.getValue() == null) Alerts.errorAppointment(9);
-        }
-        catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
-        }
-        catch (SQLException e) {
-                e.printStackTrace();
         }
     }
 }

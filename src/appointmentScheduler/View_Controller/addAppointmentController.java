@@ -1,10 +1,9 @@
 package appointmentScheduler.View_Controller;
 
+import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.Model.Address;
-import appointmentScheduler.Model.Appointment;
-import appointmentScheduler.Model.Customer;
-import appointmentScheduler.Model.User;
+import appointmentScheduler.DAO.Impl.CityDaoImpl;
+import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -174,7 +173,7 @@ public class addAppointmentController implements Initializable {
             e.printStackTrace();
         }
         // below block changes screen to dashboard
-        if(!noErrors) {
+        if(noErrors) {
             Parent parent = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
             Scene scene = new Scene(parent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

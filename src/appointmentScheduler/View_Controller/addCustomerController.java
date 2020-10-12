@@ -63,6 +63,13 @@ public class addCustomerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            City.setAllCities(CityDaoImpl.getAllCities());
+            Address.setAllAddresses(AddressDaoImpl.getAllAddresses());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         ObservableList<Byte> activeList = FXCollections.observableArrayList();
         activeList.add((byte) 0);
         activeList.add((byte) 1);
@@ -175,6 +182,7 @@ public class addCustomerController implements Initializable {
              */
             if(!found && !errorsPresent) {
                 City addCity = new City(cityId, cityName, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
+                System.out.println("Saving to database...");
                 CityDaoImpl.addCity(addCity);
                 Address addAddress = new Address(addressId, address1, address2, cityId, postalCode, phone, createDate, createdBy,
                         lastUpdate, lastUpdateBy);
@@ -187,13 +195,14 @@ public class addCustomerController implements Initializable {
             else if (found && !errorsPresent) {
                 Address addAddress = new Address(addressId, address1, address2, existingCity.getCityId(), postalCode,
                         phone, createDate, createdBy, lastUpdate, lastUpdateBy);
+                System.out.println("Saving to database...");
                 AddressDaoImpl.addAddress(addAddress);
                 Customer addCustomer = new Customer(customerID, customerName, addressId, active, createDate, createdBy,
                         lastUpdate, lastUpdateBy);
                 CustomerDaoImpl.addCustomer(addCustomer);
             }
-
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             System.out.println("Null Pointer Ex: " + e.getMessage());
             if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
             if(activeComboBox.getValue() == null) Alerts.errorCustomer(9);
