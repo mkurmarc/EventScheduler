@@ -87,8 +87,27 @@ public class CustomerDaoImpl {
         return customerObject;
     }
 
-    public void addCustomer(Customer customer) {
+    public static void addCustomer(Customer customer) throws SQLException {
+        Connection conn = DBConnection.startConnection(); // connect to DB
 
+        String addCustomer = "INSERT INTO customer(customerId, customerName, addressId, active, createDate, createdBy," +
+                "lastUpdate, lastUpdateBy) VALUES(?,?,?,?,?,?,?,?);";
+
+        DBQuery.setPreparedStatement(conn, addCustomer); // creates preparedStatement
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
+
+        // Values for the addCustomer statement are set below
+        ps.setInt(1, customer.getCustomerId());
+        ps.setString(2, customer.getCustomerName());
+        ps.setInt(3, customer.getAddressId());
+        ps.setByte(4, customer.getActive());
+        ps.setTimestamp(5, Timestamp.valueOf(customer.getCreateDate()));
+        ps.setString(6, customer.getCreatedBy());
+        ps.setTimestamp(7, Timestamp.valueOf(customer.getLastUpdate()));
+        ps.setString(8, customer.getLastUpdateBy());
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
     }
 
     public static void updateCustomer(Customer customerParameter) throws SQLException {

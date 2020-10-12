@@ -135,14 +135,7 @@
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin></Label>
-                  <ComboBox fx:id="activeComboBox" prefHeight="25.0" prefWidth="84.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="0" />
-                           <String fx:value="1" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
+                  <ComboBox fx:id="activeComboBox" prefHeight="25.0" prefWidth="84.0"/>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0" />

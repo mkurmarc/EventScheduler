@@ -104,6 +104,28 @@ public class CityDaoImpl {
         DBConnection.closeConnection(); // close DB connection
     }
 
+    public static void addCity(City city) throws SQLException{
+        Connection conn = DBConnection.startConnection(); // connect to DB
+
+        String addCity = "INSERT INTO city(cityId, city, countryId, createDate, createdBy," +
+                "lastUpdate, lastUpdateBy) VALUES(?,?,?,?,?,?,?);";
+
+        DBQuery.setPreparedStatement(conn, addCity); // creates preparedStatement
+        PreparedStatement ps =  DBQuery.getPreparedStatement();
+
+        // Values for the add city statement are set below
+        ps.setInt(1, city.getCityId());
+        ps.setString(2, city.getCity());
+        ps.setInt(3, city.getCountryId());
+        ps.setTimestamp(4, Timestamp.valueOf(city.getCreateDate()));
+        ps.setString(5, city.getCreatedBy());
+        ps.setTimestamp(6, Timestamp.valueOf(city.getLastUpdate()));
+        ps.setString(7, city.getLastUpdateBy());
+
+        ps.execute(); // execute PreparedStatement
+        DBConnection.closeConnection(); // close DB connection
+    }
+
     public void deleteCity(City city) {
 
     }

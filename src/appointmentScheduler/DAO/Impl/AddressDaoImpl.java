@@ -89,10 +89,10 @@ public class AddressDaoImpl {
         return addressObject;
     }
 
-    public void createAddress(Address address) throws SQLException {
+    public static void addAddress(Address address) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 
-        String insertStatement = "INSERT INTO address (addressId, address, address2, cityId, postalCode, phone, " +
+        String insertStatement = "INSERT INTO address(addressId, address, address2, cityId, postalCode, phone, " +
                 "createDate, createdBy, lastUpdate, lastUpdateBy) VALUES(?,?,?,?,?,?,?,?,?,?);";
 
         DBQuery.setPreparedStatement(conn, insertStatement); // creates preparedStatement

@@ -147,10 +147,12 @@ public class addAppointmentController implements Initializable {
             else if(appointmentDatePicker.getValue() == null) Alerts.errorAppointment(3);
             else if(startTimeCombo.getValue() == null) Alerts.errorAppointment(5);
             else if(endTimeCombo.getValue() == null) Alerts.errorAppointment(6);
-        } catch (SQLIntegrityConstraintViolationException e) {
+        }
+        catch (SQLIntegrityConstraintViolationException e) {
             //System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage());
             if (selectApptTypeCombo.getValue() == null) Alerts.errorAppointment(4);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
 

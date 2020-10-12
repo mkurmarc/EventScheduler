@@ -30,11 +30,11 @@ public class Alerts {
                 break;
             }
             case 2: {
-                alert.setContentText("First name field is too long!");
+                alert.setContentText("Full name is too long. Maximum 45 characters.");
                 break;
             }
             case 3: {
-                alert.setContentText("Last name field is too long!");
+                alert.setContentText("Zip code is too long. Maximum 10 characters.");
                 break;
             }
             case 4: {
@@ -59,6 +59,14 @@ public class Alerts {
             }
             case 10: {
                 alert.setContentText("Select a country!");
+                break;
+            }
+            case 11: {
+                alert.setContentText("Name fields cannot be empty!");
+                break;
+            }
+            case 12: {
+                alert.setContentText("Phone number too long. Maximum 20 characters.");
                 break;
             }
             default: {
