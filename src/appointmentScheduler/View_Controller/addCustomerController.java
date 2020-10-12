@@ -86,43 +86,48 @@ public class addCustomerController implements Initializable {
     }
 
     @FXML
-    void saveAddCustomerButtonHandler(ActionEvent event) {
-        boolean noErrors = true;
+    void saveAddCustomerButtonHandler(ActionEvent event) throws IOException {
         try {
-            int customerID = 0;
+            ObservableList<Integer> customerIdList = FXCollections.observableArrayList();
             for(int i=0; i < Customer.getAllCustomers().size(); i++) {
-                if(Customer.getAllCustomers().get(i).getAddressId() == customerID) {
-                    customerID++;
-                } else break;
+                customerIdList.add(Customer.getAllCustomers().get(i).getAddressId());
             }
+            customerIdList = customerIdList.sorted();
+            int customerID = customerIdList.size() + 1;
+
+            System.out.println("customer ID: " + customerID);
+            System.out.println("customer list size: " + Customer.getAllCustomers().size());
 
             String customerFirstName = firstNameTextField.getText();
             String customerLastName = lastNameTextField.getText();
             String customerName = customerFirstName + " " + customerLastName;
             byte active = activeComboBox.getValue();
 
-            int addressId = 1; // for loop creates a unique addressId by checking the address list for duplicate id number
+            // address ID list is created, sorted, and address ID is created by adding 1 to the size of the list
+            ObservableList<Integer> addressIdList = FXCollections.observableArrayList();
             for(int i=0; i < Address.getAllAddresses().size(); i++) {
-                if(Address.getAllAddresses().get(i).getAddressId() == addressId) {
-                    addressId++;
-                } else break;
+                addressIdList.add(Address.getAllAddresses().get(i).getAddressId());
             }
+            addressIdList = addressIdList.sorted();
+            int addressId = addressIdList.size() + 1;
+            System.out.println("address ID list size: " + addressIdList.size());
 
             String address1 = address1TextField.getText();
             String address2 = address2TextField.getText();
             String postalCode = postalCodeTextField.getText();
             String phone = phoneTextField.getText();
 
+
             int cityId = 1;
             boolean found = false;
+            City existingCity = new City();
             String cityName = cityTextField.getText();
             for(int i=0; i < City.getAllCities().size(); i++) {
                 if(cityName.equals(City.getAllCities().get(i).getCity())) {
-                    cityId = City.getAllCities().get(i).getCityId();
+                    existingCity = City.getAllCities().get(i);
                     found = true;
                 }
             }
-
             if(!found) {
                 for(int i=0; i < City.getAllCities().size(); i++) {
                     if(City.getAllCities().get(i).getCityId() == cityId) {
@@ -141,61 +146,56 @@ public class addCustomerController implements Initializable {
             // block alerts users if inputs incorrect
             if(customerFirstName == null || customerLastName == null) {
                 Alerts.errorCustomer(11);
-                noErrors = false;
             }
             if(customerName.length() > 45) {
                 Alerts.errorCustomer(2);
-                noErrors = false;
             }
             if(address1.length() > 50) {
                 Alerts.errorCustomer(4);
-                noErrors = false;
             }
             if(address2.length() > 50) {
                 Alerts.errorCustomer(5);
-                noErrors = false;
             }
             if(postalCode.length() > 10) {
                 Alerts.errorCustomer(3);
-                noErrors = false;
             }
             if(phone.length() > 20) {
                 Alerts.errorCustomer(12);
-                noErrors = false;
             }
             if(cityName.length() > 50) {
                 Alerts.errorCustomer(6);
-                noErrors = false;
+            }
+            // if the city object already exists in the all city list, then this creates a new city object and adds it to DB
+            if(!found) {
+                City addCity = new City(cityId, cityName, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
+                CityDaoImpl.addCity(addCity);
+                Address addAddress = new Address(addressId, address1, address2, cityId, postalCode, phone, createDate, createdBy,
+                        lastUpdate, lastUpdateBy);
+                AddressDaoImpl.addAddress(addAddress);
+            }
+            // if city object found on list, then uses existing city object
+            else {
+                Address addAddress = new Address(addressId, address1, address2, existingCity.getCityId(), postalCode,
+                        phone, createDate, createdBy, lastUpdate, lastUpdateBy);
+                AddressDaoImpl.addAddress(addAddress);
             }
 
-            City addCity = new City(cityId, cityName, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
-            Address addAddress = new Address(addressId, address1, address2, cityId, postalCode, phone, createDate, createdBy,
-                    lastUpdate, lastUpdateBy);
             Customer addCustomer = new Customer(customerID, customerName, addressId, active, createDate, createdBy,
                     lastUpdate, lastUpdateBy);
-
-            CityDaoImpl.addCity(addCity);
-            AddressDaoImpl.addAddress(addAddress);
             CustomerDaoImpl.addCustomer(addCustomer);
-
-            if(!noErrors) {
-                Parent parent = FXMLLoader.load(getClass().getResource("allCustomers.fxml"));
-                Scene scene = new Scene(parent);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.show();
-            }
 
         } catch (NullPointerException e) {
             System.out.println("Null Pointer Ex: " + e.getMessage());
             if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
             if(activeComboBox.getValue() == null) Alerts.errorCustomer(9);
         }
-//        catch (SQLIntegrityConstraintViolationException e) {
-//            System.out.println("SQLIntegrityConstraintViolationException" + e.getMessage() + e.getLocalizedMessage());
-//        }
-        catch (SQLException | IOException e) {
+        catch (SQLException e) {
             e.printStackTrace();
         }
+        Parent parent = FXMLLoader.load(getClass().getResource("allCustomers.fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 }
