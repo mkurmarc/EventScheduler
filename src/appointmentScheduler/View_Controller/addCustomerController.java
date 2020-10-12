@@ -77,7 +77,7 @@ public class addCustomerController implements Initializable {
             Stage stage;
             Parent root;
             stage = (Stage) cancelAddCustomerButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -87,16 +87,15 @@ public class addCustomerController implements Initializable {
 
     @FXML
     void saveAddCustomerButtonHandler(ActionEvent event) throws IOException {
+        boolean errorsPresent = false;
         try {
+            // customer ID list is created, sorted, and customer ID is created by adding 1 to the size of the list
             ObservableList<Integer> customerIdList = FXCollections.observableArrayList();
             for(int i=0; i < Customer.getAllCustomers().size(); i++) {
                 customerIdList.add(Customer.getAllCustomers().get(i).getAddressId());
             }
             customerIdList = customerIdList.sorted();
             int customerID = customerIdList.size() + 1;
-
-            System.out.println("customer ID: " + customerID);
-            System.out.println("customer list size: " + Customer.getAllCustomers().size());
 
             String customerFirstName = firstNameTextField.getText();
             String customerLastName = lastNameTextField.getText();
@@ -110,13 +109,11 @@ public class addCustomerController implements Initializable {
             }
             addressIdList = addressIdList.sorted();
             int addressId = addressIdList.size() + 1;
-            System.out.println("address ID list size: " + addressIdList.size());
 
             String address1 = address1TextField.getText();
             String address2 = address2TextField.getText();
             String postalCode = postalCodeTextField.getText();
             String phone = phoneTextField.getText();
-
 
             int cityId = 1;
             boolean found = false;
@@ -144,45 +141,57 @@ public class addCustomerController implements Initializable {
             String lastUpdateBy = User.getUserList().get(0).getUserName();
 
             // block alerts users if inputs incorrect
-            if(customerFirstName == null || customerLastName == null) {
+            if(customerFirstName.isEmpty()|| customerLastName.isEmpty()) {
+                errorsPresent = true;
                 Alerts.errorCustomer(11);
             }
             if(customerName.length() > 45) {
+                errorsPresent = true;
                 Alerts.errorCustomer(2);
             }
             if(address1.length() > 50) {
+                errorsPresent = true;
                 Alerts.errorCustomer(4);
             }
             if(address2.length() > 50) {
+                errorsPresent = true;
                 Alerts.errorCustomer(5);
             }
             if(postalCode.length() > 10) {
+                errorsPresent = true;
                 Alerts.errorCustomer(3);
             }
             if(phone.length() > 20) {
+                errorsPresent = true;
                 Alerts.errorCustomer(12);
             }
             if(cityName.length() > 50) {
+                errorsPresent = true;
                 Alerts.errorCustomer(6);
             }
-            // if the city object already exists in the all city list, then this creates a new city object and adds it to DB
-            if(!found) {
+            /*
+            if the city object already exists in the all city list and no errors present, then this creates a new city
+            object and adds it to DB
+             */
+            if(!found && !errorsPresent) {
                 City addCity = new City(cityId, cityName, countryID, createDate, createdBy, lastUpdate, lastUpdateBy);
                 CityDaoImpl.addCity(addCity);
                 Address addAddress = new Address(addressId, address1, address2, cityId, postalCode, phone, createDate, createdBy,
                         lastUpdate, lastUpdateBy);
                 AddressDaoImpl.addAddress(addAddress);
+                Customer addCustomer = new Customer(customerID, customerName, addressId, active, createDate, createdBy,
+                        lastUpdate, lastUpdateBy);
+                CustomerDaoImpl.addCustomer(addCustomer);
             }
-            // if city object found on list, then uses existing city object
-            else {
+            // if city object found on list and no errors present, then uses existing city object
+            else if (found && !errorsPresent) {
                 Address addAddress = new Address(addressId, address1, address2, existingCity.getCityId(), postalCode,
                         phone, createDate, createdBy, lastUpdate, lastUpdateBy);
                 AddressDaoImpl.addAddress(addAddress);
+                Customer addCustomer = new Customer(customerID, customerName, addressId, active, createDate, createdBy,
+                        lastUpdate, lastUpdateBy);
+                CustomerDaoImpl.addCustomer(addCustomer);
             }
-
-            Customer addCustomer = new Customer(customerID, customerName, addressId, active, createDate, createdBy,
-                    lastUpdate, lastUpdateBy);
-            CustomerDaoImpl.addCustomer(addCustomer);
 
         } catch (NullPointerException e) {
             System.out.println("Null Pointer Ex: " + e.getMessage());
@@ -192,10 +201,13 @@ public class addCustomerController implements Initializable {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        Parent parent = FXMLLoader.load(getClass().getResource("allCustomers.fxml"));
-        Scene scene = new Scene(parent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        // changes scene if no errors present
+        if(!errorsPresent) {
+            Parent parent = FXMLLoader.load(getClass().getResource("allCustomers.fxml"));
+            Scene scene = new Scene(parent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        }
     }
 }

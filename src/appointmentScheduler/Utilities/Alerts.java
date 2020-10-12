@@ -301,7 +301,7 @@ public class Alerts {
         }
         if (code == 4) {
             alert.setTitle("Delete");
-            alert.setHeaderText("Deleting this customer will delete associated appointments." +
+            alert.setHeaderText("Deleting this customer will delete associated appointments. " +
                     "Are you sure you want to delete this customer?");
             alert.setContentText("Click ok to confirm");
             Optional<ButtonType> result = alert.showAndWait();
