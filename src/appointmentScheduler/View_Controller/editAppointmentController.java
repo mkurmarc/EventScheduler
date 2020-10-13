@@ -153,22 +153,31 @@ public class editAppointmentController implements Initializable {
 
             // check if start/end times of user input do not interfere with the current start/end times
             for(int i=0; i < Appointment.getAllAppointments().size(); i++) {
+                LocalDate existingDate = Appointment.getAllAppointments().get(i).getDate();
                 LocalTime existingStartTime = Appointment.getAllAppointments().get(i).getStartTime();
                 LocalTime existingEndTime = Appointment.getAllAppointments().get(i).getEndTime();
-                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)) {
+                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)
+                        && !Appointment.getAllAppointments().get(i).equals(selectedCustomerObj)
+                        && apptDate.equals(existingDate)) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
                 }
-                else if(startTime.equals(existingStartTime) || startTime.equals(existingEndTime)) {
+                else if(startTime.equals(existingStartTime) || startTime.equals(existingEndTime)
+                        && !Appointment.getAllAppointments().get(i).equals(selectedCustomerObj)
+                        && apptDate.equals(existingDate)) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
                 }
 
-                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)) {
+                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)
+                        && !Appointment.getAllAppointments().get(i).equals(selectedCustomerObj)
+                        && apptDate.equals(existingDate)) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
                 }
-                else if(endTime.equals(existingStartTime) || endTime.equals(existingEndTime)) {
+                else if(endTime.equals(existingStartTime) || endTime.equals(existingEndTime)
+                        && !Appointment.getAllAppointments().get(i).equals(selectedCustomerObj)
+                        && apptDate.equals(existingDate)) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
                 }
