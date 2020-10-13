@@ -13,9 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -62,18 +66,6 @@ public class loginScreenController implements Initializable {
         String password = loginPasswordField.getText();
         // error checks and  messages if language is english default
         if (!Locale.getDefault().getLanguage().equals("es")) {
-//            if (userName == null) {
-//                Alerts.loginError(1, loginUsernameTextField, loginPasswordField);
-//            }
-//            if (password == null) {
-//                Alerts.loginError(2, loginUsernameTextField, loginPasswordField);
-//            }
-//            if (userName.isEmpty() && userName.length() > 20) {
-//                Alerts.loginError(3, loginUsernameTextField, loginPasswordField);
-//            }
-//            if (password != null && password.length() > 20) {
-//                Alerts.loginError(4, loginUsernameTextField, loginPasswordField);
-//            }
             if (!checkLoginCredentials(userName, password)) {
                 Alerts.loginError(5, loginUsernameTextField, loginPasswordField);
             }
@@ -81,18 +73,6 @@ public class loginScreenController implements Initializable {
 
         // error checks and messages if language is spanish default
         if (Locale.getDefault().getLanguage().equals("es")) {
-//            if (userName == null) {
-//                Alerts.spanishLoginError(1,loginUsernameTextField,loginPasswordField);
-//            }
-//            if (password == null) {
-//                Alerts.spanishLoginError(2, loginUsernameTextField, loginPasswordField);
-//            }
-//            if (userName != null && userName.length() > 20) {
-//                Alerts.spanishLoginError(3, loginUsernameTextField, loginPasswordField);
-//            }
-//            if (password != null && password.length() > 20) {
-//                Alerts.spanishLoginError(4, loginUsernameTextField, loginPasswordField);
-//            }
             if (!checkLoginCredentials(userName, password)) {
                 Alerts.spanishLoginError(5,loginUsernameTextField,loginPasswordField);
             }
@@ -108,6 +88,19 @@ public class loginScreenController implements Initializable {
             Scene scene = new Scene(root);
             stageDashboard.setScene(scene);
             stageDashboard.show();
+
+            String filename = "src/appointmentScheduler/Files/log_file.txt", item;
+            FileWriter fwriter = new FileWriter(filename, true);
+            PrintWriter outputFile = new PrintWriter(fwriter);
+
+            String loggedUser = String.valueOf(User.getUserList().get(0).getUserName());
+            Timestamp loggedTime = Timestamp.valueOf(LocalDateTime.now());
+
+            item = loggedUser + " " + loggedTime;
+            // writes to login text file the user and timestamp of login time
+            outputFile.println(item);
+            // close file
+            outputFile.close();
         }
     }
 }
