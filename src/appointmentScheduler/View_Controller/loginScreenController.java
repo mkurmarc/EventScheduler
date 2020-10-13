@@ -92,10 +92,8 @@ public class loginScreenController implements Initializable {
             String filename = "src/appointmentScheduler/Files/log_file.txt", item;
             FileWriter fwriter = new FileWriter(filename, true);
             PrintWriter outputFile = new PrintWriter(fwriter);
-
             String loggedUser = String.valueOf(User.getUserList().get(0).getUserName());
             Timestamp loggedTime = Timestamp.valueOf(LocalDateTime.now());
-
             item = loggedUser + " " + loggedTime;
             // writes to login text file the user and timestamp of login time
             outputFile.println(item);

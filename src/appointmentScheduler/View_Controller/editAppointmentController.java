@@ -98,7 +98,7 @@ public class editAppointmentController implements Initializable {
         endTimeCombo.getItems().remove(endTimeCombo.getItems().remove(0));
         startTimeCombo.setValue(LocalTime.from(selectedApptObject.getStart()));
         endTimeCombo.setValue(LocalTime.from(selectedApptObject.getEnd()));
-        selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
+        selectApptTypeCombo.setItems(Appointment.getAllAppointmentTypes());
         selectApptTypeCombo.setValue(selectedApptObject.getType());
         titleTextField.setText(selectedApptObject.getTitle());
         descriptionTextField.setText(selectedApptObject.getDescription());

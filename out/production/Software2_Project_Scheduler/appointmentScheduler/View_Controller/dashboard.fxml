@@ -14,17 +14,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.dashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0"
+            prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.dashboardController">
    <children>
       <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuBar fx:id="menuBarHome">
               <menus>
-                <Menu fx:id="reportsMenuBar" mnemonicParsing="false" onAction="#reportsMenuBarActionHandler" text="Reports">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
                 <Menu fx:id="closeMenuBar" mnemonicParsing="false" onAction="#closeMenuBarActionHandler" text="Close">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Close" />
@@ -118,7 +115,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="viewAllCustomerButton" mnemonicParsing="false" onAction="#viewAllCustomersHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW ALL CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="viewAllCustomerButton" mnemonicParsing="false" onAction="#viewAllCustomersHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW ALL CUSTOMERS" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
@@ -128,6 +125,7 @@
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
+                        <Button fx:id="viewReportsButton" mnemonicParsing="false" onAction="#viewReportsButtonHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW REPORTS" textAlignment="CENTER" wrapText="true" />
                      </children>
                      <HBox.margin>
                         <Insets left="75.0" />

@@ -4,7 +4,6 @@ package appointmentScheduler.Model;
     Marc Rios
     ID:
 */
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Appointment {
     private static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+
+    private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
+            "Presentation","Meeting","Retail Sales Call","Wholesale Sales Call");
 
     private int appointmentId;
     private int customerId;
@@ -55,13 +57,16 @@ public class Appointment {
     public Appointment() {
     }
 
-
     public static ObservableList<Appointment> getAllAppointments() {
         return allAppointments;
     }
 
     public static void setAllAppointments(ObservableList<Appointment> allAppointments) {
         Appointment.allAppointments = allAppointments;
+    }
+
+    public static ObservableList<String> getAllAppointmentTypes() {
+        return allAppointmentTypes;
     }
 
     // this is used for the TableView column

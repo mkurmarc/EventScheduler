@@ -67,7 +67,7 @@ public class addAppointmentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         customerSearchCombo.setItems(Customer.getAllCustomers());
-        selectApptTypeCombo.setItems(dashboardController.getAllAppointmentTypes());
+        selectApptTypeCombo.setItems(Appointment.getAllAppointmentTypes());
         LocalTime startTime = LocalTime.of(8,0);
         LocalTime endTime = LocalTime.of(17,0);
         // while loop generates the local time list for the start and end times
@@ -80,7 +80,6 @@ public class addAppointmentController implements Initializable {
         startTimeCombo.getItems().remove(startTimeCombo.getItems().size()-1);
         //removes end time of 08:00 because that is the business opening time
         endTimeCombo.getItems().remove(endTimeCombo.getItems().remove(0));
-
         startTimeCombo.setPromptText("Select time");
         endTimeCombo.setPromptText("Select time");
         startTimeCombo.setVisibleRowCount(6);

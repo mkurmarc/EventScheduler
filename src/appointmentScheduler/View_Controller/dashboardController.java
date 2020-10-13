@@ -28,14 +28,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class dashboardController implements Initializable {
-    private static final ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList("Training",
-            "Presentation","Scrum","Code Review","Meeting");
-
+    @FXML
+    private Button viewReportsButton;
+    
     @FXML
     private MenuBar menuBarHome;
-
-    @FXML
-    private Menu reportsMenuBar;
 
     @FXML
     private Menu closeMenuBar;
@@ -104,6 +101,10 @@ public class dashboardController implements Initializable {
 
     ToggleGroup filterGroup = new ToggleGroup();
 
+    // getter for index to be modified which allows access to other layers of the program
+    public static int getIndexOfSelectedObj() {
+        return indexOfSelectedObj;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -173,16 +174,6 @@ public class dashboardController implements Initializable {
                 Alerts.appointmentAlert(timeToAppt);
             }
         }
-    }
-
-    // list getters and setters
-    public static ObservableList<String> getAllAppointmentTypes() {
-        return allAppointmentTypes;
-    }
-
-    // getter for index to be modified which allows access to other layers of the program
-    public static int getIndexOfSelectedObj() {
-        return indexOfSelectedObj;
     }
 
     @FXML
@@ -281,10 +272,8 @@ public class dashboardController implements Initializable {
         ObservableList<Appointment> aList = Appointment.getAllAppointments();
         if(viewAllRadioButton.isSelected()) appointmentsTableView.setItems(Appointment.getAllAppointments());
         if(viewMonthRadioButton.isSelected()) {
-        /*
-        Lambda expression filters the appointment list and compares each appt object's month to the user selected month,
-        and adds results to another list, fList. This helps present filter logic in one section of the code.
-        */
+        /* Lambda expression filters the appointment list and compares each appt object's month to the user selected month,
+        and adds results to another list, fList. This helps present filter logic in one section of the code. */
             ObservableList<Appointment> fList = aList.filtered(a -> a.getDate().getMonth().equals(selectedDate.getMonth()));
             appointmentsTableView.setItems(fList); // sets new list to table view
         }
@@ -361,5 +350,14 @@ public class dashboardController implements Initializable {
             }
         }
         appointmentsTableView.setItems(fList); // sets new list to table view
+    }
+
+    public void viewReportsButtonHandler(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("scheduleReports.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 }
