@@ -39,18 +39,20 @@ public class loginScreenController implements Initializable {
     @FXML
     private Label loginLabel;
 
+    private static final String filename = "appointmentScheduler/Resources/Nat_es";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Nat", Locale.getDefault());
-            if (Locale.getDefault().getLanguage().equals("es")) {
+            ResourceBundle rb = ResourceBundle.getBundle(filename, Locale.getDefault());
+            if(Locale.getDefault().getLanguage().equals("es")) {
                 loginLabel.setText(rb.getString("Login"));
-                loginUsernameTextField.setText(rb.getString("login"));
-                loginUsernameTextField.setText(rb.getString("username"));
-                loginPasswordField.setText(rb.getString("password"));
+                loginUsernameTextField.setPromptText(rb.getString("username"));
+                loginPasswordField.setPromptText(rb.getString("password"));
+                loginButton.setText(rb.getString("login"));
             }
         } catch(MissingResourceException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
         try {
@@ -65,8 +67,8 @@ public class loginScreenController implements Initializable {
         String userName = loginUsernameTextField.getText();
         String password = loginPasswordField.getText();
         // error checks and  messages if language is english default
-        if (!Locale.getDefault().getLanguage().equals("es")) {
-            if (!checkLoginCredentials(userName, password)) {
+        if(!Locale.getDefault().getLanguage().equals("es")) {
+            if(!checkLoginCredentials(userName, password)) {
                 Alerts.loginError(5, loginUsernameTextField, loginPasswordField);
             }
         }

@@ -1,16 +1,10 @@
 package appointmentScheduler.View_Controller;
 
-import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
-import appointmentScheduler.Main;
-import appointmentScheduler.Model.Address;
 import appointmentScheduler.Model.Appointment;
-import appointmentScheduler.Model.City;
 import appointmentScheduler.Model.Customer;
 import appointmentScheduler.Utilities.Alerts;
-import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +23,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;

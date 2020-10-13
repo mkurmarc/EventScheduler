@@ -5,6 +5,7 @@ package appointmentScheduler.Utilities;
     ID:
 */
 import appointmentScheduler.Model.Appointment;
+import appointmentScheduler.View_Controller.loginScreenController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
@@ -15,6 +16,8 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static appointmentScheduler.View_Controller.loginScreenController.*;
 
 public class Alerts {
 
@@ -215,7 +218,7 @@ public class Alerts {
 
     public static void spanishLoginError(int code, TextField textField, PasswordField passwordField) {
         try {
-            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Nat", Locale.getDefault());
+            ResourceBundle rb = ResourceBundle.getBundle("appointmentScheduler/Resources/Nat_es", Locale.getDefault());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(rb.getString("login_error"));
             alert.setHeaderText(rb.getString("cannot_login"));

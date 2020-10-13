@@ -3,7 +3,6 @@ package appointmentScheduler.View_Controller;
 import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
-import appointmentScheduler.Utilities.TimeClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,12 +18,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class dashboardController implements Initializable {

@@ -43,7 +43,7 @@
                         <Insets right="15.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Joseph&quot;" HBox.hgrow="SOMETIMES" />
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;Joseph&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
@@ -54,7 +54,7 @@
                         <Insets right="15.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="lastNameTextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Smith&quot;" HBox.hgrow="SOMETIMES" />
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;Smith&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
@@ -65,7 +65,7 @@
                         <Insets right="15.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="address1TextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;12344 Fox Avenue&quot;" HBox.hgrow="SOMETIMES" />
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;12344 Fox Avenue&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
@@ -77,7 +77,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="address2TextField" prefHeight="32.0" prefWidth="200.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Unit 13B&quot;" HBox.hgrow="SOMETIMES" />
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;Unit 13B&quot;" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
@@ -88,7 +88,7 @@
                         <Insets right="15.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="cityTextField" prefHeight="32.0" prefWidth="321.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;Arlignton&quot;" HBox.hgrow="SOMETIMES">
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;Arlignton&quot;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="75.0" />
                      </HBox.margin></TextField>
@@ -114,7 +114,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="postalCodeTextField" prefHeight="32.0" prefWidth="140.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;23908&quot;" />
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;23908&quot;" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
@@ -126,7 +126,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="phoneTextField" prefHeight="32.0" prefWidth="100.0" style="-fx-font-family: Arial;
-                  -fx-font-size: 16; -fx-font-style: italic;" text="&quot;626-123-4457&quot;" HBox.hgrow="SOMETIMES">
+                  -fx-font-size: 16; -fx-font-style: italic;" promptText="&quot;626-123-4457&quot;" HBox.hgrow="SOMETIMES">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></TextField>
