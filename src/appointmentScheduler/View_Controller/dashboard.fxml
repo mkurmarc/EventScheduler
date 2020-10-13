@@ -18,7 +18,8 @@
             prefWidth="1200.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.dashboardController">
    <children>
-      <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuBar fx:id="menuBarHome">
               <menus>
@@ -36,17 +37,23 @@
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>
                   </DatePicker>
-                  <RadioButton fx:id="viewAllRadioButton" mnemonicParsing="false" onAction="#viewAllRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View All" wrapText="true">
+                  <RadioButton fx:id="viewAllRadioButton" mnemonicParsing="false" onAction="#viewAllRadioButtonHandler"
+                               style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;"
+                               text="View All" wrapText="true">
                      <HBox.margin>
                         <Insets bottom="5.0" right="50.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="viewWeekRadioButton" mnemonicParsing="false" onAction="#viewWeekRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View By Week">
+                  <RadioButton fx:id="viewWeekRadioButton" mnemonicParsing="false" onAction="#viewWeekRadioButtonHandler"
+                               style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;"
+                               text="View By Week">
                      <HBox.margin>
                         <Insets bottom="5.0" right="50.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="viewMonthRadioButton" mnemonicParsing="false" onAction="#viewMonthRadioButtonHandler" style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;" text="View By Month">
+                  <RadioButton fx:id="viewMonthRadioButton" mnemonicParsing="false" onAction="#viewMonthRadioButtonHandler"
+                               style="-fx-font-family: arial black; -fx-text-fill: #FEFDFF; -fx-font-size: 14; -fx-font-weight: bold;"
+                               text="View By Month">
                      <HBox.margin>
                         <Insets bottom="5.0" right="20.0" />
                      </HBox.margin>
@@ -63,7 +70,8 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label scaleX="1.2" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 30; -fx-font-weight: bolder; -fx-underline: true;" text="APPOINTMENTS">
+                        <Label scaleX="1.2" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 30;
+                        -fx-font-weight: bolder; -fx-underline: true;" text="APPOINTMENTS">
                            <HBox.margin>
                               <Insets bottom="12.0" left="85.0" />
                            </HBox.margin>
@@ -72,12 +80,14 @@
                   </HBox>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 15; -fx-font-weight: bolder; -fx-underline: true;" text="DATE:">
+                        <Label style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 15;
+                        -fx-font-weight: bolder; -fx-underline: true;" text="DATE:">
                            <HBox.margin>
                               <Insets bottom="12.0" right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="varDateLabel" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 15; -fx-font-weight: bolder;" text="varDate">
+                        <Label fx:id="varDateLabel" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF;
+                        -fx-font-size: 15; -fx-font-weight: bolder;" text="varDate">
                            <HBox.margin>
                               <Insets bottom="12.0" />
                            </HBox.margin>
@@ -115,17 +125,20 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="viewAllCustomerButton" mnemonicParsing="false" onAction="#viewAllCustomersHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW ALL CUSTOMERS" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="viewAllCustomerButton" mnemonicParsing="false" onAction="#viewAllCustomersHandler"
+                                prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW ALL CUSTOMERS" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="viewCustomerButton" mnemonicParsing="false" onAction="#viewCustomerButtonHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW APT CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="viewCustomerButton" mnemonicParsing="false" onAction="#viewCustomerButtonHandler"
+                                prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW APT CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="viewReportsButton" mnemonicParsing="false" onAction="#viewReportsButtonHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW REPORTS" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="viewReportsButton" mnemonicParsing="false" onAction="#viewReportsButtonHandler"
+                                prefHeight="40.0" prefWidth="96.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW REPORTS" textAlignment="CENTER" wrapText="true" />
                      </children>
                      <HBox.margin>
                         <Insets left="75.0" />
@@ -133,17 +146,20 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#addAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD APPOINTMENT" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#addAppointmentButtonHandler"
+                                prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD APPOINTMENT" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="25.0" right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="editAppointmentButton" mnemonicParsing="false" onAction="#editAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT APPOINTMENT" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="editAppointmentButton" mnemonicParsing="false" onAction="#editAppointmentButtonHandler"
+                                prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT APPOINTMENT" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#deleteAppointmentButtonHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE APPOINTMENT" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#deleteAppointmentButtonHandler"
+                                prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE APPOINTMENT" textAlignment="CENTER" wrapText="true" />
                      </children>
                      <HBox.margin>
                         <Insets right="75.0" />

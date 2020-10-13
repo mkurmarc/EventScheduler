@@ -147,12 +147,12 @@ public class Alerts {
                 break;
             }
             case 17: {
-                alert.setContentText("Appointment start time overlaps with an existing appointment time. Please change" +
+                alert.setContentText("Appointment start time overlaps with an existing appointment time. Please change " +
                         "selected start time!");
                 break;
             }
             case 18: {
-                alert.setContentText("Appointment end time overlaps with an existing appointment time. Please change" +
+                alert.setContentText("Appointment end time overlaps with an existing appointment time. Please change " +
                         "selected end time!");
                 break;
             }

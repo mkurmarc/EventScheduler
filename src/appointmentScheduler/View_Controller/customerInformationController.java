@@ -3,10 +3,7 @@ package appointmentScheduler.View_Controller;
 import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
-import appointmentScheduler.Model.Address;
-import appointmentScheduler.Model.Appointment;
-import appointmentScheduler.Model.City;
-import appointmentScheduler.Model.Customer;
+import appointmentScheduler.Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +22,11 @@ import java.util.ResourceBundle;
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class customerInformationController implements Initializable {
-    public Button backToCustomersButton;
+    @FXML
+    private Button backToCustomersButton;
 
-//    ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
-//    ObservableList<Address> allAddresses = FXCollections.observableArrayList();
-//    ObservableList<City> allCities = FXCollections.observableArrayList();
+    @FXML
+    private Label varCountryName;
 
     @FXML
     private Label varFullNameLabel;
@@ -53,7 +50,7 @@ public class customerInformationController implements Initializable {
     private Label varPhoneLabel;
 
     @FXML
-    private Button backButton;
+    private Button backToDashboardButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,28 +90,22 @@ public class customerInformationController implements Initializable {
             e.printStackTrace();
         }
 
+        String selectedCountry = "";
+        for(int i=0; i < Country.getAllCountries().size(); i++) {
+            if(Country.getAllCountries().get(i).getCountryId() == (selectedCityObj.getCountryId())) {
+                selectedCountry = Country.getAllCountries().get(i).getCountry();
+            }
+        }
+
         // sets labels from all 3 objects created
         varFullNameLabel.setText(selectedCustomerObj.getCustomerName());
         varIdLabel.setText(String.valueOf(customerID));
         varAddress1Label.setText(selectedAddressObj.getAddress());
         varAddress2Label.setText(selectedAddressObj.getAddress2());
         varCityLabel.setText(selectedCityObj.getCity());
+        varCountryName.setText(selectedCountry);
         varPostalCodeLabel.setText(selectedAddressObj.getPostalCode());
         varPhoneLabel.setText(selectedAddressObj.getPhone());
-    }
-
-    @FXML
-    public void backButtonHandler() throws IOException {
-        if (confirmationWindow(2)) {
-            Stage stage;
-            Parent root;
-            stage = (Stage) backButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
     }
 
     @FXML
@@ -124,6 +115,19 @@ public class customerInformationController implements Initializable {
             Parent root;
             stage = (Stage) backToCustomersButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void backToDashboardHandler(ActionEvent actionEvent) throws IOException {
+        if (confirmationWindow(2)) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) backToDashboardButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

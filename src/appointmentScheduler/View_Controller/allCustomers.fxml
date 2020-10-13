@@ -9,15 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="660.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.allCustomersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0"
+            prefWidth="660.0" style="-fx-background-color: #205863;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.allCustomersController">
    <children>
-      <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="545.0" layoutY="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox maxHeight="80.0" prefHeight="80.0" prefWidth="1200.0" VBox.vgrow="NEVER">
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label scaleX="1.2" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 30; -fx-font-weight: bolder; -fx-underline: true;" text="Customer List">
+                        <Label scaleX="1.2" style="-fx-font-family: Arial Black; -fx-text-fill: #FEFDFF; -fx-font-size: 30;
+                         -fx-font-weight: bolder; -fx-underline: true;" text="Customer List">
                            <HBox.margin>
                               <Insets bottom="12.0" left="85.0" />
                            </HBox.margin>
@@ -43,26 +47,31 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="viewCustomerDetailsButton" mnemonicParsing="false" onAction="#viewCustomerDetailsHandler" prefHeight="40.0" prefWidth="89.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW CUST DETAILS" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="viewCustomerDetailsButton" mnemonicParsing="false" onAction="#viewCustomerDetailsHandler"
+                                prefHeight="40.0" prefWidth="89.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="VIEW CUST DETAILS" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="50.0" right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="editCustomerButton" mnemonicParsing="false" onAction="#editCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="editCustomerButton" mnemonicParsing="false" onAction="#editCustomerButtonHandler"
+                                prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="EDIT CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomerButtonHandler"
+                                prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="ADD CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomerButtonHandler" prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE CUSTOMER" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#deleteCustomerButtonHandler"
+                                prefHeight="40.0" prefWidth="80.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="DELETE CUSTOMER" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="backToDashboardButton" mnemonicParsing="false" onAction="#backToDashboardHandler" prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="BACK TO DASHBOARD" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="backToDashboardButton" mnemonicParsing="false" onAction="#backToDashboardHandler"
+                                prefHeight="40.0" prefWidth="100.0" style="-fx-font-family: SansSerif; -fx-background-color: ff775c;                           -fx-font-size: 11; -fx-text-fill: fefdff; -fx-font-weight: bold;" text="BACK TO DASHBOARD" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>

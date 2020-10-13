@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0"
             prefWidth="659.0" style="-fx-background-color: #004654;" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="appointmentScheduler.View_Controller.scheduleReportsController">
+            xmlns:fx="http://javafx.com/fxml" fx:controller="appointmentScheduler.View_Controller.scheduleReportsController">
    <children>
       <VBox layoutX="97.0" layoutY="105.0" prefHeight="200.0" prefWidth="590.0" style="-fx-background-color: #205863;"
             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

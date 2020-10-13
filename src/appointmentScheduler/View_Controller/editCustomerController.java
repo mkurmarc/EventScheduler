@@ -29,6 +29,12 @@ import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
 
 public class editCustomerController implements Initializable {
     @FXML
+    private Button toAllCustomersButton;
+
+    @FXML
+    private Button toDashboardButton;
+
+    @FXML
     private TextField firstNameTextField;
 
     @FXML
@@ -57,10 +63,6 @@ public class editCustomerController implements Initializable {
 
     @FXML
     private Button saveEditCustomerButton;
-
-    @FXML
-    private Button cancelEditCustomerButton;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -135,20 +137,6 @@ public class editCustomerController implements Initializable {
         phoneTextField.setText(selectedAddressObj.getPhone());
         activeComboBox.setItems(activeList);
         activeComboBox.setValue(selectedCustomerObj.getActive());
-    }
-
-    @FXML
-    void cancelEditCustomerButtonHandler(ActionEvent event) throws IOException {
-        if (confirmationWindow(1)) {
-            Stage stage;
-            Parent root;
-            stage = (Stage) cancelEditCustomerButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("customerInformation.fxml"));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
     }
 
     @FXML
@@ -247,6 +235,32 @@ public class editCustomerController implements Initializable {
             Stage stage;
             Parent root;
             stage = (Stage) saveEditCustomerButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void toDashboardButtonHandler(ActionEvent actionEvent) throws IOException {
+        if (confirmationWindow(1)) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) toDashboardButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void toAllCustomersButtonHandler(ActionEvent actionEvent) throws IOException {
+        if (confirmationWindow(1)) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) toAllCustomersButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
