@@ -137,27 +137,27 @@ public class addAppointmentController implements Initializable {
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdateBy = User.getUserList().get(0).getUserName();
 
+            ObservableList<Appointment> allList = FXCollections.observableArrayList(Appointment.getAllAppointments());
             // check if start/end times of user input do not interfere with the current start/end times
-            for(int i=0; i < Appointment.getAllAppointments().size(); i++) {
-                LocalTime existingStartTime = Appointment.getAllAppointments().get(i).getStartTime();
-                LocalTime existingEndTime = Appointment.getAllAppointments().get(i).getEndTime();
-                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)) {
+            for(int i=0; i < allList.size(); i++) {
+                LocalDateTime existingStart = allList.get(i).getStart();
+                LocalDateTime existingEnd = allList.get(i).getEnd();
+                if(start.isAfter(existingStart) && end.isBefore(existingEnd)) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
                     break;
                 }
-                else if(startTime.equals(existingStartTime) || startTime.equals(existingEndTime)) {
+                else if((start.equals(existingStart) || start.equals(existingEnd))) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
                     break;
                 }
-
-                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)) {
+                else if(end.isAfter(existingStart) && end.isBefore(existingEnd)) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
                     break;
                 }
-                else if(endTime.equals(existingStartTime) || endTime.equals(existingEndTime)) {
+                else if((end.equals(existingStart) || end.equals(existingEnd))) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
                     break;
@@ -165,14 +165,6 @@ public class addAppointmentController implements Initializable {
             }
 
             // checks user inputs for errors
-            if(startTime.isAfter(endTime)) {
-                noErrors = false;
-                Alerts.errorAppointment(19);
-            }
-            if(startTime.equals(endTime)) {
-                noErrors = false;
-                Alerts.errorAppointment(20);
-            }
             if(title.length() > 255) {
                 noErrors = false;
                 Alerts.errorAppointment(7);

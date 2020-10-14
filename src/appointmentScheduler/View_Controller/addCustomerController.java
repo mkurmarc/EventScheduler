@@ -148,7 +148,7 @@ public class addCustomerController implements Initializable {
             String lastUpdateBy = User.getUserList().get(0).getUserName();
 
             // block alerts users if inputs incorrect
-            if(customerFirstName.isEmpty()|| customerLastName.isEmpty()) {
+            if(firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty()) {
                 errorsPresent = true;
                 Alerts.errorCustomer(11);
             }
@@ -156,26 +156,47 @@ public class addCustomerController implements Initializable {
                 errorsPresent = true;
                 Alerts.errorCustomer(2);
             }
+            if(address1.isEmpty()) {
+                errorsPresent = true;
+                Alerts.errorCustomer(13);
+            }
             if(address1.length() > 50) {
                 errorsPresent = true;
                 Alerts.errorCustomer(4);
+            }
+            if(address2.isEmpty()) {
+                errorsPresent = true;
+                Alerts.errorCustomer(14);
             }
             if(address2.length() > 50) {
                 errorsPresent = true;
                 Alerts.errorCustomer(5);
             }
-            if(postalCode.length() > 10) {
+            if(cityName.isEmpty()) {
                 errorsPresent = true;
-                Alerts.errorCustomer(3);
-            }
-            if(phone.length() > 20) {
-                errorsPresent = true;
-                Alerts.errorCustomer(12);
+                Alerts.errorCustomer(15);
             }
             if(cityName.length() > 50) {
                 errorsPresent = true;
                 Alerts.errorCustomer(6);
             }
+            if(postalCode.isEmpty()) {
+                errorsPresent = true;
+                Alerts.errorCustomer(16);
+            }
+            if(postalCode.length() > 10) {
+                errorsPresent = true;
+                Alerts.errorCustomer(3);
+            }
+            if(phone.isEmpty()) {
+                errorsPresent = true;
+                Alerts.errorCustomer(17);
+            }
+            if(phone.length() > 20) {
+                errorsPresent = true;
+                Alerts.errorCustomer(12);
+            }
+
             /*
             if the city object already exists in the all city list and no errors present, then this creates a new city
             object and adds it to DB
@@ -203,9 +224,14 @@ public class addCustomerController implements Initializable {
             }
         }
         catch (NullPointerException e) {
-            errorsPresent = true;
-            if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
-            if(activeComboBox.getValue() == null) Alerts.errorCustomer(9);
+            if(countryCombo.getValue() == null) {
+                errorsPresent = true;
+                Alerts.errorCustomer(10);
+            }
+            if(activeComboBox.getValue() == null) {
+                errorsPresent = true;
+                Alerts.errorCustomer(9);
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();

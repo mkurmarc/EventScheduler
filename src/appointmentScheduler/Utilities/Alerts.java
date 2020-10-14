@@ -41,19 +41,19 @@ public class Alerts {
                 break;
             }
             case 4: {
-                alert.setContentText("Address 1 field is too long!");
+                alert.setContentText("Address 1 field is too long. Maximum 50 characters.");
                 break;
             }
             case 5: {
-                alert.setContentText("Address 2 field is too long!");
+                alert.setContentText("Address 2 field is too long. Maximum 50 characters.");
                 break;
             }
             case 6: {
-                alert.setContentText("City field is too long!");
+                alert.setContentText("City field is too long. Maximum 50 characters.");
                 break;
             }
             case 7: {
-                alert.setContentText("Zip code must be an integer.\n(Example: \"91731\")");
+                alert.setContentText("Postal code is too long. Maximum 10 characters.");
                 break;
             }
             case 9: {
@@ -65,11 +65,31 @@ public class Alerts {
                 break;
             }
             case 11: {
-                alert.setContentText("Name fields cannot be empty!");
+                alert.setContentText("Name field(s) cannot be empty!");
                 break;
             }
             case 12: {
                 alert.setContentText("Phone number too long. Maximum 20 characters.");
+                break;
+            }
+            case 13: {
+                alert.setContentText("Address 1 field cannot be empty.");
+                break;
+            }
+            case 14: {
+                alert.setContentText("Address 2 field cannot be empty.");
+                break;
+            }
+            case 15: {
+                alert.setContentText("City field cannot be empty.");
+                break;
+            }
+            case 16: {
+                alert.setContentText("Postal code field cannot be empty.");
+                break;
+            }
+            case 17: {
+                alert.setContentText("Phone number field cannot be empty.");
                 break;
             }
             default: {

@@ -104,7 +104,7 @@ public class editAppointmentController implements Initializable {
             Stage stage;
             Parent root;
             stage = (Stage) cancelEditApptButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("allCustomers.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -144,43 +144,37 @@ public class editAppointmentController implements Initializable {
             String lastUpdateBy = selectedCustomerObj.getLastUpdateBy();
 
             ObservableList<Appointment> allList = FXCollections.observableArrayList(Appointment.getAllAppointments());
-            ObservableList<Appointment> fList = allList.filtered(a -> a.getDate().getMonth().equals(apptDate.getMonth()));
             // check if start/end times of user input do not interfere with the current start/end times
-            for(int i=0; i < fList.size(); i++) {
-                LocalTime existingStartTime = fList.get(i).getStartTime();
-                LocalTime existingEndTime = fList.get(i).getEndTime();
-                if(startTime.isAfter(existingStartTime) && startTime.isBefore(existingEndTime)
-                        && !(fList.get(i).equals(selectedCustomerObj))) {
+            for(int i=0; i < allList.size(); i++) {
+                LocalDateTime existingStart = allList.get(i).getStart();
+                LocalDateTime existingEnd = allList.get(i).getEnd();
+                if(start.isAfter(existingStart) && end.isBefore(existingEnd)
+                        && !(allList.get(i).getAppointmentId() == selectedCustomerObj.getAppointmentId())) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
+                    break;
                 }
-                else if((startTime.equals(existingStartTime) || startTime.equals(existingEndTime))
-                        && !(fList.get(i).equals(selectedCustomerObj))) {
+                else if((start.equals(existingStart) || start.equals(existingEnd))
+                        && !(allList.get(i).getAppointmentId() == selectedCustomerObj.getAppointmentId())) {
                     noErrors = false;
                     Alerts.errorAppointment(17);
+                    break;
                 }
-
-                else if(endTime.isAfter(existingStartTime) && endTime.isBefore(existingEndTime)
-                        && !(fList.get(i).equals(selectedCustomerObj))) {
+                else if(end.isAfter(existingStart) && end.isBefore(existingEnd)
+                        && !(allList.get(i).getAppointmentId() == selectedCustomerObj.getAppointmentId())) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
+                    break;
                 }
-                else if((endTime.equals(existingStartTime) || endTime.equals(existingEndTime))
-                        && !(fList.get(i).equals(selectedCustomerObj))) {
+                else if((end.equals(existingStart) || end.equals(existingEnd))
+                        && !(allList.get(i).getAppointmentId() == selectedCustomerObj.getAppointmentId())) {
                     noErrors = false;
                     Alerts.errorAppointment(18);
+                    break;
                 }
             }
 
             // checks user inputs for errors
-            if(startTime.isAfter(endTime) || endTime.isBefore(startTime)) {
-                noErrors = false;
-                Alerts.errorAppointment(19);
-            }
-            if(startTime.equals(endTime)) {
-                noErrors = false;
-                Alerts.errorAppointment(20);
-            }
             if(title.length() > 255) {
                 noErrors = false;
                 Alerts.errorAppointment(7);
