@@ -156,6 +156,7 @@ public class addCustomerController implements Initializable {
                 errorsPresent = true;
                 Alerts.errorCustomer(2);
             }
+
             if(address1.isEmpty()) {
                 errorsPresent = true;
                 Alerts.errorCustomer(13);

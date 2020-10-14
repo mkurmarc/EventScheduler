@@ -140,7 +140,7 @@ public class editCustomerController implements Initializable {
     }
 
     @FXML
-    void saveEditCustomerButtonHandler(ActionEvent event) throws SQLException, IOException {
+    void saveEditCustomerButtonHandler(ActionEvent event) throws IOException {
         boolean noErrors = true;
         try {
             int indexOfSelectedObj = allCustomersController.getIndexOfSelectedCustomer();
@@ -184,25 +184,46 @@ public class editCustomerController implements Initializable {
                 noErrors = false;
                 Alerts.errorCustomer(2);
             }
+
+            if(address1.isEmpty()) {
+                noErrors = false;
+                Alerts.errorCustomer(13);
+            }
             if(address1.length() > 50) {
                 noErrors = false;
                 Alerts.errorCustomer(4);
+            }
+            if(address2.isEmpty()) {
+                noErrors = false;
+                Alerts.errorCustomer(14);
             }
             if(address2.length() > 50) {
                 noErrors = false;
                 Alerts.errorCustomer(5);
             }
-            if(postalCode.length() > 10) {
+            if(city.isEmpty()) {
                 noErrors = false;
-                Alerts.errorCustomer(3);
-            }
-            if(phoneNo.length() > 20) {
-                noErrors = false;
-                Alerts.errorCustomer(12);
+                Alerts.errorCustomer(15);
             }
             if(city.length() > 50) {
                 noErrors = false;
                 Alerts.errorCustomer(6);
+            }
+            if(postalCode.isEmpty()) {
+                noErrors = false;
+                Alerts.errorCustomer(16);
+            }
+            if(postalCode.length() > 10) {
+                noErrors = false;
+                Alerts.errorCustomer(3);
+            }
+            if(phoneNo.isEmpty()) {
+                noErrors = false;
+                Alerts.errorCustomer(17);
+            }
+            if(phoneNo.length() > 20) {
+                noErrors = false;
+                Alerts.errorCustomer(12);
             }
 
             if(noErrors) {
@@ -223,9 +244,14 @@ public class editCustomerController implements Initializable {
             }
         }
         catch (NullPointerException e) {
-            noErrors = false;
-            if(countryCombo.getValue() == null) Alerts.errorCustomer(10);
-            else if(activeComboBox.getValue() == null) Alerts.errorAppointment(9);
+            if(countryCombo.getValue() == null) {
+                noErrors = false;
+                Alerts.errorCustomer(10);
+            }
+            else if(activeComboBox.getValue() == null) {
+                noErrors = false;
+                Alerts.errorAppointment(9);
+            }
         }
         catch (SQLException e) {
                 e.printStackTrace();
