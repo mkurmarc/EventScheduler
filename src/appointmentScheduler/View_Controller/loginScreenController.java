@@ -1,5 +1,9 @@
 package appointmentScheduler.View_Controller;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.DAO.Impl.CountryDaoImpl;
 import appointmentScheduler.Model.Country;
 import appointmentScheduler.Model.User;
@@ -104,3 +108,8 @@ public class loginScreenController implements Initializable {
         }
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

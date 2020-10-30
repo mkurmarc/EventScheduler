@@ -2,9 +2,7 @@ package appointmentScheduler.Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDateTime;
-
 /*
     @AUTHOR
     Marc Rios

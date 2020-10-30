@@ -2,9 +2,7 @@ package appointmentScheduler.Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDateTime;
-
 /*
     @AUTHOR
     Marc Rios
@@ -128,3 +126,8 @@ public class User {
         return userName;
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

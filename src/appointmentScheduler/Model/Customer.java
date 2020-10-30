@@ -45,14 +45,7 @@ public class Customer {
     public static void setAllCustomers(ObservableList<Customer> allCustomers) {
         Customer.allCustomers = allCustomers;
     }
-    /*
-    public static Customer getCustomerByID(int customerId) {
-        Customer customer = new Customer();
-        for(int i=0; i < allCustomers.size(); i++) {
-            if(allCustomers.get(i).getCustomerId() == customerId) customer = allCustomers.get(i);
-        }
-        return customer;
-    } */
+
     public int getCustomerId() {
         return customerId;
     }

@@ -1,5 +1,9 @@
 package appointmentScheduler.View_Controller;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.DAO.Impl.*;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
@@ -358,3 +362,8 @@ public class dashboardController implements Initializable {
         window.show();
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

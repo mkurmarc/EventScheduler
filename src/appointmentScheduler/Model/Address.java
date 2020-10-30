@@ -1,5 +1,9 @@
 package appointmentScheduler.Model;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
