@@ -127,7 +127,7 @@ public class CityDaoImpl {
     }
 
     public void deleteCity(City city) {
-
+        // add if needed
     }
 }
 /*
