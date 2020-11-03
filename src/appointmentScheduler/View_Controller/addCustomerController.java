@@ -1,5 +1,9 @@
 package appointmentScheduler.View_Controller;
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.DAO.Impl.CustomerDaoImpl;
@@ -16,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -247,3 +250,8 @@ public class addCustomerController implements Initializable {
         }
     }
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
