@@ -10,7 +10,6 @@ import appointmentScheduler.Utilities.DBConnection;
 import appointmentScheduler.Utilities.DBQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -109,7 +108,11 @@ public class CustomerDaoImpl {
         ps.execute(); // execute PreparedStatement
         DBConnection.closeConnection(); // close DB connection
     }
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
     public static void updateCustomer(Customer customerParameter) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB
 

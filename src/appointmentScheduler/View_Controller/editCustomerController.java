@@ -141,7 +141,11 @@ public class editCustomerController implements Initializable {
         activeComboBox.setItems(activeList);
         activeComboBox.setValue(selectedCustomerObj.getActive());
     }
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
     @FXML
     void saveEditCustomerButtonHandler(ActionEvent event) throws IOException {
         boolean noErrors = true;

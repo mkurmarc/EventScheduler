@@ -175,7 +175,11 @@ public class dashboardController implements Initializable {
             }
         }
     }
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
     @FXML
     void closeMenuBarActionHandler(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit application?");

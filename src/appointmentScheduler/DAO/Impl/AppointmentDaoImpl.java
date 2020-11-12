@@ -137,6 +137,11 @@ public class AppointmentDaoImpl {
         DBConnection.closeConnection(); // close DB connection
         return appointmentObject;
     }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
 
     public static void createAppointment(Appointment appointment) throws SQLException {
         Connection conn = DBConnection.startConnection(); // connect to DB

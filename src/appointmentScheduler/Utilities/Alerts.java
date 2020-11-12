@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -20,7 +19,6 @@ import java.util.ResourceBundle;
 import static appointmentScheduler.View_Controller.loginScreenController.*;
 
 public class Alerts {
-
     // Method creates error messages based of the code given and highlights error field in red
     public static void errorCustomer(int code) {
 
@@ -391,5 +389,9 @@ public class Alerts {
         alert.setContentText("Appointment will start in approximately " + timeToAppt + " minute(s)");
         alert.show();
     }
-
 }
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/

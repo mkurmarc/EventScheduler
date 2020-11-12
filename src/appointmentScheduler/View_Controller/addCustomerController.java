@@ -94,7 +94,11 @@ public class addCustomerController implements Initializable {
             stage.show();
         }
     }
-
+/*
+    @AUTHOR
+    Marc Rios
+    ID:
+*/
     @FXML
     void saveAddCustomerButtonHandler(ActionEvent event) throws IOException {
         boolean errorsPresent = false;
