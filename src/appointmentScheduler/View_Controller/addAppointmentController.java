@@ -4,9 +4,7 @@ package appointmentScheduler.View_Controller;
     Marc Rios
     ID:
 */
-import appointmentScheduler.DAO.Impl.AddressDaoImpl;
 import appointmentScheduler.DAO.Impl.AppointmentDaoImpl;
-import appointmentScheduler.DAO.Impl.CityDaoImpl;
 import appointmentScheduler.Model.*;
 import appointmentScheduler.Utilities.Alerts;
 import javafx.collections.FXCollections;
@@ -21,16 +19,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 import static appointmentScheduler.Utilities.Alerts.confirmationWindow;
